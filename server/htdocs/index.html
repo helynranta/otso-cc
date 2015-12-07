@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+
     </head>
     <body>
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
         <script>
-        data = {
-            "test":1
-        }
         $(document).ready(function() {
-          console.log("?")
           $.ajax({
                   type: "GET",
-                  url: "/postFeedback",
-                  data: data,
-                  dataType: "JSON",
+                  url: "/getFeedback",
+                  data: "data",
                   beforeSend: function() {
                       console.log("before");
                   },
-                  success: function(data, textStatus, jqXHR ) {
+                  success: function(data, textStatus) {
                       console.log(textStatus);
                       console.log(data);
                   },
                   complete: function() {
                       console.log("complete");
                   }
-                });  
+                });
         })
         </script>
     </body>
