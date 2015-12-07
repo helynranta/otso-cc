@@ -1,0 +1,9 @@
+.container {
+	max-width: 730px;
+}
+
+.col-lg-4 {
+	display: inline-block;
+	float: initial;
+}	
+
