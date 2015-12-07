@@ -2,12 +2,15 @@ var express	= require('express');
 var app		= express();
 var fs      = require("fs");
 var random  = require('randomstring');
+var bodyParser = require('body-parser');
 
 var port = process.env.PORT || 3000;
 
 var accounts, orders, feedback = {}
 
 app.use(express.static(__dirname+"/../client/"));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.json({type: 'application/json'}));
 
 app.get('/:filename/:field', function(req, res) {
     var source = {};
@@ -27,8 +30,14 @@ app.get('/:filename/:field', function(req, res) {
         }
     });
 });
+//THIS ONLY TAKES RAW type=application/json
+app.post('/', function(req, res) {
+    if (!req.body) return res.sendStatus(400);
 
-app.get('/')
+    console.log(req.body);
+    
+    res.end();
+});
 
 var server = app.listen(port, function () {
     var host = server.address().address;
