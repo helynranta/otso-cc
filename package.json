@@ -1,0 +1,14 @@
+{
+  "name": "otso-cc",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:/lasshi/otso-cc"
+  },
+  "dependencies": {
+    "express": "*",
+    "phonegap": "*",
+    "bootstrap": "*",
+    "gulp": "*"
+  }
+}
