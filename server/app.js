@@ -13,7 +13,6 @@ app.get('/:filename/:field', function(req, res) {
     var source = {};
     var fn = req.params.filename;
     var field = req.params.field;
-    console.log(field)
     fs.readFile(__dirname+"/data/"+fn, function(err, data) {
         if(err) res.send(err);
         try{
