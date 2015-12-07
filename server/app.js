@@ -9,69 +9,28 @@ var accounts, orders, feedback = {}
 
 app.use(express.static(__dirname+"/htdocs/"));
 
-app.get('/getFeedback', function(req, res) {
-    res.send();
-    res.end();
-});
-app.get('/getOrders', function(req, res) {
-    var data = loadOrders();
-    res.end(data);
-});
-
-app.get('/test', function(req, res) {
-
+app.get('/:filename/:field', function(req, res) {
+    var source = {};
+    var fn = req.params.filename;
+    var field = req.params.field;
+    console.log(field)
+    fs.readFile(__dirname+"/data/"+fn, function(err, data) {
+        if(err) res.send(err);
+        try{
+            var data = JSON.parse(data);
+        } catch (err){
+            res.send("problems officer (JSON)");
+        }finally {
+            source = data;
+            if(field === "*") res.send(source);
+            else res.send(source[field]);
+            res.end();
+        }
+    });
 })
 
 var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log("App running at http://%s:%s", host, port);
-
-    loadOrders();
-    loadFeedback();
-    loadAccounts();
 });
-
-// functions
-var loadOrders = function () {
-    var source = {};
-    fs.readFile(__dirname+"/data/order.json", function(err, data) {
-        if(err) throw err;
-        try{
-            var data = JSON.parse(data);
-        }catch (err){
-            throw err;
-        }finally {
-            source = data;
-        }
-        orders = source;
-    });
-};
-var loadFeedback = function () {
-    var source = {};
-    fs.readFile(__dirname + "/data/feedback.json", function (err, data) {
-        if(err) throw err;
-        try{
-            var data = JSON.parse(data);
-        }catch (err){
-            throw err;
-        }finally {
-            source = data;
-        }
-        feedback = source;
-    });
-};
-var loadAccounts = function() {
-    // load all accounts to memory (bubbelcum)
-    fs.readFile(__dirname+"/data/accounts.json", function(err, data) {
-        if(err) throw err;
-        try {
-            var data = JSON.parse(data);
-        }
-        catch(err) {
-            throw err;
-        } finally {
-            accounts = data;
-        }
-    });
-}
