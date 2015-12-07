@@ -7,7 +7,7 @@ var port = process.env.PORT || 3000;
 
 var accounts, orders, feedback = {}
 
-app.use(express.static(__dirname+"/htdocs/"));
+app.use(express.static(__dirname+"/../client/"));
 
 app.get('/:filename/:field', function(req, res) {
     var source = {};
@@ -26,7 +26,9 @@ app.get('/:filename/:field', function(req, res) {
             res.end();
         }
     });
-})
+});
+
+app.get('/')
 
 var server = app.listen(port, function () {
     var host = server.address().address;
