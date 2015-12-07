@@ -5,21 +5,34 @@ var random  = require('randomstring');
 
 var port = process.env.PORT || 3000;
 
-app.post('/postFeedback', function(req, res) {
-    fs.readFile(__dirname + "/data/feedback.json", 'utf-8', function (err, data) {
-        data = JSON.parse(data);
-        
-        var rand = "";
-        while((rand = random.generate(13)) != undefined) {}
-        data[rand] = {
-            "email": "example@test.com",
-            "date": new Date().toJSON(),
-            "stars": [1,2,1,2],
-            "comment":"kaikki oli paskaa paitsi kusi",
-            "recall":false
+app.use(express.static(__dirname+"/htdocs/"));
+
+app.get('/postFeedback', function(req, res) {
+    console.log("got post");
+    
+    fs.readFile(__dirname + "/data/feedback.json", function (err, data) {
+        try {
+             data = JSON.parse(data);
+        } catch (err) {
+            console.log(err)
+        } finally {
+            var rand = "";
+            while((rand = random.generate(13)) != undefined) {}
+            data[rand] = {
+                "email": "example@test.com",
+                "date": new Date().toJSON(),
+                "stars": [1,2,1,2],
+                "comment":"kaikki oli paskaa paitsi kusi",
+                "recall":false
+            }   
         }
+        res.end("lol");
     });
 });
+
+app.get('/', function(req, res) {
+    
+})
 
 var server = app.listen(port, function () {
     var host = server.address().address;
