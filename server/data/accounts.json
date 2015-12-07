@@ -1,5 +1,6 @@
-[
-	{"admin":"salasana"},
-	{"sub1":"subsalasana1"},
-	{"sub2":"subsalasana2"},
-]
+{
+	"admin" : "password",
+	"sub1"	: "password",
+	"sub2"	: "password",
+	"hessu"	: "hopo",
+}
