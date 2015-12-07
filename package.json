@@ -1,20 +1,20 @@
 {
   "name": "otso-cc",
+  "description":"Codecamp application at Otso CC winter 2015 at Lappeenranta University of technology",
   "version": "0.0.1",
+  "license": {
+    "type":"MIT", 
+    "url": "http://www.opensource.org/licenses/mit-license.php"
+  }
   "repository": {
     "type": "git",
     "url": "git@github.com:/lasshi/otso-cc"
   },
-  "author":
-    [
-      "Otto Laitinen <>",
-      "Lassi Lääti <lassilaati@gmail.com>", 
-      "Anna Osipova<>"
-    ],
+  "author":["Otto Laitinen <>","Lassi Lääti <lassilaati@gmail.com>", "Anna Osipova<>"],
   "dependencies": {
     "express": "*",
     "phonegap": "*",
-    "bootstrap": "*",
+    "bootstrap": "*"
   },
   "devDependencies": {
     "gulp": "*"
