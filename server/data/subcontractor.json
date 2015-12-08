@@ -3,30 +3,35 @@
         "name" : "Tekijä Oy",
         "address" : "Katu 1 23456 Postipaikka",
         "y" : "yyyyyyy",
+        "cat" : "Delivery",
         "phone" : "+358 40 234 1253"
     },
     "Ali" : {
         "name" : "AliBaba Oy",
         "address" : "mattoKatu 12 23456 Postipaikka",
         "y" : "yyyyyyy2",
+        "cat" : "Delivery",
         "phone" : "+352 50 232 1253"
     },
     "Kimmo" : {
         "name" : "Kimmon yritys Oy",
         "address" : "Macbookkuja 42 232256 Esboo",
         "y" : "yyyyyyy2",
+        "cat" : "Customer support",
         "phone" : "+352 50 232 1253"
     },
     "Migitto" : {
         "name" : "Migitto Oy",
         "address" : "Kumpu 12 23456 teletappimäki",
         "y" : "yy2yyy2",
+        "cat" : "Customer support",
         "phone" : "+352 50 232 1253"
     },
     "Timo" : {
         "name" : "Jankon Betoni Oy",
         "address" : "Olutta 12 23456 kiitos",
         "y" : "yy2yyy2",
+        "cat" : "Renovation",
         "phone" : "+352 50 232 1253"
     }
 }
