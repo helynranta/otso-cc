@@ -1,7 +1,7 @@
 DATA
 =============
 
-All data in project is constructed in json files. data/model directory holds specific model structure for each own data structure. They are used in new data insertion, do not modify t Lassi.
+All data in project is constructed in json files. data/model directory holds specific model structure for each own data structure. They are used in new data insertion.
 
 Every object has id when they are sent to server. This ID will become key to this specific object in json "database".
 

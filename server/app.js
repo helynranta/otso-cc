@@ -69,6 +69,13 @@ app.post('/:filename/:field', function(req, res) {
     }
 });
 
+app.post('/login', function(req, res) {
+    var result = {
+        "success":"true"
+    }
+    console.log(req.body);
+    res.end(JSON.stringify(result));
+});
 var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;

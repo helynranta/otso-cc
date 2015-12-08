@@ -36,7 +36,7 @@ var App = React.createClass({
 
 var routes = (
   <Route name="app" path="/" handler={App} >
-  	<Route name="login" path="login" handler={LoginScreen} />
+  	<Route name="loginscreen" path="/login" handler={LoginScreen} />
   	<Route name="categories" path="/cats" handler={CategoriesScreen} />
   </Route>
 );
