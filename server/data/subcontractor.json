@@ -1,4 +1,4 @@
-[{
+{
     "Tekija" : {
         "name" : "Tekijä Oy",
         "address" : "Katu 1 23456 Postipaikka",
@@ -29,4 +29,4 @@
         "y" : "yy2yyy2",
         "phone" : "+352 50 232 1253"
     }
-}]
+}
