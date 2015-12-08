@@ -1,9 +1,4 @@
-var React = require('react'),
-    Router = require('react-router'),
-    Route = Router.Route,
-    DefaultRoute = Router.DefaultRoute,
-    RouteHandler = Router.RouteHandler,
-    Navigation = Router.Navigation;
+var React = require('react');
 
 require('./style.css')
 
@@ -15,7 +10,6 @@ function randomString(length) {
 }
 
 var CreateOrder = React.createClass({
-    mixins: [Router.State, Navigation],
     handleSubmit : function (e) {
         e.preventDefault();
 
@@ -37,7 +31,7 @@ var CreateOrder = React.createClass({
     			data: JSON.stringify(order),
     			success: function(data) {
                     console.log(data)
-                    this.transitionTo('subcontractors');
+                    window.location.replace("#/subcontractors");
     			}.bind(this),
     			error:function(xhr, status, err) {
     				console.log(this.props.url, status, err.toString());
