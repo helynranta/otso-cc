@@ -9,6 +9,7 @@ var React = require('react'),
   require('../src/style.css');
 
 var LoginScreen = require('./LoginScreen.jsx'),
+    CreateOrder = require('./CreateOrder.jsx'),
 	SubcontractorsScreen = require('./SubcontractorsScreen.jsx'),
 	LogoutButton = require('./LogoutButton.jsx'),
 	SubcontractorScreen = require('./SubcontractorScreen.jsx');
@@ -60,6 +61,7 @@ var App = React.createClass({
 var routes = (
 	<Route name="app" path="/" handler={App} >
 		<Route name="loginscreen" path="/login" handler={LoginScreen} />
+        <Route name="createorder" path="/createorder" handler={CreateOrder} />
 		<Route name="subcontractors" path="/subcontractors" handler={SubcontractorsScreen} />
 		<Route name="subcontractor" path="/subcontractor/:id" handler={SubcontractorScreen} />
 	</Route>

@@ -32,3 +32,7 @@
 #subcontractor div {
 	vertical-align: top;
 }
+
+.orderForm input {
+	margin: 10px 20px;
+}
