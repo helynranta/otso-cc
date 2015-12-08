@@ -3,8 +3,7 @@ var React = require('react'),
   Route = Router.Route,
   DefaultRoute = Router.DefaultRoute,
   RouteHandler = Router.RouteHandler,
-  Navigation = Router.Navigation,
-  Button = require('react-bootstrap').Button;
+  Navigation = Router.Navigation;
 
   require('react-bootstrap');
   require('../src/style.css');
