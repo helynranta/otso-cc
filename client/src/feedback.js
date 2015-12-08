@@ -1,40 +1,24 @@
 $(document).ready(function()
 {
 
-	$("#submitBtn").click(function() {	
+	$("#submitBtn").click(function() {
    		postData();
    	});
 
 
 function postData()
 {
-	console.log("jee");
-	/*"asdf": {
-        "email": "example",
-        "date": "example",
-        "stars": [
-            0,
-            1,
-            2,
-            3
-        ],
-        "comment": "example",
-        "recall": 0
-    }*/
-
     var url = window.location.href;
     asd = url.split("/");
     id = asd[asd.length - 1];
 
-
 	var data = JSON.stringify({
 		"id":id,
-		"email": $("email").val(),
+		"email": $("#email").val(),
 		"date": new Date().toJSON(),
 		"stars": [$("#overall").val(), $("#tidiness").val(), $("#service").val(), $("#time").val()],
-		"comment": $("comment").val(),
+		"comment": $("#comment").val(),
 		"recall": $("#recall input[type='radio']:checked").val()
-
 	});
 
 	console.log(data);
