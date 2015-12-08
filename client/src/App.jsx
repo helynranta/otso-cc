@@ -6,8 +6,10 @@ var React = require('react'),
   Navigation = Router.Navigation,
   Link = Router.Link;
 
+
   require('react-bootstrap');
-  require('../src/style.css');
+  require('../src/css/style.css');
+  require('../src/css/pageslider.css')
 
 var LoginScreen = require('./LoginScreen.jsx'),
     CreateOrder = require('./CreateOrder.jsx'),
@@ -30,7 +32,6 @@ var App = React.createClass({
 	      group: _group || 2
 	    });
 
-
 	    if (_state) {
 	    	switch (_group) {
 	    		case 0: this.transitionTo('manufacturer_dashboard');
@@ -44,7 +45,6 @@ var App = React.createClass({
 		return (
 			<div className="container">
 				<div className="header clearfix">
-
 					<ul className="nav nav-pills pull-right nav-logout">
                         <li role="presentation">
                              <Link to="createorder">+Assignment</Link>
