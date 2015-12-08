@@ -35,7 +35,7 @@ var App = React.createClass({
 
 					<ul className="nav nav-pills pull-right nav-logout">
             <li role="presentation" className="active" id="nav-logout-li">
-
+            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
             </li>
           </ul>
           <h3 className="text-muted">Code camp</h3>
@@ -45,9 +45,6 @@ var App = React.createClass({
 				</div>
 			</div>
 		);
-	},
-	componentDidMount: function() {
-		React.render(<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />, document.getElementById('nav-logout-li'));
 	}
 });
 
