@@ -44,11 +44,16 @@ var App = React.createClass({
 				<div className="header clearfix">
 
 					<ul className="nav nav-pills pull-right nav-logout">
+                        <li role="presentation">
+                             <a href="/#/createorder">+Assignment</a>
+                        </li>
 			            <li role="presentation" className="active" id="nav-logout-li">
 			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
 			            </li>
 	          		</ul>
-	          		<h3 className="text-muted">Code camp</h3>
+	          		<h3 className="text-muted">
+                        <a href="/#/subcontractors">Code camp</a>
+                    </h3>
 				</div>
 				<div id="content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler /> : <LoginScreen logIn={$this.logIn} />}
