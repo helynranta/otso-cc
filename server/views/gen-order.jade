@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head
+        title=feedback
+        
+        link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet")
+        link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet")
+        link(href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet")
+    body
+        .container-fluid
+            .row.text-center
+                h1 generate random order
+            .row.text-center
+                h5 id: #{id}
+                p select a subcontractor 
+                select
+                    each s in sc
+                        option(value= i) #{v}
+                <br />
+                
+        script(src="https://code.jquery.com/jquery-2.1.4.min.js")
+        script(src="/bootstrap/js/bootstrap.min.js")

@@ -3,13 +3,25 @@ var app		= express();
 var fs      = require("fs");
 var random  = require('randomstring');
 var bodyParser = require('body-parser');
-
 var port = process.env.PORT || 3000;
 
 var account = require('./data/account');
 
+// jade used for generating feedback site
+app.set('views', __dirname+'/views');
+app.engine('jade', require('jade').__express);
+
 app.use(express.static(__dirname+"/../client/"));
 app.use(bodyParser.json({type: 'application/json'}));
+// generate feedback form!
+app.get('/feedback/:id', function(req, res) {
+    res.render('feedback.jade', {});
+});
+app.get('/genorder', function(req, res) {
+    res.render('gen-order.jade', {
+        id:random.generate(),
+        sc:"lol"});
+});
 // get from rest
 app.get('/:filename/:field', function(req, res) {
     var source = {};
