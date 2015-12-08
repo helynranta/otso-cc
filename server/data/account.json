@@ -1,6 +1,22 @@
-[{
-	"admin" : "password",
-	"sub1"	: "password",
-	"sub2"	: "password",
-	"hessu"	: "hopo"
-}]
+{
+	"admin" : {
+			"name":"",
+			"password" : "password",
+			"group":0
+		},
+	"sub1"	: {
+		"name":"",
+		"password" : "password",
+		"group":1
+	},
+	"sub2"	: {
+		"name":"",
+		"password" : "password",
+		"group":0
+	},
+	"hessu"	: {
+		"name":"",
+		"password" : "password",
+		"group":0
+	}
+}
