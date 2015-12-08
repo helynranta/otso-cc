@@ -3,40 +3,54 @@ var React = require('react'),
   Route = Router.Route,
   DefaultRoute = Router.DefaultRoute,
   RouteHandler = Router.RouteHandler,
-  Grid = require('react-bootstrap').Grid,
-  Row = require('react-bootstrap').Row,
-  Col = require('react-bootstrap').Col;
+  Button = require('react-bootstrap').Button;
 
   require('react-bootstrap');
   require('../src/style.css');
 
 var LoginScreen = require('./LoginScreen.jsx'),
-	CategoriesScreen = require('./CategoriesScreen.jsx');
+	CategoriesScreen = require('./CategoriesScreen.jsx'),
+	LogoutButton = require('./LogoutButton.jsx');
 
 var App = React.createClass({
 	mixins: [Router.State],
-	getInitialState: function() {
+	getInitialState: function () {
 		return {
-			loggedIn: false
+			loggedIn: true
 		}
 	},
-	render: function() {
+	logIn: function (_state) {
+		this.setState({
+      loggedIn: _state
+    });
+	},
+	render: function () {
+		let $this = this;
+
 		return (
 			<div className="container">
 				<div className="header clearfix">
-					<h3 className="text-muted">Code camp</h3>
+					
+					<ul className="nav nav-pills pull-right nav-logout">
+            <li role="presentation" className="active" id="nav-logout-li">
+            	
+            </li>
+          </ul>
+          <h3 className="text-muted">Code camp</h3>
 				</div>
 				<div className="jumbotron">
-					<RouteHandler />
+					{$this.state.loggedIn ? <RouteHandler /> : <LoginScreen logIn={$this.logIn} />}	
 				</div>
 			</div>
 		);
+	},
+	componentDidMount: function() {
+		React.render(<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />, document.getElementById('nav-logout-li'));
 	}
 });
 
 var routes = (
   <Route name="app" path="/" handler={App} >
-  	<Route name="login" path="login" handler={LoginScreen} />
   	<Route name="categories" path="/cats" handler={CategoriesScreen} />
   </Route>
 );
