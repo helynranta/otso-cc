@@ -9,16 +9,30 @@ html(lang="en")
         link(href="/src/star-rating.min.css" rel="stylesheet")
     body
         .container-fluid
+            
             .row.text-center
                 h1 Feedback form
-                p Your feedback is valueable for us. Please fill this form
-            .row.text-center
+                p Your feedback is valuable for us. Please fill this form
                 
             .row.text-center
-                input(placeholder="E-mail" id="email")
-
-            .row.text-center
-                input(placeholder="Additional words" id="comment")
+                .form-group
+                    label(for="email") E-mail
+                    input(
+                        placeholder="E-mail" 
+                        id="email" 
+                        type="text" 
+                        class="form-control"
+                        style="max-width: 350px; margin: 0 auto; float:none;"
+                    )
+                    br
+                    label(for="comment") Additional words
+                    textarea(
+                        placeholder="Additional words" 
+                        id="comment" 
+                        type="text" 
+                        class="form-control"
+                        style="max-width: 350px; margin: 0 auto; float: none;"
+                    )
 
         .container-fluid
 
