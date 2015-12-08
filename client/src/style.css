@@ -5,4 +5,8 @@
 .col-lg-4 {
 	display: inline-block;
 	float: initial;
-}	
+}
+
+.nav-logout {
+	margin-top: 10px;
+}
