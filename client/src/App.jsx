@@ -3,28 +3,38 @@ var React = require('react'),
   Route = Router.Route,
   DefaultRoute = Router.DefaultRoute,
   RouteHandler = Router.RouteHandler,
+  Navigation = Router.Navigation,
   Button = require('react-bootstrap').Button;
 
   require('react-bootstrap');
   require('../src/style.css');
 
 var LoginScreen = require('./LoginScreen.jsx'),
-	CategoriesScreen = require('./CategoriesScreen.jsx'),
-	LogoutButton = require('./LogoutButton.jsx');
+	SubcontractorsScreen = require('./SubcontractorsScreen.jsx'),
+	LogoutButton = require('./LogoutButton.jsx'),
+	SubcontractorScreen = require('./SubcontractorScreen.jsx');
 
 var App = React.createClass({
-	mixins: [Router.State],
+	mixins: [Router.State, Navigation],
 	getInitialState: function () {
 		return {
 			loggedIn: true,
-			group: 2
+			group: 0
 		}
 	},
 	logIn: function (_state, _group) {
 		this.setState({
-      loggedIn: _state,
-      group: _group || 2
-    });
+	      loggedIn: _state,
+	      group: _group || 2
+	    });
+
+
+	    if (_state) {
+	    	switch (_group) {
+	    		case 0: this.transitionTo('subcontractors');
+	    		// transition to different places for other users
+	    	}
+	    }
 	},
 	render: function () {
 		let $this = this;
@@ -34,13 +44,13 @@ var App = React.createClass({
 				<div className="header clearfix">
 
 					<ul className="nav nav-pills pull-right nav-logout">
-            <li role="presentation" className="active" id="nav-logout-li">
-            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
-            </li>
-          </ul>
-          <h3 className="text-muted">Code camp</h3>
+			            <li role="presentation" className="active" id="nav-logout-li">
+			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
+			            </li>
+	          		</ul>
+	          		<h3 className="text-muted">Code camp</h3>
 				</div>
-				<div className="jumbotron">
+				<div id="content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
 			</div>
@@ -49,12 +59,13 @@ var App = React.createClass({
 });
 
 var routes = (
-  <Route name="app" path="/" handler={App} >
-  	<Route name="loginscreen" path="/login" handler={LoginScreen} />
-  	<Route name="categories" path="/cats" handler={CategoriesScreen} />
-  </Route>
+	<Route name="app" path="/" handler={App} >
+		<Route name="loginscreen" path="/login" handler={LoginScreen} />
+		<Route name="subcontractors" path="/subcontractors" handler={SubcontractorsScreen} />
+		<Route name="subcontractor" path="/subcontractor/:id" handler={SubcontractorScreen} />
+	</Route>
 );
 
 Router.run(routes, function(Handler) {
-  React.render(<Handler />, document.getElementById("body"));
+	React.render(<Handler />, document.getElementById("body"));
 });

@@ -3,7 +3,7 @@ var React = require('react'),
 
 var SubcontractorElement = require('./SubcontractorElement.jsx');
 
-var CategoriesScreen = React.createClass({
+var SubcontractorsScreen = React.createClass({
 	render: function() {
 		return (
 			<div id="container"></div>
@@ -24,8 +24,9 @@ var CategoriesScreen = React.createClass({
 				} catch(err){
 					
 				} finally {
-					_.each(data, (subcontractor) => {
-						subcontractors.push(<SubcontractorElement data={subcontractor} />);
+					_.each(data, (subcontractor, id) => {
+						subcontractor.id = id;
+						subcontractors.push(<SubcontractorElement data={subcontractor} key={id} />);
 					});
 
 					subcontractors = <div>{subcontractors}</div>;
@@ -36,4 +37,4 @@ var CategoriesScreen = React.createClass({
 	}
 });
 
-module.exports = CategoriesScreen;
+module.exports = SubcontractorsScreen;
