@@ -2,11 +2,15 @@
 	max-width: 730px;
 }
 
-.col-lg-4 {
+.col-lg-6 {
 	display: inline-block;
 	float: initial;
 }
 
 .nav-logout {
 	margin-top: 10px;
+}
+
+.jumbotron p {
+	font-size: 18px;
 }

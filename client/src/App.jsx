@@ -16,7 +16,7 @@ var App = React.createClass({
 	mixins: [Router.State],
 	getInitialState: function () {
 		return {
-			loggedIn: false,
+			loggedIn: true,
 			group: 2
 		}
 	},
