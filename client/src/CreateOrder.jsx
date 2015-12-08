@@ -1,4 +1,9 @@
-var React = require('react');
+var React = require('react'),
+    Router = require('react-router'),
+    Route = Router.Route,
+    DefaultRoute = Router.DefaultRoute,
+    RouteHandler = Router.RouteHandler,
+    Navigation = Router.Navigation;
 
 require('./style.css')
 
@@ -10,34 +15,36 @@ function randomString(length) {
 }
 
 var CreateOrder = React.createClass({
+    mixins: [Router.State, Navigation],
     handleSubmit : function (e) {
         e.preventDefault();
 
-        var order = JSON.stringify({
+        var order = {
             id : randomString(32),
             sc_id : $('#sub').val(),
             date : new Date().toJSON(),
             name : $('#order-name').val(),
             address : $('#order-address').val(),
             add_info : $('#order-add').val()
-        });
-        if(order.address != "" && order.name != "") {
+        };
+        console.log(order["address"])
+        if(order['address'].length > 0 && order['name'].length > 0) {
             $.ajax({
     			url:'/order.json/*',
     			contentType:'application/json',
     			dataType:'json',
     			type:'POST',
-    			data: order,
+    			data: JSON.stringify(order),
     			success: function(data) {
                     console.log(data)
+                    this.transitionTo('subcontractors');
     			}.bind(this),
     			error:function(xhr, status, err) {
     				console.log(this.props.url, status, err.toString());
-    			}.bind(this)
+    			}
             });
         }
-
-    },
+    }.bind(this),
     getInitialState : function () {
         return {
             data : []
