@@ -1,14 +1,14 @@
 {
-    "asdf": {
-        "email": "example",
-        "date": "example",
+    "test": {
+        "email": "atest@example.com",
+        "date": "5.12.2015",
         "stars": [
-            0,
-            1,
             2,
+            2,
+            3,
             3
         ],
-        "comment": "example",
+        "comment": "this is test",
         "recall": 0
     }
 }
