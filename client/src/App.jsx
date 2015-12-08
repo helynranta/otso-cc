@@ -8,12 +8,18 @@ var React = require('react'),
   Col = require('react-bootstrap').Col;
 
   require('react-bootstrap');
+  require('../src/style.css');
 
 var LoginScreen = require('./LoginScreen.jsx'),
 	CategoriesScreen = require('./CategoriesScreen.jsx');
 
 var App = React.createClass({
 	mixins: [Router.State],
+	getInitialState: function() {
+		return {
+			loggedIn: false
+		}
+	},
 	render: function() {
 		return (
 			<div className="container">
@@ -30,6 +36,7 @@ var App = React.createClass({
 
 var routes = (
   <Route name="app" path="/" handler={App} >
+  	<Route name="login" path="login" handler={LoginScreen} />
   	<Route name="categories" path="/cats" handler={CategoriesScreen} />
   </Route>
 );
