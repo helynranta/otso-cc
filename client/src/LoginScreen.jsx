@@ -21,7 +21,7 @@ var LoginScreen = React.createClass({
 				<h2>Log in</h2>
 				<form className="login" onSubmit={this.handleSubmit}>
 					<input type="input" name="username" placeholder="username" value={this.state.username} onChange={this.handleUsernameChange}></input><br/>
-					<input type="input" name="password" placeholder="password" value={this.state.password} onChange={this.handlePasswordChange}></input><br />
+					<input type="input" type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handlePasswordChange}></input><br />
 					<input type="submit" name="submit" value="login"></input>
 				</form>
 			</div>
@@ -53,8 +53,7 @@ var LoginScreen = React.createClass({
 					console.log(err.toString());
 				} finally {
 					if(data['success']=="true"){
-						console.log(data)
-						$this.props.logIn(true);
+						$this.props.logIn(true, data.userinfo.group);
 					}
 				}
 			}.bind(this),

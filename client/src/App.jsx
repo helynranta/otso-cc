@@ -16,12 +16,14 @@ var App = React.createClass({
 	mixins: [Router.State],
 	getInitialState: function () {
 		return {
-			loggedIn: true
+			loggedIn: false,
+			group: 2
 		}
 	},
-	logIn: function (_state) {
+	logIn: function (_state, _group) {
 		this.setState({
-      loggedIn: _state
+      loggedIn: _state,
+      group: _group || 2
     });
 	},
 	render: function () {
