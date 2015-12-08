@@ -56,6 +56,7 @@ Represents a subcontractor
 {
     "id" : "",
     "name" : "",
+    "cat": "",
     "address" : "",
     "y":"",
     "phone":""
