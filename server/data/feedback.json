@@ -1,14 +1,14 @@
 {
-    "test": {
-        "email": "atest@example.com",
-        "date": "5.12.2015",
+    "Puo53yKfWNMrBTZElrITTsQWN3t20LdB": {
+        "email": "example@test.com",
+        "date": "2015-12-08T19:55:38.955Z",
         "stars": [
-            2,
-            2,
-            3,
-            3
+            "4",
+            "3",
+            "5",
+            "3"
         ],
-        "comment": "this is test",
-        "recall": 0
+        "comment": "Kimmo oli ok",
+        "recall": "no"
     }
 }

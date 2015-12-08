@@ -53,3 +53,12 @@
 .menu-item button {
 	width: 130px;
 }
+/* feedback form styles */
+.sub-info {
+	padding: 10px 10px;
+	display: inline-block;
+	margin: 0 auto;
+	background-color: rgb(150, 150, 150);
+	box-shadow: 0px 0px 5px #888888;
+
+}

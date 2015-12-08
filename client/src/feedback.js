@@ -9,9 +9,8 @@ $(document).ready(function()
 function postData()
 {
     var url = window.location.href;
-    asd = url.split("/");
-    id = asd[asd.length - 1];
-
+    url = url.split("/");
+    var id = url[url.length - 1];
 	var data = JSON.stringify({
 		"id":id,
 		"email": $("#email").val(),
@@ -20,8 +19,6 @@ function postData()
 		"comment": $("#comment").val(),
 		"recall": $("#recall input[type='radio']:checked").val()
 	});
-
-	console.log(data);
 	$.ajax({
 			url:'/feedback.json/'+id,
 			contentType:'application/json',
@@ -29,16 +26,9 @@ function postData()
 			type:'POST',
 			data:data,
 			success: function(data) {
-				try{
-					data = JSON.parse(data);
 
-				} catch(err){
-					console.log(err.toString());
-				} finally {
-					if(data['success']=="true"){
-						$this.props.logIn(true, data.userinfo.group);
-					}
-				}
+				$("body").html("that you!");
+
 			}.bind(this),
 			error:function(xhr, status, err) {
 				console.log(this.props.url, status, err.toString());
