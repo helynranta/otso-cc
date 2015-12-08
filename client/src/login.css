@@ -1,0 +1,11 @@
+.login-container {
+    margin: 0 auto;
+}
+.login {
+    display: inline-block;
+    box-shadow: 0px 0px 5px #888888;
+}
+.login input {
+    padding: 5px 15px;
+    margin: 20px 20px;
+}
