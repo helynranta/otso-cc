@@ -52,8 +52,9 @@ var LoginScreen = React.createClass({
 				} catch(err){
 					console.log(err.toString());
 				} finally {
-					if(data.success="true"){
-						$this.props.logIn(true);	
+					if(data['success']=="true"){
+						console.log(data)
+						$this.props.logIn(true);
 					}
 				}
 			}.bind(this),
