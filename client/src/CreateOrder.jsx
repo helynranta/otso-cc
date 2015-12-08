@@ -1,6 +1,6 @@
 var React = require('react');
 
-require('./style.css')
+var BackToDashboardButton = require('./BackToDashboardButton.jsx');
 
 function randomString(length) {
     var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -31,7 +31,7 @@ var CreateOrder = React.createClass({
     			data: JSON.stringify(order),
     			success: function(data) {
                     console.log(data)
-                    window.location.replace("#/subcontractors");
+                    window._router.transitionTo('manufacturer_dashboard');
     			}.bind(this),
     			error:function(xhr, status, err) {
     				console.log(this.props.url, status, err.toString());
@@ -77,6 +77,7 @@ var CreateOrder = React.createClass({
                     <br />
                     <input type="submit" name="save" value="save"></input>
             </form>
+            <BackToDashboardButton />
         </div>
     );
 }

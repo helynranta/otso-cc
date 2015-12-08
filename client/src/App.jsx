@@ -3,7 +3,8 @@ var React = require('react'),
   Route = Router.Route,
   DefaultRoute = Router.DefaultRoute,
   RouteHandler = Router.RouteHandler,
-  Navigation = Router.Navigation;
+  Navigation = Router.Navigation,
+  Link = Router.Link;
 
   require('react-bootstrap');
   require('../src/style.css');
@@ -46,14 +47,14 @@ var App = React.createClass({
 
 					<ul className="nav nav-pills pull-right nav-logout">
                         <li role="presentation">
-                             <a href="/#/createorder">+Assignment</a>
+                             <Link to="createorder">+Assignment</Link>
                         </li>
 			            <li role="presentation" className="active" id="nav-logout-li">
 			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
 			            </li>
 	          		</ul>
 	          		<h3 className="text-muted">
-                        <a href="/#/subcontractors">Code camp</a>
+                        <Link to="manufacturer_dashboard">Code camp</Link>
                     </h3>
 				</div>
 				<div id="content" className="jumbotron">

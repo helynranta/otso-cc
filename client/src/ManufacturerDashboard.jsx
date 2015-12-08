@@ -21,6 +21,9 @@ var ManufacturerDashboard = React.createClass({
 		return(
 			<div>
 				<div className="menu-item">
+					<h2>Dashboard</h2>
+				</div>
+				<div className="menu-item">
 					<Button bsStyle="primary" onClick={this.navigateOrder}>Create order</Button>
 				</div>
 				<div className="menu-item">
