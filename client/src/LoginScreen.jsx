@@ -28,6 +28,8 @@ var LoginScreen = React.createClass({
 		);
 	},
 	handleSubmit: function( e ) {
+		let $this = this;
+
 		e.preventDefault();
 		var u = this.state.username.trim();
 		var p = this.state.password.trim();
@@ -51,7 +53,7 @@ var LoginScreen = React.createClass({
 					console.log(err.toString());
 				} finally {
 					if(data.success="true"){
-						this.transitionTo('cats')
+						$this.props.logIn(true);	
 					}
 				}
 			}.bind(this),
