@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 var port = process.env.PORT || 3000;
 
-var accounts, orders, feedback = {}
+var account = require('./data/account');
 
 app.use(express.static(__dirname+"/../client/"));
 app.use(bodyParser.json({type: 'application/json'}));
@@ -71,9 +71,25 @@ app.post('/:filename/:field', function(req, res) {
 
 app.post('/login', function(req, res) {
     var result = {
-        "success":"true"
+        "success":"true",
+        "comment":"",
     }
-    console.log(req.body);
+    if(req.body.user != undefined && req.body.pass != undefined) {
+        if(account[req.body.user] == undefined) {
+            result.success = "false";
+            result.comment = "username or passoword wrong";
+        } else {
+            if(account[req.body.user].password != req.body.pass) {
+                result.success = "false";
+                result.comment = "username or passoword wrong";
+            } else {
+                result.userinfo = account[req.body.user]
+            }
+        }
+    } else {
+        result.success = "false"
+    }
+    console.log(result);
     res.end(JSON.stringify(result));
 });
 var server = app.listen(port, function () {
