@@ -27,19 +27,13 @@ app.get('/:filename/:field', function(req, res) {
     var source = {};
     var fn = req.params.filename;
     var field = req.params.field;
-    fs.readFile(__dirname+"/data/"+fn, function(err, data) {
-        if(err) res.send(err);
-        try{
-            var data = JSON.parse(data);
-        } catch (err){
-            res.send("problems officer (JSON)");
-        }finally {
-            source = data;
-            if(field === "*") res.send(source);
-            else res.send(source[field]);
-            res.end();
-        }
-    });
+    var data = require('./data/'+fn);
+
+    source = data;
+    if(field === "*") res.send(source);
+    else res.send(source[field]);
+
+    res.end();
 });
 // put in rest, THIS ONLY TAKES RAW type=application/json
 app.post('/:filename/:field', function(req, res) {
@@ -47,38 +41,23 @@ app.post('/:filename/:field', function(req, res) {
     var fn = req.params.filename;
     var field = req.params.field;
     // response body
-    var result = [{}];
+    var result = {};
     result["success"] = true;
     // check if file exists
-    if(!fs.existsSync(__dirname+"/data/"+fn)) {
-        result["success"] = false;
-        result["reason"] = "file does not exist";
-        result["path"] = __dirname+"/data/"+fn;
-        res.end(JSON.stringify(result));
+    var data = require('./data/'+fn);
+    if(data != undefined) {
+        var model = require('./data/model/'+fn);
+        for(var attr in model) {
+            model[attr] = req.body[attr];
+        }
+        var id = req.body['id'];
+        delete model.id;
+        data[id] = model;
+        fs.writeFileSync('./data/'+fn, JSON.stringify(data, null, 4));
     } else {
-        // get model for this type
-        var model = require("./data/model/"+fn);
-        // read the original file
-        fs.readFile(__dirname+"/data/"+fn, 'utf-8', function(err, data) {
-            if(err) res.send(err);
-            try{
-                var data = JSON.parse(data);
-            } catch (err){
-                res.send("problems officer (JSON)");
-            }finally {
-                // copy all sent attributes to model
-                for(var attr in model) {
-                    model[attr] = req.body[attr] // put input data here
-                }
-                var id = model.id;
-                delete model.id;
-                data[id] = model;
-                //write new data
-                fs.writeFile(__dirname+"/data/"+fn, JSON.stringify(data, null, 4));
-                res.end(JSON.stringify(result));
-            }
-        });
+        result['success'] = false;
     }
+    res.end(JSON.stringify(result));
 });
 
 app.post('/login', function(req, res) {
