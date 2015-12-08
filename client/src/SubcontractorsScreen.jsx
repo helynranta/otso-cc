@@ -1,7 +1,8 @@
 var React = require('react'),
 	_ = require('underscore');
 
-var SubcontractorElement = require('./SubcontractorElement.jsx');
+var SubcontractorElement = require('./SubcontractorElement.jsx'),
+	BackToDashboardButton = require('./BackToDashboardButton.jsx');
 
 var SubcontractorsScreen = React.createClass({
 	render: function() {
@@ -29,7 +30,10 @@ var SubcontractorsScreen = React.createClass({
 						subcontractors.push(<SubcontractorElement data={subcontractor} key={id} />);
 					});
 
-					subcontractors = <div>{subcontractors}</div>;
+					subcontractors = (<div>
+						{subcontractors}
+						<BackToDashboardButton />
+					</div>);
 					React.render(subcontractors, document.getElementById('container'));
 				}
 			}

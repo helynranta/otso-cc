@@ -12,7 +12,8 @@ var LoginScreen = require('./LoginScreen.jsx'),
     CreateOrder = require('./CreateOrder.jsx'),
 	SubcontractorsScreen = require('./SubcontractorsScreen.jsx'),
 	LogoutButton = require('./LogoutButton.jsx'),
-	SubcontractorScreen = require('./SubcontractorScreen.jsx');
+	SubcontractorScreen = require('./SubcontractorScreen.jsx'),
+	ManufacturerDashboard = require('./ManufacturerDashboard.jsx');
 
 var App = React.createClass({
 	mixins: [Router.State, Navigation],
@@ -31,7 +32,7 @@ var App = React.createClass({
 
 	    if (_state) {
 	    	switch (_group) {
-	    		case 0: this.transitionTo('subcontractors');
+	    		case 0: this.transitionTo('manufacturer_dashboard');
 	    		// transition to different places for other users
 	    	}
 	    }
@@ -67,11 +68,12 @@ var routes = (
 	<Route name="app" path="/" handler={App} >
 		<Route name="loginscreen" path="/login" handler={LoginScreen} />
         <Route name="createorder" path="/createorder" handler={CreateOrder} />
+        <Route name="manufacturer_dashboard" path="/dashboard" handler={ManufacturerDashboard} />
 		<Route name="subcontractors" path="/subcontractors" handler={SubcontractorsScreen} />
 		<Route name="subcontractor" path="/subcontractor/:id" handler={SubcontractorScreen} />
 	</Route>
 );
 
-Router.run(routes, function(Handler) {
+window._router = Router.run(routes, function(Handler) {
 	React.render(<Handler />, document.getElementById("body"));
 });
