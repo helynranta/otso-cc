@@ -51,9 +51,6 @@ var App = React.createClass({
 			<div className="bs-container">
 				<div className="header clearfix">
 					<ul className="nav nav-pills pull-right nav-logout">
-                        <li role="presentation">
-                            <Link to="createorder">+Assignment</Link>
-                        </li>
 			            <li role="presentation" className="active" id="nav-logout-li">
 			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
 			            </li>
