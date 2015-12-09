@@ -1,6 +1,7 @@
 var React = require('react'),
 	_ = require('underscore'),
 	Router = require('react-router'),
+	dateFormat = require('dateformat'),
 	Navigation = Router.Navigation,
 	Button = require('react-bootstrap').Button;
 
@@ -60,15 +61,21 @@ var SubcontractorPage = React.createClass({
 					</div>
 			];
 		
-			_.each(fb_data, (comment, id) => {
+			let comments = _.map(fb_data, (comment, id) => {
+				comment.id = id;
+				return comment;
+			});
+
+			//filter here
+
+			_.each(comments, (comment) => {
 				content.push(
 					<div className="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 						<p>
-							<span>{comment.date}:</span> <span>{comment.comment}</span>
+							<span>{dateFormat(new Date(comment.date), "dd.mm.yyyy")}:</span> <span>{comment.comment}</span>
 						</p>
 					</div>
 				);
-				console.log(comment);
 			});
 
 			React.render(<div>{content}</div>, document.getElementById('subcontractor'));

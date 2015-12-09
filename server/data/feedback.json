@@ -1,19 +1,7 @@
 {
 
-    "Auo53yKfWNMrBTZElrITTsQWN3t20LdB": {
-        "email": "atest@example.com",
-        "date": "5.12.2015",
-        "stars": [
-            5,
-            5,
-            5,
-            5
-        ],
-        "comment": "this is test",
-        "recall": 0
-    },
     "Buo53yKfWNMrBTZElrITTsQWN3t20LdB": {
-        "email": "asd",
+        "email": "afff@sd",
         "date": "2015-12-08T18:47:23.196Z",
         "stars": [
             5,
@@ -21,7 +9,7 @@
             5,
             5
         ],
-        "comment": "asd",
+        "comment": "asd123",
         "recall": "yes"
     },
     "Cuo53yKfWNMrBTZElrITTsQWN3t20LdB": {
