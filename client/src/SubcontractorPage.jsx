@@ -16,7 +16,7 @@ var SubcontractorPage = React.createClass({
 			</div>
 		);
 	},
-	componentDidMount: function() {
+	componentDidUpdate: function() {
 		let $this = this,
 			sc_data,
 			fb_data,

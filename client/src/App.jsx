@@ -38,8 +38,12 @@ var App = React.createClass({
 
 	    if (_state) {
 	    	switch (_group) {
-	    		case 0: this.transitionTo('manufacturer_dashboard');
-	    		// transition to different places for other users
+	    		case 0: 
+	    			this.transitionTo('manufacturer_dashboard');
+	    			break;
+	    		case 1: 
+	    			this.transitionTo('subcontractor', {id : _user});
+	    			break;
 	    	}
 	    }
 	},
@@ -60,7 +64,7 @@ var App = React.createClass({
                     </h3>
 				</div>
 				<div id="bs-container content" className="jumbotron">
-					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} /> : <LoginScreen logIn={$this.logIn} />}
+					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
 			</div>
 		);

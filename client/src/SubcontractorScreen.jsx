@@ -7,7 +7,7 @@ var React = require('react'),
 var SubcontractorPage = require('./SubcontractorPage.jsx');
 
 var SubcontractorScreen = React.createClass({
-	mixins: [Router.State, Navigation],
+	mixins: [Router.State],
 	handleClickBack: function() {
 		this.transitionTo('subcontractors');
 	},
@@ -17,7 +17,7 @@ var SubcontractorScreen = React.createClass({
 		return (
 			<div className="bs-component">
 				<SubcontractorPage user={this.props.user} id={this.param} />
-				<Button className="btn btn-raised btn-warning" id="back-button" onClick={this.handleClickBack}>Back</Button>
+				{this.props.group === 0 ? <Button className="btn btn-raised btn-warning" id="back-button" onClick={this.handleClickBack}>Back</Button> : ''}
 			</div>
 		);
 	}

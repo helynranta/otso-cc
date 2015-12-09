@@ -4,19 +4,19 @@
 			"password" : "password",
 			"group":0
 		},
-	"sub1"	: {
+	"Aino"	: {
 		"name":"",
 		"password" : "password",
 		"group":1
 	},
-	"sub2"	: {
+	"Timo"	: {
 		"name":"",
 		"password" : "password",
-		"group":0
+		"group":1
 	},
-	"hessu"	: {
+	"Kimmo"	: {
 		"name":"",
 		"password" : "password",
-		"group":0
+		"group":1
 	}
 }
