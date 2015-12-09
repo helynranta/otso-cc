@@ -32,7 +32,7 @@ var SubcontractorOrderScreen = React.createClass({
 		$this.props.id = this.getParams().id;
 
 		ajaxes[0] = Promise.resolve($.ajax({
-				url:`/subcontractor.json/${$this.props.id}`,
+				url:`https://otso-cc-lasshi.c9users.io/subcontractor.json/${$this.props.id}`,
 				contentType:'application/json',
 				dataType:'json',
 				type:'GET'
@@ -43,13 +43,13 @@ var SubcontractorOrderScreen = React.createClass({
 		});
 
 		ajaxes[1] = Promise.resolve($.ajax({
-				url: `/subcontractor/orders/${$this.props.id}`,
+				url: `https://otso-cc-lasshi.c9users.io/subcontractor/orders/${$this.props.id}`,
 				contentType:'application/json',
 				dataType:'json',
 				type:'GET'
 			})
 		).then((data) => {
-			orders = 
+			orders =
 				_.sortBy(_.map(data, (order, id) => {
 					order.id = id;
 					return order;
