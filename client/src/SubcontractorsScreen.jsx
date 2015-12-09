@@ -23,17 +23,19 @@ var SubcontractorsScreen = React.createClass({
 				try{
 					data = JSON.parse(data);
 				} catch(err){
-					
+
 				} finally {
 					_.each(data, (subcontractor, id) => {
 						subcontractor.id = id;
 						subcontractors.push(<SubcontractorElement data={subcontractor} key={id} />);
 					});
 
-					subcontractors = (<div>
+					subcontractors = (
+						<div className="bs-component">
 						{subcontractors}
 						<BackToDashboardButton />
-					</div>);
+						</div>
+					);
 					React.render(subcontractors, document.getElementById('container'));
 				}
 			}

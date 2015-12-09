@@ -15,9 +15,9 @@ var SubcontractorScreen = React.createClass({
 		this.param = this.getParams().id;
 
 		return (
-			<div>
+			<div className="bs-component">
 				<SubcontractorPage id={this.param} />
-				<Button bsStyle="primary" onClick={this.handleClickBack}>Back</Button>
+				<Button className="btn btn-raised btn-warning" onClick={this.handleClickBack}>Back</Button>
 			</div>
 		);
 	}

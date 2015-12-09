@@ -55,11 +55,11 @@ var App = React.createClass({
 			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
 			            </li>
 	          		</ul>
-	          		<h3 className="text-muted">
-                        <Link to="manufacturer_dashboard">Code camp</Link>
+                    <h3 id="logo" className="text-muted">
+                        <Link to="manufacturer_dashboard">Paavo Sähkö</Link>
                     </h3>
 				</div>
-				<div id="content" className="jumbotron">
+				<div id="bs-container content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
 			</div>

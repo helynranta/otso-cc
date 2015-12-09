@@ -5,6 +5,8 @@ var React = require('react'),
 	Navigation = Router.Navigation,
 	Button = require('react-bootstrap').Button;
 
+	require('../src/css/style.css');
+
 var SubcontractorPage = React.createClass({
 	mixins: [Router.State, Navigation],
 	render: function() {
@@ -18,6 +20,7 @@ var SubcontractorPage = React.createClass({
 			sc_data,
 			fb_data,
 			ajaxes = [],
+			stars = {},
 			promise;
 
 		ajaxes[0] = Promise.resolve($.ajax({
@@ -41,12 +44,31 @@ var SubcontractorPage = React.createClass({
 			fb_data = data;
 			// filter out own feedback
 		});
-
+		ajaxes[2] = Promise.resolve($.ajax({
+			url: `/subcontractors/rating/*`,
+			contentType:'application/json',
+			dataType:'json',
+			type:'GET'
+		})).then((data) => {
+			stars = {
+				avgstars : "no reviews",
+				reviews : 0
+			}
+			for(var i in data) {
+				if(data[i]['sc_id'] == $this.props.id)
+				{
+					stars.avgstars = data[i].avgstars;
+					stars.reviews = data[i].reviews;
+				}
+			}
+			//sc_data.avgstar = data[$this.propse]
+		});
 		promise = Promise.all(ajaxes).then(() => {
 			let content = [
 					<div className="header-subcontractor">
-						<div className="stars">
-							4.3 <img src="icons/star.svg" />
+						<div id="stars" className="stars">
+							{stars.avgstars} ({stars.reviews})
+						<img src="icons/star.svg" />
 						</div>
 						<img className="img-circle img-subcontractor" src="icons/renovation.png" />
 					</div>,
@@ -60,7 +82,7 @@ var SubcontractorPage = React.createClass({
 						<p>Address: {sc_data.address}</p>
 					</div>
 			];
-		
+
 			let comments = _.map(fb_data, (comment, id) => {
 				comment.id = id;
 				return comment;
@@ -78,7 +100,7 @@ var SubcontractorPage = React.createClass({
 				);
 			});
 
-			React.render(<div>{content}</div>, document.getElementById('subcontractor'));
+			React.render(<div className="bs-component">{content}</div>, document.getElementById('subcontractor'));
 		});
 	}
 });

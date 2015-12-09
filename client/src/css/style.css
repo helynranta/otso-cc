@@ -1,6 +1,12 @@
 
 .container {
 	max-width: 730px;
+	margin: 0 auto;
+}
+
+.bs-component {
+	max-width: 730px;
+	margin: 0 auto;
 }
 
 .col-lg-6 {
@@ -54,7 +60,9 @@
 .header-grid {
 	font-weight: bold;
 }
-
+#logo {
+	padding-left: 20px;
+}
 #back-button {
 	margin-top: 20px;
 	background-color: rgb(28, 90, 125);
