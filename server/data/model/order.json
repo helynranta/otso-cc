@@ -4,6 +4,7 @@
     "sc_id" : "",
     "date": "",
     "name": "",
+    "email": "",
     "address": "",
     "add_info": ""
 }
