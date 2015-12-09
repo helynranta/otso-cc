@@ -33,24 +33,42 @@ var OrderListScreen = React.createClass({
 
 				let content = orders.map((order) => {
 					return (
-						<Row className="show-grid">
-							<Col xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</Col>
-							<Col xs={3} md={3}>{order.name}</Col>
-							<Col xs={3} md={3}>{order.address}</Col>
-							<Col xs={3} md={3}>{order.add_info}</Col>
-						</Row>
+						<tr className="table table-striped table-hover">
+							<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
+							<td xs={3} md={3}>{order.name}</td>
+							<td xs={3} md={3}>{order.address}</td>
+							<td xs={3} md={3}>{order.add_info}</td>
+						</tr>
 					);
 				}),
 				headerRow = (
-					<Row className="show-grid header-grid">
-						<Col xs={3} md={3}>Date</Col>
-						<Col xs={3} md={3}>Customer name</Col>
-						<Col xs={3} md={3}>Address</Col>
-						<Col xs={3} md={3}>Comment</Col>
-					</Row>
+					<tr className="show-grid header-grid">
+						<th xs={3} md={3}>Date</th>
+						<th xs={3} md={3}>Customer name</th>
+						<th xs={3} md={3}>Address</th>
+						<th xs={3} md={3}>Comment</th>
+					</tr>
 				);
 
-				React.render(<div><Grid>{headerRow}{content}</Grid><BackToDashboardButton /></div>, document.getElementById('container'));
+				React.render(
+
+                    <div className="bs-component">
+                        <div className="page-header">
+                            <h2>Orders:</h2>
+                        </div>
+                        <table className="table table-striped table-hover">
+                            <thead>
+                                {headerRow}
+                            </thead>
+                            <tbody>
+                                {content}
+                            </tbody>
+                        </table>
+                        <BackToDashboardButton />
+
+                    </div>,
+
+                        document.getElementById('container'));
 			}
 		});
 	}
