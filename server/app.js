@@ -48,7 +48,7 @@ app.get('/:filename/:field', function(req, res) {
     var fn = req.params.filename;
     var field = req.params.field;
     var data = require('./data/'+fn);
-
+    console.log(data);
     source = data;
     if(field === "*") res.send(source);
     else res.send(source[field]);
@@ -67,7 +67,7 @@ function checkForMatch(array, propertyToMatch) {
     return matchArray;
 }
 
-function onlyUnique(value, index, self) { 
+function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 
@@ -78,7 +78,7 @@ app.get('/subcontractors/rating/:id', function(reg, res) {
     var orderData = require("./data/order.json");
     var feedBackData = require("./data/feedback.json");
     var avgstars, ratings, counter = 0;
-    var tempArray = []; 
+    var tempArray = [];
     var tempArray2 = [];
     var returnArray = [];
 
@@ -109,20 +109,20 @@ app.get('/subcontractors/rating/:id', function(reg, res) {
             if(returnArray[j].sc_id == tempArray[i].sc_id) {
                 returnArray[j].reviews += 1;
                 returnArray[j].avgstars += (parseInt(tempArray[i].avgstars[0]) + parseInt(tempArray[i].avgstars[1]) + parseInt(tempArray[i].avgstars[2]) + parseInt(tempArray[i].avgstars[3])) / 4;
-            }  
+            }
         }
     }
     // calculate average stars and finalize the array for returning to client. Yay :)
     for(var i = 0; i < returnArray.length; i++) {
         returnArray[i].avgstars /= parseInt(returnArray[i].reviews);
     }
-    if(field === "*") 
+    if(field === "*")
         res.send(returnArray);
     else {
         for(var i = 0; i < returnArray.length; i++) {
             if (returnArray[i].sc_id == field)
                 res.send(returnArray[i]);
-        }   
+        }
     }
 });
 
@@ -182,13 +182,15 @@ app.post('/login', function(req, res) {
 // get order id through post and send an email to
 // id, name and email as parameter
 app.post('/sendMail', function(reg, res) {
+    var config = require('./config.js')
+    console.log(config.gmail)
     // define a transporter (Whos sending and authentication)
     var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'paavoapp@gmail.com',
-        pass: 'SALASANA TÄHÄN'
-    }
+        service: 'Gmail',
+        auth: {
+            user: 'paavoapp@gmail.com',
+            pass: config.gmail
+        }
     });
     // set mailoptions, like sender, receiver, subject, html text etc. etc.
     var mailOptions = {
