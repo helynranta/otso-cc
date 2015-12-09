@@ -1,0 +1,144 @@
+div {
+	padding-left: 0;
+}
+
+.container {
+	max-width: 730px;
+	margin: 0 auto;
+}
+
+.bs-component {
+	max-width: 730px;
+	margin: 0 auto;
+}
+
+.col-lg-6 {
+	display: inline-block;
+	float: initial;
+}
+
+.jumbotron p {
+	font-size: 18px;
+}
+
+.avg-stars {
+	margin-left: 20px;
+}
+
+.img-subcontractor {
+	display: inline-block;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.stars {
+	display: inline-block;
+	margin-right: 20px;
+	text-align: right;
+	font-size: 18px;
+}
+
+.stars .name {
+	padding-right: 10px;
+}
+
+.stars .average {
+	padding-right: 5px;
+}
+.header-comments {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.icon-star {
+	margin-left: 5px;
+}
+
+.header-subcontractor {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.stars .no-reviews,
+.stars .average {
+	padding-left: 10px;
+}
+
+.no-reviews {
+	font-style: italic;
+	color: #777;
+}
+
+.col-comment {
+	font-size: 16px;
+}
+
+.pseudo {
+	cursor: pointer;
+}
+
+.header-comments h3,
+.table-orders,
+.header-orders,
+.span-no-reviews {
+	margin-left: 15px;
+}
+
+.current-user {
+	padding: 9px 0;
+}
+
+.row-complete {
+	font-style: italic;
+}
+
+.button-show-orders {
+	margin: 0;
+}
+
+#subcontractor div {
+	vertical-align: top;
+}
+
+#subcontractor div.stars {
+	vertical-align: middle;
+}
+
+.orderForm input {
+	margin: 10px 20px;
+}
+
+.menu-item {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.menu-item button {
+	width: 180px;
+}
+
+.header-grid {
+	font-weight: bold;
+}
+#logo {
+	padding-left: 20px;
+}
+#back-button {
+	margin: 20px 15px 0 15px;
+	background-color: rgb(28, 90, 125);
+}
+
+/* feedback form styles #*/
+.sub-info {
+	display: inline-block;
+}
+#recall label.active {
+	background-color: rgb(28, 90, 125);
+}
+/* login form styles*/
+#login-container {
+	max-width: 300px;
+	margin: 0 auto;
+}
