@@ -12,33 +12,59 @@ var SubcontractorsScreen = React.createClass({
 	},
 	componentDidMount: function() {
 		let $this = this,
-			subcontractors = [];
+			subcontractors = [],
+			ajaxes = [],
+			sc_data,
+			stars_data;
 
-		$.ajax({
-			url:'/subcontractor.json/*',
-			contentType:'application/json',
-			dataType:'json',
-			type:'GET',
-			success: (data) => {
-				try{
-					data = JSON.parse(data);
-				} catch(err){
+		ajaxes[0] = Promise.resolve($.ajax({
+				url:'/subcontractor.json/*',
+				contentType:'application/json',
+				dataType:'json',
+				type:'GET',
+			})
+		).then((data) => {
+			sc_data = data;
+		});
 
-				} finally {
-					_.each(data, (subcontractor, id) => {
-						subcontractor.id = id;
-						subcontractors.push(<SubcontractorElement data={subcontractor} key={id} />);
-					});
+		ajaxes[1] = Promise.resolve($.ajax({
+				url:'subcontractors/rating/*',
+				contentType:'application/json',
+				dataType:'json',
+				type:'GET',
+			})
+		).then((data) => {
+			stars_data = data;
+		});
 
-					subcontractors = (
-						<div className="bs-component">
-						{subcontractors}
-						<BackToDashboardButton />
-						</div>
-					);
-					React.render(subcontractors, document.getElementById('container'));
+		Promise.all(ajaxes).then(() => {
+			sc_data = _.map(sc_data, (subcontractor, id) => {
+				subcontractor.id = id;
+				let stars = _.find(stars_data, (entry) => entry.sc_id === subcontractor.id) || {};
+				subcontractor.avgstars = stars.avgstars || 0;
+				subcontractor.reviews = stars.reviews || 0;
+				return subcontractor;
+			});
+
+			sc_data.sort(function(a, b) {
+				if (b.avgstars !== a.avgstars) {
+					return b.avgstars - a.avgstars;
+				} else {
+					return b.reviews - a.reviews;
 				}
-			}
+			});
+
+			subcontractors = _.map(sc_data, (subcontractor) => {
+				return <SubcontractorElement data={subcontractor} key={subcontractor.id} />;
+			});
+
+			subcontractors = (
+				<div className="bs-component">
+					{subcontractors}
+					<BackToDashboardButton />
+				</div>
+			);
+			React.render(subcontractors, document.getElementById('container'));
 		});
 	}
 });

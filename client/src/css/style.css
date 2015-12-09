@@ -21,7 +21,15 @@ div {
 	font-size: 18px;
 }
 
+.avg-stars {
+	margin-left: 20px;
+}
+
 .img-subcontractor {
+	display: inline-block;
+}
+
+.inline {
 	display: inline-block;
 }
 
@@ -60,6 +68,7 @@ div {
 
 .no-reviews {
 	font-style: italic;
+	color: #777;
 }
 
 .col-comment {
