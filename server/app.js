@@ -43,6 +43,19 @@ app.get('/genorder', function(req, res) {
         id:random.generate(),
         sc:"lol"});
 });
+
+// get all orders with completion data
+app.get('/orders', function(req, res) {
+    var orderData = JSON.parse(fs.readFileSync("./data/order.json", 'utf-8'));
+    var feedBackData = JSON.parse(fs.readFileSync("./data/feedback.json", 'utf-8'));
+
+    _.each(orderData, function(entry, id) {
+        entry.complete = typeof feedBackData[id] === 'undefined' ? 0 : 1;
+    });
+    
+    res.send(orderData);
+});
+
 // get from rest
 app.get('/:filename/:field', function(req, res) {
     var source = {};

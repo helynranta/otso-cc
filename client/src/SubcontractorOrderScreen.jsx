@@ -49,10 +49,12 @@ var SubcontractorOrderScreen = React.createClass({
 				type:'GET'
 			})
 		).then((data) => {
-			orders = _.map(data, (order, id) => {
-				order.id = id;
-				return order;
-			})
+			orders = 
+				_.sortBy(_.map(data, (order, id) => {
+					order.id = id;
+					return order;
+				}), (order) => -new Date(order.date).getTime()
+			)
 		});
 
 		// when all ajax queries are succesful

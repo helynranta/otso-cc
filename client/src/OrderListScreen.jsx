@@ -19,7 +19,7 @@ var OrderListScreen = React.createClass({
 		let $this = this;
 
 		$.ajax({
-			url:'/order.json/*',
+			url:'/orders/',
 			contentType:'application/json',
 			dataType:'json',
 			type:'GET',
@@ -29,26 +29,45 @@ var OrderListScreen = React.createClass({
 					return order;
 				});
 
-				orders = _.filter(orders, (order) => order.mf_id === $this.props.user);
+				orders = _.sortBy(
+					_.filter(orders, (order) => order.mf_id === $this.props.user),
+					(order) => -new Date(order.date).getTime());
 
-				let content = orders.map((order) => {
-					return (
-						<tr className="table table-striped table-hover">
-							<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
-							<td xs={3} md={3}>{order.name}</td>
-							<td xs={3} md={3}>{order.address}</td>
-							<td xs={3} md={3}>{order.add_info}</td>
-						</tr>
-					);
-				}),
-				headerRow = (
+				let headerRow = (
 					<tr className="show-grid header-grid">
 						<th xs={3} md={3}>Date</th>
+						<th xs={3} md={3}>Subcontractor</th>
 						<th xs={3} md={3}>Customer name</th>
 						<th xs={3} md={3}>Address</th>
 						<th xs={3} md={3}>Comment</th>
 					</tr>
+				),
+					content = _.filter(orders, (order) => order.complete === 0).map((order) => {
+						return (
+							<tr className="table table-striped table-hover">
+								<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
+								<td xs={3} md={3}>{order.sc_id}</td>
+								<td xs={3} md={3}>{order.name}</td>
+								<td xs={3} md={3}>{order.address}</td>
+								<td xs={3} md={3}>{order.add_info}</td>
+							</tr>
+						);
+					});
+
+				content.push(
+					_.filter(orders, (order) => order.complete === 1).map((order) => {
+						return (
+							<tr className="table table-striped table-hover row-complete">
+								<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
+								<td xs={3} md={3}>{order.sc_id}</td>
+								<td xs={3} md={3}>{order.name}</td>
+								<td xs={3} md={3}>{order.address}</td>
+								<td xs={3} md={3}>{order.add_info}</td>
+							</tr>
+						);
+					})
 				);
+				
 
 				React.render(
 
