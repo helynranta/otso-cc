@@ -3,7 +3,8 @@ var React = require('react'),
 	Router = require('react-router'),
 	dateFormat = require('dateformat'),
 	Navigation = Router.Navigation,
-	Button = require('react-bootstrap').Button;
+	Button = require('react-bootstrap').Button,
+	config = require('./config.js');
 
 	require('../src/css/style.css');
 
@@ -43,31 +44,9 @@ var SubcontractorPage = React.createClass({
 			})
 		).then((data) => {
 			fb_data = data;
-			// filter out own feedback
 		});
 
 		ajaxes[2] = Promise.resolve($.ajax({
-			url: '/subcontractors/rating/*',
-			contentType:'application/json',
-			dataType:'json',
-			type:'GET'
-			})
-		).then((data) => {
-			stars = {
-				avgstars : "no reviews",
-				reviews : 0
-			}
-			for(var i in data) {
-				if(data[i]['sc_id'] == $this.props.id)
-				{
-					stars.avgstars = data[i].avgstars;
-					stars.reviews = data[i].reviews;
-				}
-			}
-			//sc_data.avgstar = data[$this.propse]
-		});
-
-		ajaxes[3] = Promise.resolve($.ajax({
 			url: '/order.json/*',
 			contentType:'application/json',
 			dataType:'json',
@@ -84,18 +63,39 @@ var SubcontractorPage = React.createClass({
 				return comment;
 			});
 
-			comments = _.filter(comments, (comment) => orders[comment.id].sc_id === $this.props.id);
+			comments = _.filter(comments, (comment) => typeof orders[comment.id] !== 'undefined' && orders[comment.id].sc_id === $this.props.id);
 
-			let stars = [];
+			let stars = [],
+				stars_html = [];
+			for (let i = 0; i < 4; i++) {
+				stars.push({total: 0, cnt: 0});
+			}
+
 			_.each(comments, (comment) => {
-				console.log(comment);
-			})
+				_.each(comment.stars, (star, i) => {
+					stars[i].total += star;
+					stars[i].cnt++;
+				});
+			});
+			
+			_.each(stars, (star, i) => {
+				star.average = star.cnt > 0 ? star.total / star.cnt : 0;
+
+				let star_html = star.cnt > 0 ? [<span className="average">{star.average}</span>,<span>({star.cnt})</span>,<img className="icon-star" src="icons/star.svg" />] : <span className="no-reviews">no reviews yet</span>;
+
+				stars_html.push(
+					<div>
+						<span className="name">{config.stars[i]}</span>
+						<span> &mdash; </span>
+						{star_html}
+					</div>
+				);
+			});
 
 			let content = [
 					<div className="header-subcontractor">
 						<div id="stars" className="stars">
-							{stars.avgstars} ({stars.reviews})
-						<img src="icons/star.svg" />
+							{stars_html}
 						</div>
 						<img className="img-circle img-subcontractor" src="icons/renovation.png" />
 					</div>,
@@ -107,15 +107,28 @@ var SubcontractorPage = React.createClass({
 					</div>,
 					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 						<p>Address: {sc_data.address}</p>
-					</div>
+					</div>,
+					<div className="header-comments">{comments.length > 0 ? <h3>Comments</h3> : ''}</div>
 			];
 			
+			if (comments.length > 0) {
+				content.push(
+					<div className="col-comment col-header col-lg-3 col-sm-3 col-md-3 col-xs-3">
+						Date
+					</div>,
+					<div className="col-comment col-header col-lg-9 col-sm-9 col-md-9 col-xs-9">
+						Comment
+					</div>
+				);
+			}
+
 			_.each(comments, (comment) => {
 				content.push(
-					<div className="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-						<p>
-							<span>{dateFormat(new Date(comment.date), "dd.mm.yyyy")}:</span> <span>{comment.comment}</span>
-						</p>
+					<div className="col-comment col-lg-3 col-sm-3 col-md-3 col-xs-3">
+					<span>{dateFormat(new Date(comment.date), "dd.mm.yyyy")}</span>
+					</div>,
+					<div className="col-comment col-lg-9 col-sm-9 col-md-9 col-xs-9">
+						<span>{comment.comment}</span>
 					</div>
 				);
 			});

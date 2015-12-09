@@ -9,7 +9,7 @@ var BackToDashboardButton = React.createClass({
 	render: function() {
 		return (
             <div className="bs-component">
-                <button className="btn btn-raised btn-warning" onClick={this.handleClick}>Back</button>
+                <button className="btn btn-raised btn-warning back-button" id="back-button" onClick={this.handleClick}>Back</button>
             </div>
 		);
 	}
