@@ -37,6 +37,20 @@ var CreateOrder = React.createClass({
     				console.log(this.props.url, status, err.toString());
     			}
             });
+            // send data also to email function, need to add email adrress to the order form....?
+            $.ajax({
+                url:'/sendMail',
+                contentType:'application/json',
+                dataType:'json',
+                type:'POST',
+                data: JSON.stringify(order),
+                success: function(data) {
+                    console.log(data)
+                }.bind(this),
+                error:function(xhr, status, err) {
+                    console.log(this.props.url, status, err.toString());
+                }
+            });
         }
     }.bind(this),
     getInitialState : function () {

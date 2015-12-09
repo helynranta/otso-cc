@@ -3,6 +3,7 @@ var app		= express();
 var fs      = require("fs");
 var random  = require('randomstring');
 var bodyParser = require('body-parser');
+var nodemailer = require('nodemailer');
 var port = process.env.PORT || 3000;
 
 var account = require('./data/account');
@@ -35,6 +36,80 @@ app.get('/:filename/:field', function(req, res) {
 
     res.end();
 });
+
+// helper functions for countStars get-function
+function checkForMatch(array, propertyToMatch) {
+    var matchArray = [];
+    for(var i = 0; i < array.length; i++){
+        if(array[i][propertyToMatch] == array[i][propertyToMatch]) {
+                matchArray.push(array[i][propertyToMatch]);
+        }
+    }
+    return matchArray;
+}
+
+function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+}
+
+// get subcontractor statistics from rest
+app.get('/subcontractors/rating/:id', function(reg, res) {
+
+    var field = reg.params.id;
+    var orderData = require("./data/order.json");
+    var feedBackData = require("./data/feedback.json");
+    var avgstars, ratings, counter = 0;
+    var tempArray = []; 
+    var tempArray2 = [];
+    var returnArray = [];
+
+    // combine orders to right feedbacks from .json files
+    for(var id in orderData)
+    {
+        if(feedBackData[id] != undefined) {
+            tempArray.push({sc_id: orderData[id].sc_id, avgstars: feedBackData[id].stars});
+        }
+    }
+    // check for matching names and make an array out of unique id's.
+    tempArray2 = checkForMatch(tempArray, "sc_id");
+    var unique = tempArray2.filter( onlyUnique );
+
+    // make objects out of our id's
+    for(var i = 0; i < unique.length; i++)
+    {
+        returnArray.push({
+            sc_id: unique[i],
+            avgstars: 0,
+            reviews: 0
+        });
+    }
+
+    // compare original tempArray with id's and feedback statistics to our array of objects with unique subcontractors.
+    // combine them to a single array, with all stars and number of reviews under same id
+    for(var i = 0; i < tempArray.length; i++) {
+        for(var j = 0; j < returnArray.length; j++) {
+            if(returnArray[j].sc_id == tempArray[i].sc_id) {
+                returnArray[j].reviews += 1;
+                returnArray[j].avgstars += (tempArray[i].avgstars[0] + tempArray[i].avgstars[1] + tempArray[i].avgstars[2] + tempArray[i].avgstars[3]) / 4;
+            }  
+        }
+    }
+    // calculate average stars and finalize the array for returning to client. Yay :)
+    for(var i = 0; i < returnArray.length; i++) {
+        returnArray[i].avgstars /= parseInt(returnArray[i].reviews);
+    }
+    if(field === "*") 
+        res.send(returnArray);
+    else {
+        for(var i = 0; i < returnArray.length; i++) {
+            if (returnArray[i].sc_id == field)
+                res.send(returnArray[i]);
+        }   
+    }
+});
+
+
+
 // put in rest, THIS ONLY TAKES RAW type=application/json
 app.post('/:filename/:field', function(req, res) {
     if (!req.body) return res.sendStatus(400);
@@ -83,6 +158,39 @@ app.post('/login', function(req, res) {
     console.log(result);
     res.end(JSON.stringify(result));
 });
+
+// ***** E-mail section *****
+// get order id through post and send an email to
+// id, name and email as parameter
+app.post('/sendMail', function(reg, res) {
+    // define a transporter (Whos sending and authentication)
+    var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'paavoapp@gmail.com',
+        pass: 'SALASANA TÄHÄN'
+    }
+    });
+    // set mailoptions, like sender, receiver, subject, html text etc. etc.
+    var mailOptions = {
+    from: 'Paavon Sähkö ✔ <PaavoApp@gmail.com>', // sender address
+    to: ''+reg.body.name+', '+reg.body.email, // list of receivers
+    subject: 'Thanks for ordering from us! ✔', // Subject line
+    text: 'Hello world ✔', // plaintext body
+    html: '<b>Greetings! ✔</b><br> Please answer to this feedback form: ' + 'localhost:3000/feedback/'+reg.body.id+'<br>Thanks, Paavon Sähkö' // html body
+    };
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+
+    });
+    res.end("Success!");
+});
+/* ***** end of email section ***** */
+
 var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;

@@ -10,7 +10,9 @@ function postData()
 {
     var url = window.location.href;
     asd = url.split("/");
+    console.log(asd);
     id = asd[asd.length - 1];
+    console.log(id);
 
 	var data = JSON.stringify({
 		"id":id,
