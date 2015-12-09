@@ -17,6 +17,9 @@ var ManufacturerDashboard = React.createClass({
 	navigateSubcontractors: function() {
 		this.transitionTo('subcontractors');
 	},
+	navigateOrderList: function() {
+		this.transitionTo('orders');
+	},
 	render: function() {
 		return(
 			<div>
@@ -24,10 +27,13 @@ var ManufacturerDashboard = React.createClass({
 					<h2>Dashboard</h2>
 				</div>
 				<div className="menu-item">
-					<Button bsStyle="primary" onClick={this.navigateOrder}>Create order</Button>
+					<Button bsStyle="primary" onClick={this.navigateSubcontractors}>Subcontractors</Button>
 				</div>
 				<div className="menu-item">
-					<Button bsStyle="primary" onClick={this.navigateSubcontractors}>Subcontractors</Button>
+					<Button bsStyle="primary" onClick={this.navigateOrderList}>Orders</Button>
+				</div>
+				<div className="menu-item">
+					<Button bsStyle="primary" onClick={this.navigateOrder}>Create order</Button>
 				</div>
 				<div className="menu-item">newest comments, best subcontractors or weather here</div>
 				<img className="menu-item" src="http://i.imgur.com/XKjuVJn.png" width="500" />

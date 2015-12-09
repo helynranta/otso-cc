@@ -6,15 +6,18 @@ var React = require('react'),
   Navigation = Router.Navigation,
   Link = Router.Link;
 
+
   require('react-bootstrap');
-  require('../src/style.css');
+  require('../src/css/style.css');
+  require('../src/css/pageslider.css')
 
 var LoginScreen = require('./LoginScreen.jsx'),
     CreateOrder = require('./CreateOrder.jsx'),
 	SubcontractorsScreen = require('./SubcontractorsScreen.jsx'),
 	LogoutButton = require('./LogoutButton.jsx'),
 	SubcontractorScreen = require('./SubcontractorScreen.jsx'),
-	ManufacturerDashboard = require('./ManufacturerDashboard.jsx');
+	ManufacturerDashboard = require('./ManufacturerDashboard.jsx'),
+	OrderListScreen = require('./OrderListScreen.jsx');
 
 
 var App = React.createClass({
@@ -22,15 +25,16 @@ var App = React.createClass({
 	getInitialState: function () {
 		return {
 			loggedIn: true,
+			name: 'admin',
 			group: 0
 		}
 	},
-	logIn: function (_state, _group) {
+	logIn: function (_state, _user, _group) {
 		this.setState({
-	      loggedIn: _state,
-	      group: _group || 2
+	      	loggedIn: _state,
+	      	user: _user || '',
+	      	group: _group || 2
 	    });
-
 
 	    if (_state) {
 	    	switch (_group) {
@@ -45,10 +49,9 @@ var App = React.createClass({
 		return (
 			<div className="container">
 				<div className="header clearfix">
-
 					<ul className="nav nav-pills pull-right nav-logout">
                         <li role="presentation">
-                             <Link to="createorder">+Assignment</Link>
+                            <Link to="createorder">+Assignment</Link>
                         </li>
 			            <li role="presentation" className="active" id="nav-logout-li">
 			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
@@ -59,7 +62,7 @@ var App = React.createClass({
                     </h3>
 				</div>
 				<div id="content" className="jumbotron">
-					{$this.state.loggedIn ? <RouteHandler /> : <LoginScreen logIn={$this.logIn} />}
+					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
 			</div>
 		);
@@ -67,10 +70,11 @@ var App = React.createClass({
 });
 
 var routes = (
-	<Route name="app" path="/" handler={App} >
+	<Route name="app" path="/app" handler={App} >
 		<Route name="loginscreen" path="/login" handler={LoginScreen} />
         <Route name="createorder" path="/createorder" handler={CreateOrder} />
-        <Route name="manufacturer_dashboard" path="/dashboard" handler={ManufacturerDashboard} />
+        <Route name="orders" path="/orders" handler={OrderListScreen} />
+        <Route name="manufacturer_dashboard" path="/" handler={ManufacturerDashboard} />
 		<Route name="subcontractors" path="/subcontractors" handler={SubcontractorsScreen} />
 		<Route name="subcontractor" path="/subcontractor/:id" handler={SubcontractorScreen} />
 	</Route>

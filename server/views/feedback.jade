@@ -2,103 +2,70 @@ doctype html
 html(lang="en")
     head
         title=feedback
-        
+        // stylesheets
         link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet")
         link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet")
         link(href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet")
-        link(href="/src/star-rating.min.css" rel="stylesheet")
+        link(href="/src/css/star-rating.min.css" rel="stylesheet")
+        link(href="/src/css/style.css" rel="stylesheet")
     body
-        .container-fluid
-            
+        .container-fluid    
             .row.text-center
                 h1 Feedback form
                 p Your feedback is valuable for us. Please fill this form
-                
             .row.text-center
-                .form-group
-                    label(for="email") E-mail
-                    input(
-                        placeholder="E-mail" 
-                        id="email" 
-                        type="text" 
-                        class="form-control"
-                        style="max-width: 350px; margin: 0 auto; float:none;"
-                    )
-                    br
-                    label(for="comment") Additional words
-                    textarea(
-                        placeholder="Additional words" 
-                        id="comment" 
-                        type="text" 
-                        class="form-control"
-                        style="max-width: 350px; margin: 0 auto; float: none;"
-                    )
-
+                .col-md-6
+                    .sub-info
+                        h4 subcontractor information:
+                        p name : !{scs.name} y : !{scs.y}
+                        p address : !{scs.address}
+                        p phone : !{scs.phone} 
+                .col-md-6
+                    .form-group
+                        label(for="email") By entering email address, you might gain coupons
+                        input(
+                            placeholder="E-mail" 
+                            id="email" 
+                            type="text" 
+                            class="form-control"
+                            style="max-width: 350px; margin: 0 auto; float:none;"
+                        )
+                        br
+                        label(for="comment") free speech
+                        textarea(
+                            placeholder="Additional informatio" 
+                            id="comment" 
+                            type="text" 
+                            class="form-control"
+                            style="max-width: 350px; margin: 0 auto; float: none;"
+                        )
+        // star rating
         .container-fluid
-
             .row.text-center
-                h2 Overall...
-                input(
-                    class="rating"
-                    id="overall"
-                    data-step="1"
-
-                )
-                h2 Tidiness
-
-                input(
-                    id="tidiness"
-                    class="rating"
-                    data-step="1"
-
-                )
-                h2 Service
-                input(
-                    id="service"
-                    class="rating"
-                    data-step="1"
-
-                )
-
-                h2 Time....
-                input(
-                    id="time"
-                    class="rating"
-                    data-step="1"
-                )
-                h2 Do you want to be contacted? 
-                btn-group(
-                    data-toggle="buttons"
-                    id="recall"
-                )
-
-                    label.btn.btn-default yes
-                        input(
-                            type="radio"
-                            id="yes"
-                            value="yes"
-                        )
-                    label.btn.btn-default no
-                        input(
-                            type="radio"
-                            id="no"
-                            value="no"
-                        )
+                .col-md-6
+                    h2 Overall...
+                    input(class="rating" id="overall" data-step="1")
+                .col-md-6
+                    h2 Tidiness
+                    input(id="tidiness" class="rating" data-step="1")
+            .row.text-center
+                .col-md-6
+                    h2 Service
+                    input(id="service" class="rating" data-step="1")
+                .col-md-6
+                    h2 Time
+                    input(id="time" class="rating" data-step="1")
+            .row.text-center
+                    h2 Do you want to be contacted? 
+                    btn-group(data-toggle="buttons" id="recall")
+                        label.btn.btn-default yes 
+                            input(type="radio" id="yes" value="yes")
+                        label.btn.btn-default no
+                            input(type="radio" id="no" value="no")
             .row.text-center
                 br
-
-                button.btn.btn-primary(
-                    id="submitBtn"
-                    type="submit"
-                    value="yes"
-
-                ) Submit
-
-
-
-            
-
-                
+                button.btn.btn-primary(id="submitBtn" type="submit" value="yes") Submit
+    
         script(src="https://code.jquery.com/jquery-2.1.4.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
         script(src="/src/star-rating.min.js")

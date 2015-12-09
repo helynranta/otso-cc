@@ -1,4 +1,5 @@
 {
+
     "Auo53yKfWNMrBTZElrITTsQWN3t20LdB": {
         "email": "atest@example.com",
         "date": "5.12.2015",
@@ -106,5 +107,18 @@
         ],
         "comment": "asd",
         "recall": "yes"
+    },
+    "Puo53yKfWNMrBTZElrITTsQWN3t20LdB": {
+        "email": "example@test.com",
+        "date": "2015-12-08T19:55:38.955Z",
+        "stars": [
+            "4",
+            "3",
+            "5",
+            "3"
+        ],
+        "comment": "Kimmo oli ok",
+        "recall": "no"
+
     }
 }

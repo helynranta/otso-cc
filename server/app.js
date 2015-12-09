@@ -16,7 +16,26 @@ app.use(express.static(__dirname+"/../client/"));
 app.use(bodyParser.json({type: 'application/json'}));
 // generate feedback form!
 app.get('/feedback/:id', function(req, res) {
-    res.render('feedback.jade', {});
+    // check if there is order to be given feedback to
+    var order = require('./data/order.json');
+    if(order[req.params.id] != undefined) {
+        // check if this order has been already reviewed
+        var feedback = require('./data/feedback.json');
+        if(feedback[req.params.id] != undefined) {
+            res.send("this url has been used");
+            res.end();
+        } else {
+            // send form with subcontractor information
+            var sc = require('./data/subcontractor.json');
+            res.render('feedback.jade', {
+                order : order[req.params.id],
+                scs : sc[order[req.params.id]["sc_id"]]
+            });
+        }
+    } else {
+        res.send("500");
+        res.end();
+    }
 });
 app.get('/genorder', function(req, res) {
     res.render('gen-order.jade', {
@@ -149,7 +168,8 @@ app.post('/login', function(req, res) {
                 result.success = "false";
                 result.comment = "username or passoword wrong";
             } else {
-                result.userinfo = account[req.body.user]
+                result.userinfo = account[req.body.user];
+                result.userinfo.login = req.body.user;
             }
         }
     } else {
