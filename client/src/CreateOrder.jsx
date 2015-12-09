@@ -21,10 +21,11 @@ var CreateOrder = React.createClass({
             date : new Date().toJSON(),
             name : $('#order-name').val(),
             address : $('#order-address').val(),
+            email : $('#order-email').val(),
             add_info : $('#order-add').val()
         };
 
-        if(order['address'].length > 0 && order['name'].length > 0) {
+        if(order['address'].length > 0 && order['name'].length > 0 && order['email'].length > 0) {
             $.ajax({
     			url:'/order.json/*',
     			contentType:'application/json',
@@ -48,7 +49,7 @@ var CreateOrder = React.createClass({
                 data: JSON.stringify(order),
                 success: function(data) {
                     console.log(data)
-                }.bind(this),
+                },
                 error:function(xhr, status, err) {
                     console.log($this.props.url, status, err.toString());
                 }
@@ -90,6 +91,11 @@ var CreateOrder = React.createClass({
                         <div className="form-group label-floating">
                             <label className="control-label" for="order-address">Customer address</label>
                             <input id="order-address" className="form-control" size="30"></input>
+                            <span className="material-input"></span>
+                        </div>
+                        <div className="form-group label-floating">
+                            <label className="control-label" for="order-email">Customer email</label>
+                            <input id="order-email" className="form-control" size="30"></input>
                             <span className="material-input"></span>
                         </div>
                         <div className="form-group label-floating">
