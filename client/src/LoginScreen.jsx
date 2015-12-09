@@ -15,12 +15,21 @@ var LoginScreen = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="login-container">
-				<h2>Log in</h2>
-				<form className="login" onSubmit={this.handleSubmit}>
-					<input type="input" name="username" placeholder="username" value={this.state.username} onChange={this.handleUsernameChange}></input><br/>
-					<input type="input" type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handlePasswordChange}></input><br />
-					<input type="submit" name="submit" value="login"></input>
+			<div className="well bs-component" id="login-container">
+				<h2>Paavo Sähkö</h2>
+				<form className="form-horizontal" onSubmit={this.handleSubmit}>
+					<legend>Login</legend>
+					<div className="form-group">
+						<label for="username" className="control-label">username</label>
+						<input type="input" name="username" className="form-control" value={this.state.username} onChange={this.handleUsernameChange}></input><br/>
+						<span className="material-input"></span>
+					</div>
+					<div className="form-group">
+						<label for="password" className="control-label">password</label>
+						<input type="input" type="password" className="form-control" name="password" value={this.state.password} onChange={this.handlePasswordChange}></input><br />
+						<span className="material-input"></span>
+					</div>
+					<input type="submit" name="submit" className="btn btn-primary" value="login"></input>
 				</form>
 			</div>
 		);
