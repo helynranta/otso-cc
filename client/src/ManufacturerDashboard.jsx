@@ -5,9 +5,11 @@ var React = require('react'),
   Navigation = Router.Navigation,
   Button = require('react-bootstrap').Button;
 
+  require("../src/css/style.css");
+
 var CreateOrder = require('./CreateOrder.jsx'),
 	SubcontractorsScreen = require('./SubcontractorsScreen.jsx');
-	
+
 
 var ManufacturerDashboard = React.createClass({
 	mixins: [Navigation],
@@ -36,7 +38,9 @@ var ManufacturerDashboard = React.createClass({
 					<Button bsStyle="primary" onClick={this.navigateOrder}>Create order</Button>
 				</div>
 				<div className="menu-item">newest comments, best subcontractors or weather here</div>
-				<img className="menu-item" src="http://i.imgur.com/XKjuVJn.png" width="500" />
+                <div className="text-center">
+                    <img  className="menu-item text-center" src="http://i.imgur.com/XKjuVJn.png" width="500"/>
+                </div>
 			</div>
 		);
 	}
