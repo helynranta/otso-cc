@@ -48,7 +48,7 @@ var LoginScreen = React.createClass({
 			'pass':p
 		});
 		$.ajax({
-			url:'/login',
+			url:'https://otso-cc-lasshi.c9users.io/login',
 			contentType:'application/json',
 			dataType:'json',
 			type:'POST',
