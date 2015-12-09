@@ -54,7 +54,7 @@ var OrderListScreen = React.createClass({
 
                     <div className="bs-component">
                         <div className="page-header">
-                            <h2>Orders:</h2>
+                            <h2>Orders</h2>
                         </div>
                         <table className="table table-striped table-hover">
                             <thead>
@@ -68,7 +68,8 @@ var OrderListScreen = React.createClass({
 
                     </div>,
 
-                        document.getElementById('container'));
+                        document.getElementById('container')
+                );
 			}
 		});
 	}
