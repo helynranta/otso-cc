@@ -126,5 +126,21 @@
         "name": "Selam",
         "address": "Selamintie",
         "add_info": "Kebab"
+    },
+    "wTOy3WQ20flOdtBSfXnKpEuOd7edWSiq": {
+        "mf_id": "admin",
+        "sc_id": "Aino",
+        "date": "2015-12-09T10:10:24.656Z",
+        "name": "Lassi",
+        "address": "Kikkeli",
+        "add_info": "perkele"
+    },
+    "VvBezbNloBQy1cUr2X5FdPhhQMXt7fcL": {
+        "mf_id": "admin",
+        "sc_id": "Aino",
+        "date": "2015-12-09T10:10:24.656Z",
+        "name": "Lassi",
+        "address": "Kikkeli",
+        "add_info": "perkele"
     }
 }

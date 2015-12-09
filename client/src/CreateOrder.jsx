@@ -81,18 +81,18 @@ var CreateOrder = React.createClass({
                             </select>
                             <span className="material-input"></span>
                         </div>
-                        <p>Give customer information</p>
-                        <div className="form-group label-floating is-empty">
+                        <p>Customer information</p>
+                        <div className="form-group label-floating">
                             <label className="control-label" for="order-name">Customer name</label>
                             <input id="order-name" className="form-control" size="30"></input>
                             <span className="material-input"></span>
                         </div>
-                        <div className="form-group label-floating is-empty">
+                        <div className="form-group label-floating">
                             <label className="control-label" for="order-address">Customer address</label>
                             <input id="order-address" className="form-control" size="30"></input>
                             <span className="material-input"></span>
                         </div>
-                        <div className="form-group label-floating is-empty">
+                        <div className="form-group label-floating">
                             <label className="control-label" for="order-add">Additional information</label>
                             <textarea className="form-control" id="order-add" rows="3" cols="50"></textarea>
                             <span className="material-input"></span>
