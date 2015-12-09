@@ -166,10 +166,18 @@ app.get('/subcontractors/rating/:id', function(reg, res) {
     if(field === "*")
         res.send(returnArray);
     else {
-        for(var i = 0; i < returnArray.length; i++) {
-            if (returnArray[i].sc_id == field)
-                res.send(returnArray[i]);
+        var sc = _.find(returnArray, function (user) {
+            return user.sc_id == field;
+        });
+
+        if (typeof sc === 'undefined') {
+            sc = {
+                sc_id : field,
+                avgstars : 0,
+                reviews : 0
+            };
         }
+        res.send(sc);
     }
 });
 
