@@ -2,45 +2,43 @@ doctype html
 html(lang="en")
     head
         title=feedback
+        // roboto
+        link(href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet")
         // stylesheets
         link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet")
         link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet")
         link(href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet")
+        // material bootstrap css
+        link(href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.4/css/bootstrap-material-design.min.css" rel="stylesheet")
+        link(href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.4/css/ripples.min.css" rel="stylesheet")
+        // star rating found somewhere internets
         link(href="/src/css/star-rating.min.css" rel="stylesheet")
+        // our original stylesheet
         link(href="/src/css/style.css" rel="stylesheet")
+        
     body
         .container-fluid    
             .row.text-center
                 h1 Feedback form
                 p Your feedback is valuable for us. Please fill this form
-            .row.text-center
+            .row.text-center.bs-component
                 .col-md-6
-                    .sub-info
+                    .sub-info.card
                         h4 subcontractor information:
                         p name : !{scs.name} y : !{scs.y}
                         p address : !{scs.address}
                         p phone : !{scs.phone} 
-                .col-md-6
-                    .form-group
-                        label(for="email") By entering email address, you might gain coupons
-                        input(
-                            placeholder="E-mail" 
-                            id="email" 
-                            type="text" 
-                            class="form-control"
-                            style="max-width: 350px; margin: 0 auto; float:none;"
-                        )
-                        br
-                        label(for="comment") free speech
-                        textarea(
-                            placeholder="Additional informatio" 
-                            id="comment" 
-                            type="text" 
-                            class="form-control"
-                            style="max-width: 350px; margin: 0 auto; float: none;"
-                        )
+                .col-md-6.text-center
+                    .form-group.label-floating
+                        label.control-label(for="email") By entering email address, you might gain coupons
+                        input.form-control(id="email")
+                        span.material-input
+                    .form-group.label-floating
+                        label.control-label(for="comment") free speech
+                        textarea.form-control(id="comment")
+                        span.material-input
         // star rating
-        .container-fluid
+        .container-fluid.bs-component
             .row.text-center
                 .col-md-6
                     h2 General impression
@@ -57,16 +55,19 @@ html(lang="en")
                     input(id="time" class="rating" data-step="1")
             .row.text-center
                     h2 Do you want to be contacted? 
-                    btn-group(data-toggle="buttons" id="recall")
-                        label.btn.btn-default yes 
+                    .form-group(data-toggle="buttons" id="recall")
+                        label.btn.btn-raised yes 
                             input(type="radio" id="yes" value="yes")
-                        label.btn.btn-default no
-                            input(type="radio" id="no" value="no")
+                        label.btn.btn-raised no
+                            input(checked type="radio" id="no" value="no")
             .row.text-center
                 br
                 button.btn.btn-primary(id="submitBtn" type="submit" value="yes") Submit
     
         script(src="https://code.jquery.com/jquery-2.1.4.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.4/js/material.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.4/js/ripples.min.js")
+
         script(src="/src/star-rating.min.js")
         script(src="/src/feedback.js")
