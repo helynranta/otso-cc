@@ -102,30 +102,32 @@ var SubcontractorPage = React.createClass({
 			});
 
 			let content = [
-					<div className="header-subcontractor">
-						<div id="stars" className="stars">
-							{stars_html}
-						</div>
-						<img className="img-circle img-subcontractor" src="icons/renovation.png" />
-					</div>,
-					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-						<p>{sc_data.name}</p>
-					</div>,
-					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-						<p>Phone: {sc_data.phone}</p>
-					</div>,
-					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-						<p>
-							<span onClick={this.showOrders} className="btn-link pseudo">
-								{orders_active_cnt} Active Orders
-							</span>
-						</p>
-					</div>,
-					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-						<p>Address: {sc_data.address}</p>
-					</div>,
-					<div className="header-comments">{comments.length > 0 ? <h3>Comments</h3> : ''}</div>
+				<div className="header-subcontractor">
+					<div id="stars" className="stars">
+						{stars_html}
+					</div>
+					<img className="img-circle img-subcontractor" src="icons/renovation.png" />
+				</div>,
+				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+					<p>{sc_data.name}</p>
+				</div>,
+				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+					<p>Phone: {sc_data.phone}</p>
+				</div>,
+				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+					<p>
+						<span onClick={this.showOrders} className="btn-link pseudo">
+							{orders_active_cnt} Active Orders
+						</span>
+					</p>
+				</div>,
+				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+					<p>Address: {sc_data.address}</p>
+				</div>
 			];
+
+			content.push(comments.length > 0 ? <div className="header-comments"><h3>Comments</h3></div> : <span className="no-reviews span-no-reviews">no reviews yet</span>);
+			
 			
 			if (comments.length > 0) {
 				content.push(

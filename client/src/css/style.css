@@ -76,7 +76,8 @@ div {
 
 .header-comments h3,
 .table-orders,
-.header-orders {
+.header-orders,
+.span-no-reviews {
 	margin-left: 15px;
 }
 

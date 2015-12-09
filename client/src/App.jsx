@@ -61,7 +61,7 @@ var App = React.createClass({
 			            </li>
 	          		</ul>
                     <h3 id="logo" className="text-muted">
-                        <Link to="manufacturer_dashboard">Paavo Sähkö</Link>
+                        {$this.state.group === 0 ? <Link to="manufacturer_dashboard">Paavo Sähkö</Link> :  <Link to="subcontractor" params={{id: $this.state.user}}>Paavo Sähkö</Link>}
                     </h3>
 				</div>
 				<div id="bs-container content" className="jumbotron">
