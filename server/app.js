@@ -4,6 +4,7 @@ var fs      = require("fs");
 var random  = require('randomstring');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
+var _ = require('underscore');
 var port = process.env.PORT || 3000;
 
 var account = require('./data/account');
@@ -70,6 +71,39 @@ function checkForMatch(array, propertyToMatch) {
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
+
+// get subcontractor's feedback
+app.get('/subcontractor/feedback/:id', function(req, res) {
+    var sc_id = req.params.id;
+    var orderData = JSON.parse(fs.readFileSync("./data/order.json", 'utf-8'));
+    var feedBackData = JSON.parse(fs.readFileSync("./data/feedback.json", 'utf-8'));
+
+    var feedback = {};
+    _.each(feedBackData, function (entry, id) {
+        if (typeof orderData[id] !== 'undefined' && orderData[id].sc_id === sc_id) {
+            feedback[id] = entry;
+        }
+    });
+
+    res.send(feedback);
+});
+
+// get subcontractor's orders
+app.get('/subcontractor/orders/:id', function(req, res) {
+    var sc_id = req.params.id;
+    var orderData = JSON.parse(fs.readFileSync("./data/order.json", 'utf-8'));
+    var feedBackData = JSON.parse(fs.readFileSync("./data/feedback.json", 'utf-8'));
+
+    var orders = {};
+    _.each(orderData, function(entry, id) {
+        if (entry.sc_id === sc_id) {
+            entry.complete = typeof feedBackData[id] === 'undefined' ? 0 : 1;
+            orders[id] = entry;
+        }
+    });
+
+    res.send(orders);
+});
 
 // get subcontractor statistics from rest
 app.get('/subcontractors/rating/:id', function(reg, res) {
