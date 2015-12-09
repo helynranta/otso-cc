@@ -18,7 +18,8 @@ var LoginScreen = require('./LoginScreen.jsx'),
 	SubcontractorScreen = require('./SubcontractorScreen.jsx'),
 	ManufacturerDashboard = require('./ManufacturerDashboard.jsx'),
 	OrderListScreen = require('./OrderListScreen.jsx'),
-	SubcontractorOrderScreen = require('./SubcontractorOrderScreen.jsx');
+	SubcontractorOrderScreen = require('./SubcontractorOrderScreen.jsx'),
+	HomeLink = require('./HomeLink.jsx');
 
 
 var App = React.createClass({
@@ -31,48 +32,50 @@ var App = React.createClass({
 		}
 	},
 	logIn: function (_state, _user, _group) {
+
 		this.setState({
 	      	loggedIn: _state,
 	      	user: _user || '',
-	      	group: _group || 2
+	      	group: typeof _group === 'undefined' ? 2 : _group
 	    });
 
-	    if (_state) {
-	    	switch (_group) {
-	    		case 0: 
-	    			this.transitionTo('manufacturer_dashboard');
-	    			break;
-	    		case 1: 
-	    			this.transitionTo('subcontractor', {id : _user});
-	    			break;
-	    	}
+	    if (_state && _group === 0) {
+	    	this.transitionTo('manufacturer_dashboard');
+	    } else if (_state && _group === 1) {
+	    	this.transitionTo('subcontractor', {id : _user});
+	    } else {
+	    	this.transitionTo('loginscreen');
 	    }
 	},
+	componentDidMount: function() {
+		$.material.init();
+	},
 	render: function () {
-        $.material.init();
 		let $this = this,
 			imgStyle = {
 				width: '40px',
 				height: '40px'
 			};
-
+			
 		return (
 			<div className="bs-container">
 				<div className="header clearfix">
 					<ul className="nav nav-pills pull-right nav-logout">
 						<li role="presentation" className="active" id="nav-logout-li">
-							<div className="current-user">
-								<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
-								<span> {$this.state.user}</span>
-							</div>
+							{$this.state.loggedIn ?	
+								<div className="current-user">
+									<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
+									<span> {$this.state.user}</span>
+								</div>
+							: '' }
 						</li>
 			            <li role="presentation" className="active" id="nav-logout-li">
 			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
 			            </li>
 	          		</ul>
                     <h3 id="logo" className="text-muted">
-                        {$this.state.group === 0 ? <Link to="manufacturer_dashboard">Paavo Sähkö</Link> :  <Link to="subcontractor" params={{id: $this.state.user}}>Paavo Sähkö</Link>}
-                    </h3>
+                    	<HomeLink user={$this.state.user} group={$this.state.group} />   
+					</h3>
 				</div>
 				<div id="bs-container content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}

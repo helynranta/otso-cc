@@ -65,7 +65,7 @@ app.get('/:filename/:field', function(req, res) {
 
     source = data;
     if(field === "*") res.send(source);
-    else res.send(source[field]);
+    else res.send(source[field] || {});
 
     res.end();
 });
