@@ -93,7 +93,8 @@ app.post('/login', function(req, res) {
                 result.success = "false";
                 result.comment = "username or passoword wrong";
             } else {
-                result.userinfo = account[req.body.user]
+                result.userinfo = account[req.body.user];
+                result.userinfo.login = req.body.user;
             }
         }
     } else {

@@ -15,13 +15,14 @@ var CreateOrder = React.createClass({
 
         var order = {
             id : randomString(32),
+            mf_id : this.props.user,
             sc_id : $('#sub').val(),
             date : new Date().toJSON(),
             name : $('#order-name').val(),
             address : $('#order-address').val(),
             add_info : $('#order-add').val()
         };
-        console.log(order["address"])
+
         if(order['address'].length > 0 && order['name'].length > 0) {
             $.ajax({
     			url:'/order.json/*',
@@ -39,48 +40,50 @@ var CreateOrder = React.createClass({
             });
         }
     }.bind(this),
-    getInitialState : function () {
-        return {
-            data : []
-        }
-    },
     componentDidMount : function () {
+        let $this = this,
+            content;
+
+        var createList = function( item ) {
+            return <option value={item}>{item}</option>
+        }
+
         $.get('subcontractor.json/*', function(result) {
             var list = []
             for(var s in result) {
                 list.push(s);
             }
-            this.setState({
-                data: list
-            });
-        }.bind(this))
+
+            content = (
+                <div>
+                    <h1>CreateOrder</h1>
+                    <form className="orderForm" onSubmit={this.handleSubmit}>
+                        <br />
+                        <p>Select subcontractor from list:</p>
+                        <select id="sub">
+                            {list.map(createList)}
+                        </select>
+                        <br />
+                        <p>Give customer information</p>
+                        <input id="order-name" placeholder="customer name" size="50"></input><br />
+                        <input id="order-address" placeholder="customer address" size="50"></input><br />
+                        additional information <br/>
+                        <textarea id="order-add" rows="5" cols="50"></textarea>
+                        <br />
+                        <input type="submit" name="save" value="save"></input>
+                    </form>
+                    <BackToDashboardButton />
+                </div>
+            );
+
+            React.render(content, document.getElementById('container'));
+        })
     },
     render: function() {
-        var createList = function( item ) {
-            return <option value={item}>{item}</option>
-        }
         return (
-            <div className="container text-center">
-                <h1>CreateOrder</h1>
-                <form className="orderForm" onSubmit={this.handleSubmit}>
-                    <br />
-                    <p>Select subcontractor from list:</p>
-                    <select id="sub">
-                        {this.state.data.map(createList)}
-                    </select>
-                    <br />
-                    <p>Give customer information</p>
-                    <input id="order-name" placeholder="customer name" size="50"></input><br />
-                    <input id="order-address" placeholder="customer address" size="50"></input><br />
-                    additional information <br/>
-                    <textarea id="order-add" rows="5" cols="50"></textarea>
-                    <br />
-                    <input type="submit" name="save" value="save"></input>
-            </form>
-            <BackToDashboardButton />
-        </div>
-    );
-}
+            <div className="container text-center" id="container"></div>
+        );
+    }
 });
 
 module.exports = CreateOrder;
