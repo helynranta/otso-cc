@@ -70,21 +70,33 @@ var CreateOrder = React.createClass({
             }
 
             content = (
-                <div>
+                <div className="bs-component">
                     <h1>CreateOrder</h1>
-                    <form className="orderForm">
+                    <form className="bs-component">
                         <br />
-                        <p>Select subcontractor from list:</p>
-                        <select id="sub">
-                            {list.map(createList)}
-                        </select>
-                        <br />
+                        <div className="form-group">
+                            <label for="sub" className="control-label">Select subcontractor from list</label>
+                            <select className="form-control" id="sub">
+                                {list.map(createList)}
+                            </select>
+                            <span className="material-input"></span>
+                        </div>
                         <p>Give customer information</p>
-                        <input id="order-name" placeholder="customer name" size="50"></input><br />
-                        <input id="order-address" placeholder="customer address" size="50"></input><br />
-                        additional information <br/>
-                        <textarea id="order-add" rows="5" cols="50"></textarea>
-                        <br />
+                        <div className="form-group label-floating is-empty">
+                            <label className="control-label" for="order-name">Customer name</label>
+                            <input id="order-name" className="form-control" size="30"></input>
+                            <span className="material-input"></span>
+                        </div>
+                        <div className="form-group label-floating is-empty">
+                            <label className="control-label" for="order-address">Customer address</label>
+                            <input id="order-address" className="form-control" size="30"></input>
+                            <span className="material-input"></span>
+                        </div>
+                        <div className="form-group label-floating is-empty">
+                            <label className="control-label" for="order-add">Additional information</label>
+                            <textarea className="form-control" id="order-add" rows="3" cols="50"></textarea>
+                            <span className="material-input"></span>
+                        </div>
                         <Button onClick={$this.handleSubmit}>Add</Button>
                     </form>
                     <BackToDashboardButton />
