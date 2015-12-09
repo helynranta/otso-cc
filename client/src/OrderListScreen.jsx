@@ -1,5 +1,6 @@
 var React = require('react'),
   Router = require('react-router'),
+  Link = Router.Link,
   _ = require('underscore'),
   Bootstrap = require('react-bootstrap'),
   dateFormat = require('dateformat'),
@@ -46,7 +47,7 @@ var OrderListScreen = React.createClass({
 						return (
 							<tr className="table table-striped table-hover">
 								<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
-								<td xs={3} md={3}>{order.sc_id}</td>
+								<td xs={3} md={3}><a href={'#subcontractor/' + order.sc_id}>{order.sc_id}</a></td>
 								<td xs={3} md={3}>{order.name}</td>
 								<td xs={3} md={3}>{order.address}</td>
 								<td xs={3} md={3}>{order.add_info}</td>
@@ -59,7 +60,7 @@ var OrderListScreen = React.createClass({
 						return (
 							<tr className="table table-striped table-hover row-complete">
 								<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
-								<td xs={3} md={3}>{order.sc_id}</td>
+								<td xs={3} md={3}><a href={'#subcontractor/' + order.sc_id}>{order.sc_id}</a></td>
 								<td xs={3} md={3}>{order.name}</td>
 								<td xs={3} md={3}>{order.address}</td>
 								<td xs={3} md={3}>{order.add_info}</td>

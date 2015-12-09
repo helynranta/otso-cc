@@ -112,7 +112,7 @@ var SubcontractorPage = React.createClass({
 					<p>{sc_data.name}</p>
 				</div>,
 				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-					<p>Phone: {sc_data.phone}</p>
+					<p>Phone: <a href={'tel:' + sc_data.phone}>{sc_data.phone}</a></p>
 				</div>,
 				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 					<p>

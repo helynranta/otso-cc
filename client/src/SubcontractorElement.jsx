@@ -13,7 +13,7 @@ var SubcontractorElement = React.createClass({
 					<img style={imgStyle} className="img-circle" src="icons/renovation.png" />
 				</a>
 				<h2>{this.props.data.name}</h2>
-				<p>Phone: {this.props.data.phone}</p>
+				<p>Phone: <a href={"tel:" + this.props.data.phone}>{this.props.data.phone}</a></p>
 				<p>Address: {this.props.data.address}</p>
 			</div>
 		);
