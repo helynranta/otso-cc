@@ -16,7 +16,17 @@ var SubcontractorPage = React.createClass({
 			</div>
 		);
 	},
+	showOrders: function() {
+		window._router.transitionTo('sc_orders', { id : this.props.id});
+	},
 	componentDidUpdate: function() {
+		React.unmountComponentAtNode(document.getElementById('subcontractor'));
+		this.showData();
+	},
+	componentDidMount: function() {
+		this.showData();
+	},
+	showData: function() {
 		let $this = this,
 			sc_data,
 			fb_data,
@@ -37,7 +47,7 @@ var SubcontractorPage = React.createClass({
 		});
 
 		ajaxes[1] = Promise.resolve($.ajax({
-				url:'/feedback.json/*',
+				url:`/subcontractor/feedback/${$this.props.id}`,
 				contentType:'application/json',
 				dataType:'json',
 				type:'GET'
@@ -47,7 +57,7 @@ var SubcontractorPage = React.createClass({
 		});
 
 		ajaxes[2] = Promise.resolve($.ajax({
-			url: '/order.json/*',
+			url: `/subcontractor/orders/${$this.props.id}`,
 			contentType:'application/json',
 			dataType:'json',
 			type:'GET'
@@ -61,9 +71,8 @@ var SubcontractorPage = React.createClass({
 			let comments = _.map(fb_data, (comment, id) => {
 				comment.id = id;
 				return comment;
-			});
-
-			comments = _.filter(comments, (comment) => typeof orders[comment.id] !== 'undefined' && orders[comment.id].sc_id === $this.props.id);
+			}),
+				orders_active_cnt = _.filter(_.map(orders, (order) => order), (order) => order.complete === 0).length;
 
 			let stars = [],
 				stars_html = [];
@@ -99,11 +108,18 @@ var SubcontractorPage = React.createClass({
 						</div>
 						<img className="img-circle img-subcontractor" src="icons/renovation.png" />
 					</div>,
-					<div className="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 						<p>{sc_data.name}</p>
 					</div>,
 					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 						<p>Phone: {sc_data.phone}</p>
+					</div>,
+					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+						<p>
+							<span onClick={this.showOrders} className="btn-link pseudo">
+								{orders_active_cnt} Active Orders
+							</span>
+						</p>
 					</div>,
 					<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 						<p>Address: {sc_data.address}</p>

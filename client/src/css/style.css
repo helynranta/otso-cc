@@ -70,10 +70,22 @@ div {
 	font-size: 16px;
 }
 
+.pseudo {
+	cursor: pointer;
+}
+
 .header-comments h3,
 .table-orders,
 .header-orders {
 	margin-left: 15px;
+}
+
+.row-complete {
+	font-style: italic;
+}
+
+.button-show-orders {
+	margin: 0;
 }
 
 #subcontractor div {

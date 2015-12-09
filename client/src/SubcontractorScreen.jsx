@@ -9,7 +9,7 @@ var SubcontractorPage = require('./SubcontractorPage.jsx');
 var SubcontractorScreen = React.createClass({
 	mixins: [Router.State],
 	handleClickBack: function() {
-		this.transitionTo('subcontractors');
+		window._router.transitionTo('subcontractors');
 	},
 	render: function() {
 		this.param = this.getParams().id;

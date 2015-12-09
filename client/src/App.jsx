@@ -17,7 +17,8 @@ var LoginScreen = require('./LoginScreen.jsx'),
 	LogoutButton = require('./LogoutButton.jsx'),
 	SubcontractorScreen = require('./SubcontractorScreen.jsx'),
 	ManufacturerDashboard = require('./ManufacturerDashboard.jsx'),
-	OrderListScreen = require('./OrderListScreen.jsx');
+	OrderListScreen = require('./OrderListScreen.jsx'),
+	SubcontractorOrderScreen = require('./SubcontractorOrderScreen.jsx');
 
 
 var App = React.createClass({
@@ -76,6 +77,7 @@ var routes = (
 		<Route name="loginscreen" path="/login" handler={LoginScreen} />
         <Route name="createorder" path="/createorder" handler={CreateOrder} />
         <Route name="orders" path="/orders" handler={OrderListScreen} />
+        <Route name="sc_orders" path="/orders/:id" handler={SubcontractorOrderScreen} />
         <Route name="manufacturer_dashboard" path="/" handler={ManufacturerDashboard} />
 		<Route name="subcontractors" path="/subcontractors" handler={SubcontractorsScreen} />
 		<Route name="subcontractor" path="/subcontractor/:id" handler={SubcontractorScreen} />
