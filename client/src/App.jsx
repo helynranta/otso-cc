@@ -50,12 +50,22 @@ var App = React.createClass({
 	},
 	render: function () {
         $.material.init();
-		let $this = this;
+		let $this = this,
+			imgStyle = {
+				width: '40px',
+				height: '40px'
+			};
 
 		return (
 			<div className="bs-container">
 				<div className="header clearfix">
 					<ul className="nav nav-pills pull-right nav-logout">
+						<li role="presentation" className="active" id="nav-logout-li">
+							<div className="current-user">
+								<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
+								<span> {$this.state.user}</span>
+							</div>
+						</li>
 			            <li role="presentation" className="active" id="nav-logout-li">
 			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
 			            </li>

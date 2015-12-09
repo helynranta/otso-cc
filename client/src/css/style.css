@@ -17,10 +17,6 @@ div {
 	float: initial;
 }
 
-.nav-logout {
-	margin-top: 10px;
-}
-
 .jumbotron p {
 	font-size: 18px;
 }
@@ -79,6 +75,10 @@ div {
 .header-orders,
 .span-no-reviews {
 	margin-left: 15px;
+}
+
+.current-user {
+	padding: 9px 0;
 }
 
 .row-complete {
