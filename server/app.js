@@ -102,14 +102,13 @@ app.get('/subcontractors/rating/:id', function(reg, res) {
             reviews: 0
         });
     }
-
     // compare original tempArray with id's and feedback statistics to our array of objects with unique subcontractors.
     // combine them to a single array, with all stars and number of reviews under same id
     for(var i = 0; i < tempArray.length; i++) {
         for(var j = 0; j < returnArray.length; j++) {
             if(returnArray[j].sc_id == tempArray[i].sc_id) {
                 returnArray[j].reviews += 1;
-                returnArray[j].avgstars += (tempArray[i].avgstars[0] + tempArray[i].avgstars[1] + tempArray[i].avgstars[2] + tempArray[i].avgstars[3]) / 4;
+                returnArray[j].avgstars += (parseInt(tempArray[i].avgstars[0]) + parseInt(tempArray[i].avgstars[1]) + parseInt(tempArray[i].avgstars[2]) + parseInt(tempArray[i].avgstars[3])) / 4;
             }  
         }
     }
