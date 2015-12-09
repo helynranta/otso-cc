@@ -133,6 +133,29 @@ app.get('/subcontractor/orders/:id', function(req, res) {
     res.send(orders);
 });
 
+app.get('/feedback/mail/:mail', function(reg, res) {
+    var mail = reg.params.mail;
+    var orderData = JSON.parse(fs.readFileSync("./data/order.json", 'utf-8'));
+    var feedBackData = JSON.parse(fs.readFileSync("./data/feedback.json", 'utf-8'));
+    var feedBackCounter = 0;
+    var orderCounter = 0;
+    var object = {
+        email: mail,
+        feedbacks: 0,
+        orders: 0
+
+    }
+    _.each(orderData, function (entry, id) {
+        if (typeof feedBackData[id] !== 'undefined' && feedBackData[id]["email"] === mail) {
+            object.feedbacks += 1;
+        }
+    });
+    object.feedbacks = feedBackCounter;
+    res.send(object);
+
+
+});
+
 // get subcontractor statistics from rest
 app.get('/subcontractors/rating/:id', function(reg, res) {
 
