@@ -47,8 +47,8 @@ app.get('/:filename/:field', function(req, res) {
     var source = {};
     var fn = req.params.filename;
     var field = req.params.field;
-    var data = require('./data/'+fn);
-    console.log(data);
+    var data = JSON.parse(fs.readFileSync('./data/'+fn, 'utf-8'));
+
     source = data;
     if(field === "*") res.send(source);
     else res.send(source[field]);
@@ -75,8 +75,8 @@ function onlyUnique(value, index, self) {
 app.get('/subcontractors/rating/:id', function(reg, res) {
 
     var field = reg.params.id;
-    var orderData = require("./data/order.json");
-    var feedBackData = require("./data/feedback.json");
+    var orderData = JSON.parse(fs.readFileSync("./data/order.json", 'utf-8'));
+    var feedBackData = JSON.parse(fs.readFileSync("./data/feedback.json", 'utf-8'));
     var avgstars, ratings, counter = 0;
     var tempArray = [];
     var tempArray2 = [];
@@ -137,14 +137,16 @@ app.post('/:filename/:field', function(req, res) {
     var result = {};
     result["success"] = true;
     // check if file exists
-    var data = require('./data/'+fn);
+    var data = JSON.parse(fs.readFileSync('./data/'+fn, 'utf-8'));
     if(data != undefined) {
         var model = require('./data/model/'+fn);
         for(var attr in model) {
             model[attr] = req.body[attr];
         }
+
         var id = req.body['id'];
         delete model.id;
+        console.log(data[id])
         data[id] = model;
         fs.writeFileSync('./data/'+fn, JSON.stringify(data, null, 4));
     } else {
@@ -183,7 +185,6 @@ app.post('/login', function(req, res) {
 // id, name and email as parameter
 app.post('/sendMail', function(reg, res) {
     var config = require('./config.js')
-    console.log(config.gmail)
     // define a transporter (Whos sending and authentication)
     var transporter = nodemailer.createTransport({
         service: 'Gmail',

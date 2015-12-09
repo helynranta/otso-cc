@@ -11,7 +11,8 @@ function randomString(length) {
 }
 
 var CreateOrder = React.createClass({
-    handleSubmit : function () {
+    handleSubmit : function (e) {
+        e.preventDefault();
         let $this = this;
 
         var order = {
@@ -24,7 +25,8 @@ var CreateOrder = React.createClass({
             email : $('#order-email').val(),
             add_info : $('#order-add').val()
         };
-
+        $('#order-address').val('');
+        $('#order-name').val('');
         if(order['address'].length > 0 && order['name'].length > 0 && order['email'].length > 0) {
             $.ajax({
     			url:'/order.json/*',
@@ -34,27 +36,29 @@ var CreateOrder = React.createClass({
     			data: JSON.stringify(order),
     			success: function(data) {
                     console.log(data)
+                    // send data also to email function, need to add email adrress to the order form....?
                     window._router.transitionTo('manufacturer_dashboard');
     			},
     			error:function(xhr, status, err) {
     				console.log($this.props.url, status, err.toString());
     			}
             });
-            // send data also to email function, need to add email adrress to the order form....?
-            $.ajax({
-                url:'/sendMail',
-                contentType:'application/json',
-                dataType:'json',
-                type:'POST',
-                data: JSON.stringify(order),
-                success: function(data) {
-                    console.log(data)
-                },
-                error:function(xhr, status, err) {
-                    console.log($this.props.url, status, err.toString());
-                }
-            });
         }
+        $.ajax({
+            url:'/sendMail',
+            contentType:'application/json',
+            dataType:'json',
+            type:'POST',
+            data: JSON.stringify(order),
+            success: function(data) {
+                console.log(data)
+            },
+            error:function(xhr, status, err) {
+                //console.log($this.props.url, status, err.toString());
+                console.log("sending email threw error");
+            }
+        });
+        return;
     },
     componentDidMount : function () {
         let $this = this,
@@ -73,7 +77,7 @@ var CreateOrder = React.createClass({
             content = (
                 <div className="bs-component">
                     <h1>CreateOrder</h1>
-                    <form className="bs-component">
+                    <div className="bs-component">
                         <br />
                         <div className="form-group">
                             <label for="sub" className="control-label">Select subcontractor from list</label>
@@ -104,7 +108,7 @@ var CreateOrder = React.createClass({
                             <span className="material-input"></span>
                         </div>
                         <Button onClick={$this.handleSubmit}>Add</Button>
-                    </form>
+                    </div>
                     <BackToDashboardButton />
                 </div>
             );
