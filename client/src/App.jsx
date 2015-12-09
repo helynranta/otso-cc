@@ -10,7 +10,6 @@ var React = require('react'),
   require('react-bootstrap');
   require('../src/css/style.css');
   require("../src/css/login.css");
-  require('../src/css/pageslider.css')
 
 var LoginScreen = require('./LoginScreen.jsx'),
     CreateOrder = require('./CreateOrder.jsx'),
@@ -45,10 +44,11 @@ var App = React.createClass({
 	    }
 	},
 	render: function () {
+        $.material.init();
 		let $this = this;
 
 		return (
-			<div className="container">
+			<div className="bs-container">
 				<div className="header clearfix">
 					<ul className="nav nav-pills pull-right nav-logout">
                         <li role="presentation">
