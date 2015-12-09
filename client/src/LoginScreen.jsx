@@ -1,7 +1,5 @@
 var React = require('react');
 
-require("../src/css/login.css");
-
 var LoginScreen = React.createClass({
 	getInitialState: function() {
 		return {

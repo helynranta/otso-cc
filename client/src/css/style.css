@@ -41,10 +41,6 @@
 	margin: 10px 20px;
 }
 
-.orderForm {
-	margin-bottom: 20px;
-}
-
 .menu-item {
 	text-align: center;
 	margin-bottom: 20px;
@@ -53,6 +49,15 @@
 .menu-item button {
 	width: 130px;
 }
+
+.header-grid {
+	font-weight: bold;
+}
+
+#back-button {
+	margin-top: 20px;
+}
+
 /* feedback form styles */
 .sub-info {
 	padding: 10px 10px;

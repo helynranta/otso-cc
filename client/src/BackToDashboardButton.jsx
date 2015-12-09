@@ -8,7 +8,7 @@ var BackToDashboardButton = React.createClass({
 	},
 	render: function() {
 		return (
-			<Button bsStyle="primary" onClick={this.handleClick}>Back</Button>
+			<Button id="back-button" bsStyle="primary" onClick={this.handleClick}>Back</Button>
 		);
 	}
 });

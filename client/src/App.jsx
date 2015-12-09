@@ -9,6 +9,7 @@ var React = require('react'),
 
   require('react-bootstrap');
   require('../src/css/style.css');
+  require("../src/css/login.css");
   require('../src/css/pageslider.css')
 
 var LoginScreen = require('./LoginScreen.jsx'),
@@ -25,7 +26,7 @@ var App = React.createClass({
 	getInitialState: function () {
 		return {
 			loggedIn: true,
-			name: 'admin',
+			user: 'admin',
 			group: 0
 		}
 	},
