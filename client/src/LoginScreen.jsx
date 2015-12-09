@@ -54,10 +54,10 @@ var LoginScreen = React.createClass({
 						$this.props.logIn(true, data.userinfo.login, data.userinfo.group);
 					}
 				}
-			}.bind(this),
+			},
 			error:function(xhr, status, err) {
 				console.log(this.props.url, status, err.toString());
-			}.bind(this)
+			}
 		});
 	}
 });

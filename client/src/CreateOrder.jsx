@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+    Button = require('react-bootstrap').Button;
 
 var BackToDashboardButton = require('./BackToDashboardButton.jsx');
 
@@ -10,12 +11,12 @@ function randomString(length) {
 }
 
 var CreateOrder = React.createClass({
-    handleSubmit : function (e) {
-        e.preventDefault();
+    handleSubmit : function () {
+        let $this = this;
 
         var order = {
             id : randomString(32),
-            mf_id : this.props.user,
+            mf_id : $this.props.user,
             sc_id : $('#sub').val(),
             date : new Date().toJSON(),
             name : $('#order-name').val(),
@@ -33,9 +34,9 @@ var CreateOrder = React.createClass({
     			success: function(data) {
                     console.log(data)
                     window._router.transitionTo('manufacturer_dashboard');
-    			}.bind(this),
+    			},
     			error:function(xhr, status, err) {
-    				console.log(this.props.url, status, err.toString());
+    				console.log($this.props.url, status, err.toString());
     			}
             });
             // send data also to email function, need to add email adrress to the order form....?
@@ -49,11 +50,11 @@ var CreateOrder = React.createClass({
                     console.log(data)
                 }.bind(this),
                 error:function(xhr, status, err) {
-                    console.log(this.props.url, status, err.toString());
+                    console.log($this.props.url, status, err.toString());
                 }
             });
         }
-    }.bind(this),
+    },
     componentDidMount : function () {
         let $this = this,
             content;
@@ -71,7 +72,7 @@ var CreateOrder = React.createClass({
             content = (
                 <div>
                     <h1>CreateOrder</h1>
-                    <form className="orderForm" onSubmit={this.handleSubmit}>
+                    <form className="orderForm">
                         <br />
                         <p>Select subcontractor from list:</p>
                         <select id="sub">
@@ -84,7 +85,7 @@ var CreateOrder = React.createClass({
                         additional information <br/>
                         <textarea id="order-add" rows="5" cols="50"></textarea>
                         <br />
-                        <input type="submit" name="save" value="save"></input>
+                        <Button onClick={$this.handleSubmit}>Add</Button>
                     </form>
                     <BackToDashboardButton />
                 </div>

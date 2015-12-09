@@ -21,7 +21,6 @@
         "address": "Orionille",
         "add_info": "oh behave!"
     },
-
     "Duo53yKfWNMrBTZElrITTsQWN3t20LdB": {
         "sc_id": "Kulli",
         "date": "2015-12-08T16:24:06.434Z",
@@ -29,7 +28,6 @@
         "address": "Orionille",
         "add_info": "oh behave!"
     },
-
     "Euo53yKfWNMrBTZElrITTsQWN3t20LdB": {
         "sc_id": "Kulli",
         "date": "2015-12-08T16:24:06.434Z",
@@ -72,5 +70,61 @@
         "name": "Anna",
         "address": "Koti",
         "add_info": "ffs"
+    },
+    "CpnNxZ5idmcw7vbvYcTY4dCUU6i86wNg": {
+        "mf_id": "admin",
+        "sc_id": "Migitto",
+        "date": "2015-12-09T01:25:02.860Z",
+        "name": "Whatever",
+        "address": "Dude",
+        "add_info": ""
+    },
+    "hfGUWmyMCF5pKxUhIHdETlPBVQ25XiMC": {
+        "mf_id": "admin",
+        "sc_id": "Migitto",
+        "date": "2015-12-09T01:25:02.860Z",
+        "name": "Whatever",
+        "address": "Dude",
+        "add_info": ""
+    },
+    "aRFwtskoLIviJy0Jp4QnraTOIYRs2Ofj": {
+        "mf_id": "admin",
+        "sc_id": "Migitto",
+        "date": "2015-12-09T01:25:02.860Z",
+        "name": "Whatever",
+        "address": "Dude",
+        "add_info": ""
+    },
+    "yHx6Wc0pGNmIO6FaM8GvqgDN1VRY4iaY": {
+        "mf_id": "admin",
+        "sc_id": "Migitto",
+        "date": "2015-12-09T01:25:02.860Z",
+        "name": "Whatever",
+        "address": "Dude",
+        "add_info": ""
+    },
+    "T5JBnVKor10Tt7HRSbpJhPA0MURIDNtT": {
+        "mf_id": "admin",
+        "sc_id": "Migitto",
+        "date": "2015-12-09T01:25:02.860Z",
+        "name": "Whatever",
+        "address": "Dude",
+        "add_info": ""
+    },
+    "i9bzSfvkNczUYXR1DwLFeKXbt67TtkUI": {
+        "mf_id": "admin",
+        "sc_id": "Ali",
+        "date": "2015-12-09T01:27:55.884Z",
+        "name": "Selam",
+        "address": "Selamintie",
+        "add_info": "Kebab"
+    },
+    "ZMolNdBQxhk8ADXa9RTFYUyzJShTiJNm": {
+        "mf_id": "admin",
+        "sc_id": "Migitto",
+        "date": "2015-12-09T01:28:29.151Z",
+        "name": "Selam",
+        "address": "Selamintie",
+        "add_info": "Kebab"
     }
 }

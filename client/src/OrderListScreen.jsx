@@ -34,7 +34,7 @@ var OrderListScreen = React.createClass({
 				let content = orders.map((order) => {
 					return (
 						<Row className="show-grid">
-							<Col xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yyyy")}</Col>
+							<Col xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</Col>
 							<Col xs={3} md={3}>{order.name}</Col>
 							<Col xs={3} md={3}>{order.address}</Col>
 							<Col xs={3} md={3}>{order.add_info}</Col>
