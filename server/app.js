@@ -143,17 +143,13 @@ app.get('/feedback/mail/:mail', function(reg, res) {
         email: mail,
         feedbacks: 0,
         orders: 0
-
     }
     _.each(orderData, function (entry, id) {
-        if (typeof feedBackData[id] !== 'undefined' && feedBackData[id]["email"] === mail) {
+        if (typeof feedBackData[id] !== 'undefined' && feedBackData[id]["email"] == mail) {
             object.feedbacks += 1;
         }
     });
-    object.feedbacks = feedBackCounter;
     res.send(object);
-
-
 });
 
 // get subcontractor statistics from rest
