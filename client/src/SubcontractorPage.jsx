@@ -20,7 +20,8 @@ var SubcontractorPage = React.createClass({
 			sc_data,
 			fb_data,
 			ajaxes = [],
-			stars = {},
+			stars,
+			orders,
 			promise;
 
 		ajaxes[0] = Promise.resolve($.ajax({
@@ -44,12 +45,14 @@ var SubcontractorPage = React.createClass({
 			fb_data = data;
 			// filter out own feedback
 		});
+
 		ajaxes[2] = Promise.resolve($.ajax({
-			url: `/subcontractors/rating/*`,
+			url: '/subcontractors/rating/*',
 			contentType:'application/json',
 			dataType:'json',
 			type:'GET'
-		})).then((data) => {
+			})
+		).then((data) => {
 			stars = {
 				avgstars : "no reviews",
 				reviews : 0
@@ -63,7 +66,31 @@ var SubcontractorPage = React.createClass({
 			}
 			//sc_data.avgstar = data[$this.propse]
 		});
+
+		ajaxes[3] = Promise.resolve($.ajax({
+			url: '/order.json/*',
+			contentType:'application/json',
+			dataType:'json',
+			type:'GET'
+			})
+		).then((data) => {
+			orders = data;
+		});
+
 		promise = Promise.all(ajaxes).then(() => {
+
+			let comments = _.map(fb_data, (comment, id) => {
+				comment.id = id;
+				return comment;
+			});
+
+			comments = _.filter(comments, (comment) => orders[comment.id].sc_id === $this.props.id);
+
+			let stars = [];
+			_.each(comments, (comment) => {
+				console.log(comment);
+			})
+
 			let content = [
 					<div className="header-subcontractor">
 						<div id="stars" className="stars">
@@ -82,14 +109,7 @@ var SubcontractorPage = React.createClass({
 						<p>Address: {sc_data.address}</p>
 					</div>
 			];
-
-			let comments = _.map(fb_data, (comment, id) => {
-				comment.id = id;
-				return comment;
-			});
-
-			//filter here
-
+			
 			_.each(comments, (comment) => {
 				content.push(
 					<div className="col-lg-12 col-sm-12 col-md-12 col-xs-12">
