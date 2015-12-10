@@ -46,11 +46,11 @@ var OrderListScreen = React.createClass({
 					content = _.filter(orders, (order) => order.complete === 0).map((order) => {
 						return (
 							<tr className="table table-striped table-hover">
-								<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
-								<td xs={3} md={3}><a href={'#subcontractor/' + order.sc_id}>{order.sc_id}</a></td>
-								<td xs={3} md={3}>{order.name}</td>
-								<td xs={3} md={3}>{order.address}</td>
-								<td xs={3} md={3}>{order.add_info}</td>
+								<td xs={3} md={3} data-title="Date">{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
+								<td xs={3} md={3} data-title="Subcontractor"><a href={'#subcontractor/' + order.sc_id}>{order.sc_id}</a></td>
+								<td xs={3} md={3} data-title="Customer name">{order.name}</td>
+								<td xs={3} md={3} data-title="Address">{order.address}</td>
+								<td xs={3} md={3} data-title="Comment">{order.add_info || "—"}</td>
 							</tr>
 						);
 					});
@@ -59,11 +59,11 @@ var OrderListScreen = React.createClass({
 					_.filter(orders, (order) => order.complete === 1).map((order) => {
 						return (
 							<tr className="table table-striped table-hover row-complete">
-								<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
-								<td xs={3} md={3}><a href={'#subcontractor/' + order.sc_id}>{order.sc_id}</a></td>
-								<td xs={3} md={3}>{order.name}</td>
-								<td xs={3} md={3}>{order.address}</td>
-								<td xs={3} md={3}>{order.add_info}</td>
+								<td xs={3} md={3}  data-title="Date">{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
+								<td xs={3} md={3} data-title="Subcontractor"><a href={'#subcontractor/' + order.sc_id}>{order.sc_id}</a></td>
+								<td xs={3} md={3} data-title="Customer name">{order.name}</td>
+								<td xs={3} md={3} data-title="Address">{order.address}</td>
+								<td xs={3} md={3} data-title="Comment">{order.add_info || "—"}</td>
 							</tr>
 						);
 					})
@@ -76,14 +76,16 @@ var OrderListScreen = React.createClass({
                         <div className="page-header">
                             <h2 className="header-orders">Orders</h2>
                         </div>
-                        <table className="table table-striped table-hover table-orders">
-                            <thead>
-                                {headerRow}
-                            </thead>
-                            <tbody>
-                                {content}
-                            </tbody>
-                        </table>
+                        <div className="table-responsive-vertical">
+	                        <table className="table table-striped table-hover table-orders">
+	                            <thead>
+	                                {headerRow}
+	                            </thead>
+	                            <tbody>
+	                                {content}
+	                            </tbody>
+	                        </table>
+                        </div>
                         <BackToDashboardButton />
 
                     </div>,

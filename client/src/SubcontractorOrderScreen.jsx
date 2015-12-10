@@ -71,26 +71,26 @@ var SubcontractorOrderScreen = React.createClass({
 				</tr>
 			),
 			content = _.map(_.filter(orders, (order) => order.complete === 0), (order) => {
-				return (
-					<tr className="table table-striped table-hover">
-						<td xs={3} md={3}>Active</td>
-						<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
-						<td xs={3} md={3}>{order.name}</td>
-						<td xs={3} md={3}>{order.address}</td>
-						<td xs={3} md={3}>{order.add_info}</td>
-					</tr>
-				);
+					return (
+						<tr className="table table-striped table-hover">
+							<td xs={3} md={3} data-title="Status">Active</td>
+							<td xs={3} md={3} data-title="Date">{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
+							<td xs={3} md={3} data-title="Customer name">{order.name}</td>
+							<td xs={3} md={3} data-title="Address">{order.address}</td>
+							<td xs={3} md={3} data-title="Comment">{order.add_info}</td>
+						</tr>
+					);
 			});
 
 			content.push(
 				_.map(_.filter(orders, (order) => order.complete === 1), (order) => {
 					return (
 						<tr className="table table-striped table-hover row-complete">
-							<td xs={3} md={3}>Complete</td>
-							<td xs={3} md={3}>{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
-							<td xs={3} md={3}>{order.name}</td>
-							<td xs={3} md={3}>{order.address}</td>
-							<td xs={3} md={3}>{order.add_info}</td>
+							<td xs={3} md={3} data-title="Status">Complete</td>
+							<td xs={3} md={3} data-title="Date">{dateFormat(new Date(order.date), "dd.mm.yy hh:mm")}</td>
+							<td xs={3} md={3} data-title="Customer name">{order.name}</td>
+							<td xs={3} md={3} data-title="Address">{order.address}</td>
+							<td xs={3} md={3} data-title="Comment">{order.add_info}</td>
 						</tr>
 					);
 				})
@@ -101,14 +101,16 @@ var SubcontractorOrderScreen = React.createClass({
                     <div className="page-header">
                         <h2 className="header-orders">Orders</h2>
                     </div>
-                    <table className="table table-striped table-hover table-orders">
-                        <thead>
-                            {headerRow}
-                        </thead>
-                        <tbody>
-                            {content}
-                        </tbody>
-                    </table>
+                    <div className="table-responsive-vertical">
+	                    <table className="table table-striped table-hover table-orders">
+	                        <thead>
+	                            {headerRow}
+	                        </thead>
+	                        <tbody>
+	                            {content}
+	                        </tbody>
+	                    </table>
+                    </div>
                     <Button className="btn btn-raised btn-warning" id="back-button" onClick={this.handleClickBack}>Back</Button>
 
                 </div>,
