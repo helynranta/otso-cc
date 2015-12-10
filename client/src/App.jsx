@@ -46,7 +46,7 @@ var App = React.createClass({
 		window._router.transitionTo('/');
 	},
 	updatePrev: function(prevState) {
-		console.log(this.state.prevState);	
+		console.log(this.state.prevState);
 	},
 	logIn: function (_state, _user, _group) {
 
@@ -84,18 +84,18 @@ var App = React.createClass({
 				</button>,
 
 				<button className="btn" onClick={this.navigateOrder}>
-					<i className="material-icons">create</i>						
+					<i className="material-icons">create</i>
 				</button>
 		];
-			
+
 		return (
-			<div className="bs-container">
+			<div className="page-container bs-container">
 				<TopNav loggedIn={$this.state.loggedIn} user={$this.state.user} pageName={pageName} />
 				<br /><br />
 				<div id="content" className="bs-container jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
-				
+
 				{$this.state.loggedIn ?
 				<footer>
 					<nav className="card">
@@ -111,7 +111,7 @@ var App = React.createClass({
 		);
 	}
 });
-
+var slider = new PageSlider($("#content"));
 var routes = (
 	<Route name="app" path="/app" handler={App} >
 		<Route name="loginscreen" path="/login" handler={LoginScreen} />
