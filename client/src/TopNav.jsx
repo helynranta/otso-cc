@@ -10,20 +10,21 @@ var TopNav = React.createClass({
 		};
 
 		return (
-			<nav className="navbar navbar-default navbar-fixed-top">
-				<ul className="nav navbar-nav">
-					<li id="logo" className="nav-logo">
-					  <BackToDashboardButton />
-					</li>
-					<li role="presentation" className="active" id="username">
+			<nav className="navbar navbar-default navbar-fixed-top nav-top">
+				<div>
+					 <BackToDashboardButton />
+				</div>
+				<div className="header-page">
+					<h4>{this.props.pageName}</h4>
+				</div>
+				<div className="current-user">
 					{this.props.loggedIn ?	
-						<div className="current-user">
+						<div>
 							<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
 							<span> {this.props.user}</span>
 						</div>
 					: '' }
-					</li>
-				</ul>
+				</div>
 			</nav>
 		);
 	}

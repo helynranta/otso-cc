@@ -73,8 +73,8 @@ var App = React.createClass({
 				width: '40px',
 				height: '40px'
 			},
-		pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id;
-		let buttons = [
+		pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id,
+		buttons = [
 				<button className="btn" onClick={this.navigateSubcontractors}>
 					<i className="material-icons">group</i>
 				</button>,
@@ -90,12 +90,13 @@ var App = React.createClass({
 			
 		return (
 			<div className="bs-container">
-				<TopNav loggedIn={$this.state.loggedIn} user={$this.state.user} />
+				<TopNav loggedIn={$this.state.loggedIn} user={$this.state.user} pageName={pageName} />
 				<br /><br />
-				<div id="bs-container content" className="jumbotron">
+				<div id="content" className="bs-container jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
 				
+				{$this.state.loggedIn ?
 				<footer>
 					<nav className="card">
 						<button className="btn" onClick={this.handleMenu}>
@@ -105,6 +106,7 @@ var App = React.createClass({
 		            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
 					</nav>
 				</footer>
+				: ''}
 			</div>
 		);
 	}

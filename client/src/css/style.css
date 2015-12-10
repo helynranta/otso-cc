@@ -1,6 +1,4 @@
-html, body {
-  background-color: #EEEEEE;
-}
+
 .navbar-nav {
 	margin:0;
 }
@@ -25,6 +23,9 @@ footer nav button i {
 }
 footer nav #btn-logout {
   float: right;
+}
+#content {
+	background-color: initial !important;
 }
 .navbar-nav>li {
 	float:none;
@@ -118,7 +119,7 @@ div {
 }
 
 .current-user {
-	padding: 3px 0;
+	text-align: right;
 }
 
 .row-complete {
@@ -127,6 +128,11 @@ div {
 
 .button-show-orders {
 	margin: 0;
+}
+
+.header-page h4 {
+	line-height: 31px;
+	text-align: center;
 }
 
 #subcontractor div {
@@ -154,28 +160,52 @@ div {
 	font-weight: bold;
 }
 
-#logo #backButton {
-	padding-left: 20px;
-	margin: auto;
+#backButton {
+	margin: 6px 15px;
 }
 
-#back-button {
-	margin: 20px 15px 0 15px;
-	background-color: rgb(28, 90, 125);
-}
 .header{
   position: fixed;
   height: 35px;
   width: 100%;
 }
 
-.current-page h1 {
-	color: black;
-	margin: 0;
+.nav-top > div {
+	display: inline-block;
+	color: #000;
+	width: 33%;
+	float: left;
 }
 
 .nav-top {
 	height: 39px;
+}
+
+.current-user div {
+	padding-top: 5px;
+}
+
+@media screen and (min-width: 750px) {
+	#backButton {
+		margin: 6px 15px;
+	}
+	.current-user div {
+		padding-right: 40px;
+	}
+	.header-page h4 {
+		font-size: 30px;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	#backButton {
+		padding: 8px;
+		margin: 6px 0;
+		margin-left: 3px;
+	}
+	.current-user div {
+		padding-right: 3px;
+	}
 }
 
 /* feedback form styles #*/
