@@ -33,6 +33,18 @@ var App = React.createClass({
 			prevPath: "/"
 		}
 	},
+	navigateOrder: function() {
+		this.transitionTo('createorder');
+	},
+	navigateSubcontractors: function() {
+		this.transitionTo('subcontractors');
+	},
+	navigateOrderList: function() {
+		this.transitionTo('orders');
+	},
+	handleMenu : function() {
+		window._router.transitionTo('/');
+	},
 	updatePrev: function(prevState) {
 		console.log(this.state.prevState);	
 	},
@@ -62,6 +74,20 @@ var App = React.createClass({
 				height: '40px'
 			};
 			
+		let buttons = [
+				<button className="btn" onClick={this.navigateSubcontractors}>
+					<i className="material-icons">group</i>
+				</button>,
+
+				<button className="btn" onClick={this.navigateOrderList}>
+					<i className="material-icons">&#xE547;</i>
+				</button>,
+
+				<button className="btn" onClick={this.navigateOrder}>
+					<i className="material-icons">create</i>						
+				</button>
+		];
+			
 		return (
 			<div className="bs-container">
 				<nav className="navbar navbar-default navbar-fixed-top">
@@ -78,20 +104,19 @@ var App = React.createClass({
 							: '' }
 							</li>
 						</ul>
-				            {/*
-				            <li role="presentation" className="active" id="nav-logout-li">
-				            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
-				            </li>
-				            */}
-		     
 				</nav>
 				<br /><br />
 				<div id="bs-container content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
+				
 				<footer>
 					<nav className="card">
-						<i className="material-icons">apps</i>
+						<button className="btn" onClick={this.handleMenu}>
+							<i className="material-icons">apps</i>
+						</button>
+						{$this.state.group == 0 ? buttons : ' '}
+		            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
 					</nav>
 				</footer>
 			</div>

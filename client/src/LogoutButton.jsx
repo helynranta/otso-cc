@@ -8,7 +8,9 @@ var LogoutButton = React.createClass({
 	render: function() {
 		if (this.props.loggedIn) {
 			return (
-				<Button bsStyle="primary" onClick={this.handleClick}>Logout</Button>
+				<button className="btn" id="btn-logout" onClick={this.handleClick}>
+					<i className="material-icons">face</i>
+				</button>
 			);
 		} else {
 			return (<div />);

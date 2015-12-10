@@ -10,11 +10,18 @@ footer {
   width: 100%;
   bottom: 0;left: 0;
 }
-footer .card {
-  height: 100%; 
+footer nav button {
+  top: 0;
+  padding: 0px 0px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  width: 20%;
 }
-footer .card i {
-  transform: translate(50%,50%);
+footer nav button i {
+  transform: translate(-50%, 0%);
+}
+footer nav #btn-logout {
+  float: right;
 }
 .navbar-nav>li {
 	float:none;
@@ -105,13 +112,6 @@ div {
 
 .pseudo {
 	cursor: pointer;
-}
-
-.header-comments h3,
-.table-orders,
-.header-orders,
-.span-no-reviews {
-	margin-left: 15px;
 }
 
 .current-user {
