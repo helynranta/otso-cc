@@ -72,32 +72,7 @@ var App = React.createClass({
 				width: '40px',
 				height: '40px'
 			},
-			pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id;
-
-		return (
-			<div className="bs-container">
-				<nav className="navbar navbar-default navbar-fixed-top nav-top">
-					<ul className="nav navbar-nav">
-						<li id="logo" className="nav-logo">
-						  <BackToDashboardButton />
-						</li>
-						<li role="presentation" className="active" id="username">
-						{$this.state.loggedIn ?	
-							<div className="current-user">
-								<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
-								<span> {$this.state.user}</span>
-							</div>
-						: '' }
-						</li>
-					</ul>
-			            {/*
-			            <li role="presentation" className="active" id="nav-logout-li">
-			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
-			            </li>
-			            */}
-		     
-			};
-			
+		pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id;
 		let buttons = [
 				<button className="btn" onClick={this.navigateSubcontractors}>
 					<i className="material-icons">group</i>
