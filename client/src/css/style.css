@@ -103,7 +103,7 @@ div {
 }
 
 .current-user {
-	padding: 9px 0;
+	padding: 3px 0;
 }
 
 .row-complete {
@@ -138,8 +138,9 @@ div {
 .header-grid {
 	font-weight: bold;
 }
-#logo {
+#logo #backButton {
 	padding-left: 20px;
+	margin: auto;
 }
 #back-button {
 	margin: 20px 15px 0 15px;
@@ -150,6 +151,16 @@ div {
   height: 35px;
   width: 100%;
 }
+
+.current-page h1 {
+	color: black;
+	margin: 0;
+}
+
+.nav-top {
+	height: 39px;
+}
+
 /* feedback form styles #*/
 .sub-info {
 	display: inline-block;

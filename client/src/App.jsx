@@ -6,7 +6,6 @@ var React = require('react'),
   Navigation = Router.Navigation,
   Link = Router.Link;
 
-
   require('react-bootstrap');
   require('../src/css/style.css');
   require("../src/css/login.css");
@@ -20,7 +19,8 @@ var LoginScreen = require('./LoginScreen.jsx'),
 	OrderListScreen = require('./OrderListScreen.jsx'),
 	SubcontractorOrderScreen = require('./SubcontractorOrderScreen.jsx'),
 	HomeLink = require('./HomeLink.jsx'),
-	BackToDashboardButton = require('./BackToDashboardButton.jsx');;
+	BackToDashboardButton = require('./BackToDashboardButton.jsx'),
+	PageNames = require('./config.js').pages;
 
 
 var App = React.createClass({
@@ -29,8 +29,7 @@ var App = React.createClass({
 		return {
 			loggedIn: true,
 			user: 'admin',
-			group: 0, 
-			prevPath: "/"
+			group: 0
 		}
 	},
 	updatePrev: function(prevState) {
@@ -60,29 +59,30 @@ var App = React.createClass({
 			imgStyle = {
 				width: '40px',
 				height: '40px'
-			};
-			
+			},
+			pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id;
+
 		return (
 			<div className="bs-container">
-				<nav className="navbar navbar-default navbar-fixed-top">
-						<ul className="nav navbar-nav">
-							<li id="logo" className="nav-logo">
-							  <BackToDashboardButton />
-							</li>
-							<li role="presentation" className="active" id="username">
-							{$this.state.loggedIn ?	
-								<div className="current-user">
-									<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
-									<span> {$this.state.user}</span>
-								</div>
-							: '' }
-							</li>
-						</ul>
-				            {/*
-				            <li role="presentation" className="active" id="nav-logout-li">
-				            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
-				            </li>
-				            */}
+				<nav className="navbar navbar-default navbar-fixed-top nav-top">
+					<ul className="nav navbar-nav">
+						<li id="logo" className="nav-logo">
+						  <BackToDashboardButton />
+						</li>
+						<li role="presentation" className="active" id="username">
+						{$this.state.loggedIn ?	
+							<div className="current-user">
+								<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
+								<span> {$this.state.user}</span>
+							</div>
+						: '' }
+						</li>
+					</ul>
+			            {/*
+			            <li role="presentation" className="active" id="nav-logout-li">
+			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
+			            </li>
+			            */}
 		     
 				</nav>
 				<br /><br />
