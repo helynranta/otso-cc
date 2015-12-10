@@ -109,7 +109,6 @@ var CreateOrder = React.createClass({
                         </div>
                         <Button onClick={$this.handleSubmit}>Add</Button>
                     </div>
-                    <BackToDashboardButton />
                 </div>
             );
 

@@ -61,7 +61,6 @@ var SubcontractorsScreen = React.createClass({
 			subcontractors = (
 				<div className="bs-component">
 					{subcontractors}
-					<BackToDashboardButton />
 				</div>
 			);
 			React.render(subcontractors, document.getElementById('container'));

@@ -4,12 +4,18 @@ var React = require('react'),
 
 var BackToDashboardButton = React.createClass({
 	handleClick: function() {
-		window._router.transitionTo('manufacturer_dashboard');
+		console.log(window._prevPath)
+		if(window._prevPath.length > 0) {
+			window._prevPath.pop();
+			window._router.transitionTo(window._prevPath[window._prevPath.length-1]);
+		}
 	},
 	render: function() {
 		return (
             <div className="bs-component">
-                <button className="btn btn-raised btn-warning back-button" id="back-button" onClick={this.handleClick}>Back</button>
+                <button className="btn" id="backButton" onClick={this.handleClick}>
+                	<i className="material-icons">arrow_back</i>
+                </button>
             </div>
 		);
 	}

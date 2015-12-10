@@ -4,8 +4,6 @@ var React = require('react'),
 	dateFormat = require('dateformat'),
 	Button = require('react-bootstrap').Button;
 
-var BackToDashboardButton = require('./BackToDashboardButton.jsx');
-
 var SubcontractorOrderScreen = React.createClass({
 	mixins: [Router.State],
 	render: function() {
@@ -111,10 +109,7 @@ var SubcontractorOrderScreen = React.createClass({
 	                        </tbody>
 	                    </table>
                     </div>
-                    <Button className="btn btn-raised btn-warning" id="back-button" onClick={this.handleClickBack}>Back</Button>
-
                 </div>,
-
 				document.getElementById('container')
 			);
 		});

@@ -17,7 +17,6 @@ var SubcontractorScreen = React.createClass({
 		return (
 			<div className="bs-component">
 				<SubcontractorPage user={this.props.user} id={this.param} />
-				{this.props.group === 0 ? <Button className="btn btn-raised btn-warning" id="back-button" onClick={this.handleClickBack}>Back</Button> : ''}
 			</div>
 		);
 	}

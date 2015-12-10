@@ -19,7 +19,8 @@ var LoginScreen = require('./LoginScreen.jsx'),
 	ManufacturerDashboard = require('./ManufacturerDashboard.jsx'),
 	OrderListScreen = require('./OrderListScreen.jsx'),
 	SubcontractorOrderScreen = require('./SubcontractorOrderScreen.jsx'),
-	HomeLink = require('./HomeLink.jsx');
+	HomeLink = require('./HomeLink.jsx'),
+	BackToDashboardButton = require('./BackToDashboardButton.jsx');;
 
 
 var App = React.createClass({
@@ -28,8 +29,12 @@ var App = React.createClass({
 		return {
 			loggedIn: true,
 			user: 'admin',
-			group: 0
+			group: 0, 
+			prevPath: "/"
 		}
+	},
+	updatePrev: function(prevState) {
+		console.log(this.state.prevState);	
 	},
 	logIn: function (_state, _user, _group) {
 
@@ -74,7 +79,7 @@ var App = React.createClass({
 			            </li>
 	          		</ul>
                     <h3 id="logo" className="text-muted">
-                    	<HomeLink user={$this.state.user} group={$this.state.group} />   
+          				<BackToDashboardButton />
 					</h3>
 				</div>
 				<div id="bs-container content" className="jumbotron">
@@ -96,7 +101,9 @@ var routes = (
 		<Route name="subcontractor" path="/subcontractor/:id" handler={SubcontractorScreen} />
 	</Route>
 );
-
-window._router = Router.run(routes, function(Handler) {
+window._prevPath = [];
+window._router = Router.run(routes, function(Handler, state) {
 	React.render(<Handler />, document.getElementById("body"));
+	//App.state.prevPath = state.path;
+	window._prevPath.push(state.path);
 });
