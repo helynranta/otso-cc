@@ -106,22 +106,22 @@ var SubcontractorPage = React.createClass({
 					<div id="stars" className="stars">
 						{stars_html}
 					</div>
-					<img className="img-circle img-subcontractor" src="icons/renovation.png" />
+					<img className="img-circle img-subcontractor" src="icons/04.jpg" />
 				</div>,
-				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+				<div className="col-lg-6 col-sm-12 col-md-6 col-xs-12">
 					<p>{sc_data.name}</p>
 				</div>,
-				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-					<p>Phone: <a href={'tel:' + sc_data.phone}>{sc_data.phone}</a></p>
-				</div>,
-				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+				<div className="col-lg-6 col-sm-12 col-md-6 col-xs-12">
 					<p>
 						<span onClick={this.showOrders} className="btn-link pseudo">
 							{orders_active_cnt} Active Orders
 						</span>
 					</p>
 				</div>,
-				<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+				<div className="col-lg-6 col-sm-12 col-md-6 col-xs-12">
+					<p>Phone: <a href={'tel:' + sc_data.phone}>{sc_data.phone}</a></p>
+				</div>,
+				<div className="col-lg-6 col-sm-12 col-md-6 col-xs-12">
 					<p>Address: {sc_data.address}</p>
 				</div>
 			];
