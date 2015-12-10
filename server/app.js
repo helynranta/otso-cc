@@ -33,16 +33,16 @@ app.use(function(req, res, next) {
 // generate feedback form!
 app.get('/feedback/:id', function(req, res) {
     // check if there is order to be given feedback to
-    var order = require('./data/order.json');
+    var order = JSON.parse(fs.readFileSync(__dirname+('/data/order.json')), 'utf-8');
     if(order[req.params.id] != undefined) {
         // check if this order has been already reviewed
-        var feedback = require('./data/feedback.json');
+        var feedback = JSON.parse(fs.readFileSync(__dirname+('/data/feedback.json')), 'utf-8');
         if(feedback[req.params.id] != undefined) {
             res.send("this url has been used");
             res.end();
         } else {
             // send form with subcontractor information
-            var sc = require('./data/subcontractor.json');
+            var sc = JSON.parse(fs.readFileSync(__dirname+('/data/subcontractor.json')), 'utf-8');
             res.render('feedback.jade', {
                 order : order[req.params.id],
                 scs : sc[order[req.params.id]["sc_id"]]
