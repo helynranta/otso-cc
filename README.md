@@ -2,9 +2,9 @@
 App is running here: https://ide.c9.io/lasshi/otso-cc
 
 # Team members
-Otto Laitinen
-Lassi Lääti
-Anna Osipova
+Otto Laitinen  
+Lassi Lääti  
+Anna Osipova  
 
 # Idea
 Local IT company LTC Otso provided us with a case that we had to solve. They had a few criteria what they wanted to see, and we planned to implement them all, since we felt quite confident in our programming skills. We also wanted to make our final application completely functional, with real client - server communication.
