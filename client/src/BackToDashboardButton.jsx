@@ -4,11 +4,12 @@ var React = require('react'),
 
 var BackToDashboardButton = React.createClass({
 	handleClick: function() {
-		console.log(window._prevPath)
-		if(window._prevPath.length > 0) {
+		if(window._prevPath.length > 1) {
 			window._prevPath.pop();
 			window._router.transitionTo(window._prevPath[window._prevPath.length-1]);
+			window._prevPath.pop();
 		}
+	
 	},
 	render: function() {
 		return (

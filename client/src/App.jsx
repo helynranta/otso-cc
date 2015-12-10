@@ -104,6 +104,5 @@ var routes = (
 window._prevPath = [];
 window._router = Router.run(routes, function(Handler, state) {
 	React.render(<Handler />, document.getElementById("body"));
-	//App.state.prevPath = state.path;
 	window._prevPath.push(state.path);
 });
