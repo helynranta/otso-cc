@@ -72,10 +72,7 @@ var OrderListScreen = React.createClass({
 
 				React.render(
 
-                    <div className="bs-component">
-                        <div className="page-header">
-                            <h2 className="header-orders">Orders</h2>
-                        </div>
+                    <div className="bs-component container-orders">
                         <div className="table-responsive-vertical">
 	                        <table className="table table-striped table-hover table-orders">
 	                            <thead>

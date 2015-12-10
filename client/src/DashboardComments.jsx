@@ -21,7 +21,7 @@ var DashboardComments = React.createClass({
 			content.push(
 				<tr className="table table-striped table-hover">
 					<td xs={3} md={3} data-title="Date">{dateFormat(new Date(data[i].date), 'dd.mm hh:mm')}</td>
-					<td xs={3} md={3} data-title="Subcontractor">{data[i].sc_id}</td>
+					<td xs={3} md={3} data-title="Subcontractor"><a href={`#/subcontractor/${data[i].sc_id}`}>{data[i].sc_id}</a></td>
 					<td xs={3} md={3} data-title="Comment">{data[i].comment}</td>
 				</tr>
 			);

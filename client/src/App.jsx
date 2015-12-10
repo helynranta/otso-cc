@@ -91,14 +91,14 @@ var App = React.createClass({
 		return (
 			<div className="bs-container">
 				<TopNav loggedIn={$this.state.loggedIn} user={$this.state.user} pageName={pageName} />
-				<br /><br />
+	
 				<div id="content" className="bs-container jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
 				
 				{$this.state.loggedIn ?
 				<footer>
-					<nav className="card">
+					<nav className="navbar">
 						<div>
 							<button className="btn" onClick={this.handleMenu}>
 								<i className="material-icons">apps</i>
