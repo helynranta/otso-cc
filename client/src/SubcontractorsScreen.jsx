@@ -18,7 +18,7 @@ var SubcontractorsScreen = React.createClass({
 			stars_data;
 
 		ajaxes[0] = Promise.resolve($.ajax({
-				url:'/subcontractor.json/*',
+				url:'https://otso-cc-lasshi.c9users.io/subcontractor.json/*',
 				contentType:'application/json',
 				dataType:'json',
 				type:'GET',
@@ -28,7 +28,7 @@ var SubcontractorsScreen = React.createClass({
 		});
 
 		ajaxes[1] = Promise.resolve($.ajax({
-				url:'subcontractors/rating/*',
+				url:'https://otso-cc-lasshi.c9users.io/subcontractors/rating/*',
 				contentType:'application/json',
 				dataType:'json',
 				type:'GET',

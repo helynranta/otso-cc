@@ -1,5 +1,4 @@
 node_modules/*
 client/dist
-client/bootstrap
 *.log
 server/config.js

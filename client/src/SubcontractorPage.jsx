@@ -36,7 +36,7 @@ var SubcontractorPage = React.createClass({
 			promise;
 
 		ajaxes[0] = Promise.resolve($.ajax({
-				url:`/subcontractor.json/${$this.props.id}`,
+				url:`https://otso-cc-lasshi.c9users.io/subcontractor.json/${$this.props.id}`,
 				contentType:'application/json',
 				dataType:'json',
 				type:'GET'
@@ -47,7 +47,7 @@ var SubcontractorPage = React.createClass({
 		});
 
 		ajaxes[1] = Promise.resolve($.ajax({
-				url:`/subcontractor/feedback/${$this.props.id}`,
+				url:`https://otso-cc-lasshi.c9users.io/subcontractor/feedback/${$this.props.id}`,
 				contentType:'application/json',
 				dataType:'json',
 				type:'GET'
@@ -57,7 +57,7 @@ var SubcontractorPage = React.createClass({
 		});
 
 		ajaxes[2] = Promise.resolve($.ajax({
-			url: `/subcontractor/orders/${$this.props.id}`,
+			url: `https://otso-cc-lasshi.c9users.io/subcontractor/orders/${$this.props.id}`,
 			contentType:'application/json',
 			dataType:'json',
 			type:'GET'
@@ -86,7 +86,7 @@ var SubcontractorPage = React.createClass({
 					stars[i].cnt++;
 				});
 			});
-			
+
 			_.each(stars, (star, i) => {
 				star.average = star.cnt > 0 ? star.total / star.cnt : 0;
 
@@ -127,8 +127,8 @@ var SubcontractorPage = React.createClass({
 			];
 
 			content.push(comments.length > 0 ? <div className="header-comments"><h3>Comments</h3></div> : <span className="no-reviews span-no-reviews">no reviews yet</span>);
-			
-			
+
+
 			if (comments.length > 0) {
 				content.push(
 					<div className="col-comment col-header col-lg-3 col-sm-3 col-md-3 col-xs-3">

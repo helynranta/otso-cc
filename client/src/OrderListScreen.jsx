@@ -20,7 +20,7 @@ var OrderListScreen = React.createClass({
 		let $this = this;
 
 		$.ajax({
-			url:'/orders/',
+			url:'https://otso-cc-lasshi.c9users.io/orders/',
 			contentType:'application/json',
 			dataType:'json',
 			type:'GET',
@@ -68,7 +68,7 @@ var OrderListScreen = React.createClass({
 						);
 					})
 				);
-				
+
 
 				React.render(
 

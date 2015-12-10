@@ -29,7 +29,7 @@ var CreateOrder = React.createClass({
         $('#order-name').val('');
         if(order['address'].length > 0 && order['name'].length > 0 && order['email'].length > 0) {
             $.ajax({
-    			url:'/order.json/*',
+    			url:'https://otso-cc-lasshi.c9users.io/order.json/*',
     			contentType:'application/json',
     			dataType:'json',
     			type:'POST',
@@ -45,7 +45,7 @@ var CreateOrder = React.createClass({
             });
         }
         $.ajax({
-            url:'/sendMail',
+            url:'https://otso-cc-lasshi.c9users.io/sendMail',
             contentType:'application/json',
             dataType:'json',
             type:'POST',
@@ -68,7 +68,7 @@ var CreateOrder = React.createClass({
             return <option value={item}>{item}</option>
         }
 
-        $.get('subcontractor.json/*', function(result) {
+        $.get('https://otso-cc-lasshi.c9users.io/subcontractor.json/*', function(result) {
             var list = []
             for(var s in result) {
                 list.push(s);
