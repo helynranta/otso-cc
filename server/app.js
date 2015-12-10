@@ -156,6 +156,7 @@ app.get('/feedback/mail/:mail', function(reg, res) {
     var feedBackData = JSON.parse(fs.readFileSync("./data/feedback.json", 'utf-8'));
     var feedBackCounter = 0;
     var orderCounter = 0;
+
     var object = {
         email: mail,
         feedbacks: 0,
@@ -166,6 +167,12 @@ app.get('/feedback/mail/:mail', function(reg, res) {
             object.feedbacks += 1;
         }
     });
+    _.each(orderData, function (entry, id) {
+        if (typeof orderData[id] !== 'undefined' && orderData[id]["email"] == mail) {
+            object.orders += 1;
+        }
+    });
+
     res.send(object);
 });
 

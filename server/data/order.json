@@ -4,6 +4,7 @@
         "mf_id": "admin",
         "date": "2015-12-08T16:24:06.434Z",
         "name": "Lorpo Laitinen",
+        "email": "example@test.com",
         "address": "Orionille",
         "add_info": "oh behave!"
     },
@@ -12,6 +13,7 @@
         "mf_id": "Timo",
         "date": "2015-12-08T18:16:26.871Z",
         "name": "Anna",
+        "email": "example@test.com",
         "address": "Koti",
         "add_info": "ffs"
     },
@@ -20,6 +22,7 @@
         "sc_id": "Kimmo",
         "date": "2015-12-09T01:25:02.860Z",
         "name": "Whatever",
+        "email": "example@test.com",
         "address": "Dude",
         "add_info": ""
     },
@@ -28,6 +31,7 @@
         "sc_id": "Kimmo",
         "date": "2015-12-09T01:25:02.860Z",
         "name": "Whatever",
+        "email": "example@test.com",
         "address": "Dude",
         "add_info": ""
     },
@@ -36,6 +40,7 @@
         "sc_id": "Kimmo",
         "date": "2015-12-09T01:25:02.860Z",
         "name": "Whatever",
+        "email": "example@test.com",
         "address": "Dude",
         "add_info": ""
     },
