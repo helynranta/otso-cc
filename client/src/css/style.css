@@ -4,6 +4,10 @@ html, body {
 .navbar-nav {
 	margin:0;
 }
+.main-content {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 footer {
   position: fixed;
   height: 50px;
@@ -362,6 +366,7 @@ body {
     font-weight: 400;
     color: #757575;
   }
+
   .table-responsive-vertical.shadow-z-1 {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
