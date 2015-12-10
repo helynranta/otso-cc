@@ -1,22 +1,45 @@
 var React = require('react'),
-	_ = require('underscore');
+	_ = require('underscore'),
+	dateFormat = require('dateformat');
 
 var DashboardComments = React.createClass({
 	render: function() {
-		let content,
-			data = this.props.data;
+		let content = [],
+			data = this.props.data,
+			len = data.length >= 5 ? 5 : data.length,
+			thead = (
+				<tr className="show-grid header-grid">
+					<th xs={3} md={3}>Date</th>
+					<th xs={3} md={3}>Comment</th>
+				</tr>
+			);
 
-		data.sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
+		data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-		content = data.map((entry) => {
-			
-		});
+		for (var i = 0; i < len; i++) {
+			content.push(
+				<tr className="table table-striped table-hover">
+					<td xs={3} md={3} data-title="Date">{dateFormat(new Date(data[i].date), 'dd.mm hh:mm')}</td>
+					<td xs={3} md={3} data-title="Comment">{data[i].comment}</td>
+				</tr>
+			);
+		}
 		
 		return (
 			<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<div className="text-center">
 					Newest comments
 				</div>
+				<div className="table-responsive-vertical">
+                    <table className="table table-striped table-hover table-orders">
+                    	<thead>
+                    		{thead}
+                    	</thead>
+                    	<tbody>
+                    		{content}
+                    	</tbody>
+                    </table>
+                </div>
 			</div>
 		);
 	}
