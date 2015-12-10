@@ -10,6 +10,7 @@ var DashboardComments = React.createClass({
 			thead = (
 				<tr className="show-grid header-grid">
 					<th xs={3} md={3}>Date</th>
+					<th xs={3} md={3}>Subcontractor</th>
 					<th xs={3} md={3}>Comment</th>
 				</tr>
 			);
@@ -20,6 +21,7 @@ var DashboardComments = React.createClass({
 			content.push(
 				<tr className="table table-striped table-hover">
 					<td xs={3} md={3} data-title="Date">{dateFormat(new Date(data[i].date), 'dd.mm hh:mm')}</td>
+					<td xs={3} md={3} data-title="Subcontractor">{data[i].sc_id}</td>
 					<td xs={3} md={3} data-title="Comment">{data[i].comment}</td>
 				</tr>
 			);
@@ -28,7 +30,7 @@ var DashboardComments = React.createClass({
 		return (
 			<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<div className="text-center">
-					Newest comments
+					<h4>Newest comments</h4>
 				</div>
 				<div className="table-responsive-vertical">
                     <table className="table table-striped table-hover table-orders">
