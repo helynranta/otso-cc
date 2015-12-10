@@ -4,6 +4,29 @@ html, body {
 .navbar-nav {
 	margin:0;
 }
+.main-content {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+footer {
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  bottom: 0;left: 0;
+}
+footer nav button {
+  top: 0;
+  padding: 0px 0px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  width: 20%;
+}
+footer nav button i {
+  transform: translate(-50%, 0%);
+}
+footer nav #btn-logout {
+  float: right;
+}
 .navbar-nav>li {
 	float:none;
     display:inline-block;
@@ -93,13 +116,6 @@ div {
 
 .pseudo {
 	cursor: pointer;
-}
-
-.header-comments h3,
-.table-orders,
-.header-orders,
-.span-no-reviews {
-	margin-left: 15px;
 }
 
 .current-user {
@@ -361,6 +377,7 @@ body {
     font-weight: 400;
     color: #757575;
   }
+
   .table-responsive-vertical.shadow-z-1 {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;

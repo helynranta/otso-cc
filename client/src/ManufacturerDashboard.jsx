@@ -14,37 +14,15 @@ var CreateOrder = require('./CreateOrder.jsx'),
 
 var ManufacturerDashboard = React.createClass({
 	mixins: [Navigation],
-	navigateOrder: function() {
-		this.transitionTo('createorder');
-	},
-	navigateSubcontractors: function() {
-		this.transitionTo('subcontractors');
-	},
-	navigateOrderList: function() {
-		this.transitionTo('orders');
-	},
 	render: function() {
 		return(
 			<div>
 				<div className="text-center">
 					<h2>Dashboard</h2>
 				</div>
-				
 				<div id="container-comments" className="text-center"></div>
-
 				<div id="container-subcontractors" className="text-center"></div>
 				
-				{/*
-				<div className="menu-item">
-					<Button bsStyle="primary" onClick={this.navigateSubcontractors}>Subcontractors</Button>
-				</div>
-				<div className="menu-item">
-					<Button bsStyle="primary" onClick={this.navigateOrderList}>Orders</Button>
-				</div>
-				<div className="menu-item">
-					<Button bsStyle="primary" onClick={this.navigateOrder}>Create order</Button>
-				</div>
-				*/}			
 			</div>
 		);
 	},

@@ -32,6 +32,18 @@ var App = React.createClass({
 			group: 0
 		}
 	},
+	navigateOrder: function() {
+		this.transitionTo('createorder');
+	},
+	navigateSubcontractors: function() {
+		this.transitionTo('subcontractors');
+	},
+	navigateOrderList: function() {
+		this.transitionTo('orders');
+	},
+	handleMenu : function() {
+		window._router.transitionTo('/');
+	},
 	updatePrev: function(prevState) {
 		console.log(this.state.prevState);	
 	},
@@ -84,11 +96,53 @@ var App = React.createClass({
 			            </li>
 			            */}
 		     
+			};
+			
+		let buttons = [
+				<button className="btn" onClick={this.navigateSubcontractors}>
+					<i className="material-icons">group</i>
+				</button>,
+
+				<button className="btn" onClick={this.navigateOrderList}>
+					<i className="material-icons">&#xE547;</i>
+				</button>,
+
+				<button className="btn" onClick={this.navigateOrder}>
+					<i className="material-icons">create</i>						
+				</button>
+		];
+			
+		return (
+			<div className="bs-container">
+				<nav className="navbar navbar-default navbar-fixed-top">
+						<ul className="nav navbar-nav">
+							<li id="logo" className="nav-logo">
+							  <BackToDashboardButton />
+							</li>
+							<li role="presentation" className="active" id="username">
+							{$this.state.loggedIn ?	
+								<div className="current-user">
+									<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
+									<span> {$this.state.user}</span>
+								</div>
+							: '' }
+							</li>
+						</ul>
 				</nav>
 				<br /><br />
 				<div id="bs-container content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
+				
+				<footer>
+					<nav className="card">
+						<button className="btn" onClick={this.handleMenu}>
+							<i className="material-icons">apps</i>
+						</button>
+						{$this.state.group == 0 ? buttons : ' '}
+		            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
+					</nav>
+				</footer>
 			</div>
 		);
 	}
