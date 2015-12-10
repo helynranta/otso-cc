@@ -202,6 +202,10 @@ footer nav div #btn-logout {
 	padding-top: 5px;
 }
 
+#container-subcontractors > div {
+	margin-bottom: 50px;
+}
+
 footer .navbar {
 	background-color: #fff;
 }
