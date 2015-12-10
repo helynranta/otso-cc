@@ -72,11 +72,16 @@ footer nav div #btn-logout {
 	display: inline-block;
 	height: 140px;
 	width: 140px;
-	margin: 10px 0;
+	margin-bottom: 25px;
 }
 
 .inline {
 	display: inline-block;
+}
+
+.p-customer-info {
+	text-align: left;
+	margin: 10px 0;
 }
 
 .stars {
@@ -222,6 +227,9 @@ footer .navbar .btn {
 	#content {
 		padding-top: 100px;
 	}
+	.container-order {
+		padding-top: 60px;
+	}
 }
 
 @media screen and (max-width: 750px) {
@@ -238,6 +246,9 @@ footer .navbar .btn {
 	}
 	#content {
 		padding-top: 50px;
+	}
+	.container-order {
+		padding-top: 20px;
 	}
 }
 
