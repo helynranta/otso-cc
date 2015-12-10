@@ -73,8 +73,8 @@ var App = React.createClass({
 				width: '40px',
 				height: '40px'
 			},
-		pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id,
-		buttons = [
+		pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id;
+		let buttons = [
 				<button className="btn" onClick={this.navigateSubcontractors}>
 					<i className="material-icons">group</i>
 				</button>,
@@ -99,11 +99,13 @@ var App = React.createClass({
 				{$this.state.loggedIn ?
 				<footer>
 					<nav className="card">
-						<button className="btn" onClick={this.handleMenu}>
-							<i className="material-icons">apps</i>
-						</button>
-						{$this.state.group == 0 ? buttons : ' '}
-		            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
+						<div>
+							<button className="btn" onClick={this.handleMenu}>
+								<i className="material-icons">apps</i>
+							</button>
+							{$this.state.group == 0 ? buttons : ' '}
+			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
+		            	</div>
 					</nav>
 				</footer>
 				: ''}
