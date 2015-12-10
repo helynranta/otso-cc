@@ -20,6 +20,7 @@ var LoginScreen = require('./LoginScreen.jsx'),
 	SubcontractorOrderScreen = require('./SubcontractorOrderScreen.jsx'),
 	HomeLink = require('./HomeLink.jsx'),
 	BackToDashboardButton = require('./BackToDashboardButton.jsx'),
+	TopNav = require('./TopNav.jsx'),
 	PageNames = require('./config.js').pages;
 
 
@@ -72,7 +73,6 @@ var App = React.createClass({
 				width: '40px',
 				height: '40px'
 			},
-			
 		pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id;
 		let buttons = [
 				<button className="btn" onClick={this.navigateSubcontractors}>
@@ -90,26 +90,13 @@ var App = React.createClass({
 			
 		return (
 			<div className="bs-container">
-				<nav className="navbar navbar-default navbar-fixed-top">
-						<ul className="nav navbar-nav">
-							<li id="logo" className="nav-logo">
-							  <BackToDashboardButton />
-							</li>
-							<li role="presentation" className="active" id="username">
-							{$this.state.loggedIn ?	
-								<div className="current-user">
-									<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
-									<span> {$this.state.user}</span>
-								</div>
-							: '' }
-							</li>
-						</ul>
-				</nav>
+				<TopNav loggedIn={$this.state.loggedIn} user={$this.state.user} pageName={pageName} />
 				<br /><br />
-				<div id="bs-container content" className="jumbotron">
+				<div id="content" className="bs-container jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
 				
+				{$this.state.loggedIn ?
 				<footer>
 					<nav className="card">
 						<div>
@@ -121,6 +108,7 @@ var App = React.createClass({
 		            	</div>
 					</nav>
 				</footer>
+				: ''}
 			</div>
 		);
 	}
