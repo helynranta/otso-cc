@@ -89,6 +89,11 @@ var App = React.createClass({
 				<div id="bs-container content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
+				<footer>
+					<nav className="card">
+						<i className="material-icons">apps</i>
+					</nav>
+				</footer>
 			</div>
 		);
 	}

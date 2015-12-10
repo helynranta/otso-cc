@@ -30,11 +30,6 @@ var ManufacturerDashboard = React.createClass({
 					<h2>Dashboard</h2>
 				</div>
 				
-				<div id="container-comments" className="text-center"></div>
-
-				<div id="container-subcontractors" className="text-center"></div>
-				
-				{/*
 				<div className="menu-item">
 					<Button bsStyle="primary" onClick={this.navigateSubcontractors}>Subcontractors</Button>
 				</div>
@@ -44,7 +39,11 @@ var ManufacturerDashboard = React.createClass({
 				<div className="menu-item">
 					<Button bsStyle="primary" onClick={this.navigateOrder}>Create order</Button>
 				</div>
-				*/}			
+				
+				<div id="container-comments" className="text-center"></div>
+
+				<div id="container-subcontractors" className="text-center"></div>
+				
 			</div>
 		);
 	},
