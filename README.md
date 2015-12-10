@@ -15,7 +15,7 @@ In the end we were able to implement all of our planned features, with some extr
 # Screen shots
 
 # Technology
-Server uses node.js REST architecture, and all data passed between client and server are pure JSON. Also numerous node modules are used, like Express and Jade.
+Server uses node.js REST architecture, and all data passed between client and server are pure JSON. Also numerous node modules are used, like Express and Jade.  
 Client is based on HTML5 principles (JavaScript, jQuery, Ajax-calls) and ReactJS is used for making the client look like a native mobile application
 
 webpack -w to rebuild bundle.js on js changes
