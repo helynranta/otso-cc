@@ -14,16 +14,22 @@ footer {
   width: 100%;
   bottom: 0;left: 0;
 }
-footer nav button {
+footer nav div {
+  margin: 0 auto;
+  max-width: 500px;
+}
+footer nav div button {
   top: 0;
   padding: 0px 0px;
   margin: 0px 0px !important;
   height: 50px;
   width: 20%;
 }
-footer nav button i {
+footer nav div button i {
+  margin: 0 auto;
+  left: -12px;
 }
-footer nav #btn-logout {
+footer nav div #btn-logout {
   float: right;
 }
 .navbar-nav>li {
