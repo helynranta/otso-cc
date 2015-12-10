@@ -1,7 +1,16 @@
+html, body {
+  background-color: #EEEEEE;
+}
+.nav-logo {
+  left: 20px;
+}
 div {
 	padding-left: 0;
 }
-
+#username {
+  margin-right: 50px;
+  color: black;
+}
 .container {
 	max-width: 730px;
 	margin: 0 auto;
@@ -124,7 +133,11 @@ div {
 	margin: 20px 15px 0 15px;
 	background-color: rgb(28, 90, 125);
 }
-
+.header{
+  position: fixed;
+  height: 35px;
+  width: 100%;
+}
 /* feedback form styles #*/
 .sub-info {
 	display: inline-block;
@@ -144,9 +157,6 @@ div {
 	float: initial;
 	vertical-align: top;
 }
-
-
-
 
 /* -- import Roboto Font ---------------------------- */
 @import "https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic";

@@ -86,6 +86,7 @@ var OrderListScreen = React.createClass({
 	                            </tbody>
 	                        </table>
                         </div>
+
                     </div>,
 
                     document.getElementById('container')

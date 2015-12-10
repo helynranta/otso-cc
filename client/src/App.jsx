@@ -64,24 +64,29 @@ var App = React.createClass({
 			
 		return (
 			<div className="bs-container">
-				<div className="header clearfix">
-					<ul className="nav nav-pills pull-right nav-logout">
-						<li role="presentation" className="active" id="nav-logout-li">
-							{$this.state.loggedIn ?	
-								<div className="current-user">
-									<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
-									<span> {$this.state.user}</span>
-								</div>
-							: '' }
-						</li>
-			            <li role="presentation" className="active" id="nav-logout-li">
-			            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
-			            </li>
-	          		</ul>
-                    <h3 id="logo" className="text-muted">
-          				<BackToDashboardButton />
-					</h3>
-				</div>
+				<nav className="navbar navbar-default navbar-fixed-top">
+						<ul className="nav navbar-nav">
+							 <li id="logo" className="nav-logo">
+		          				<BackToDashboardButton />
+							</li>
+						</ul>
+						<ul className="nav navbar-nav navbar-right" id="username">
+							<li role="presentation" className="active" id="nav-logout-li">
+								{$this.state.loggedIn ?	
+									<div className="current-user">
+										<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
+										<span> {$this.state.user}</span>
+									</div>
+								: '' }
+							</li>
+						</ul>
+				            {/*
+				            <li role="presentation" className="active" id="nav-logout-li">
+				            	<LogoutButton loggedIn={this.state.loggedIn} logIn={this.logIn} />
+				            </li>
+				            */}
+		     
+				</nav>
 				<div id="bs-container content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>
