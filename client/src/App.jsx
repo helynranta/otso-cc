@@ -66,18 +66,16 @@ var App = React.createClass({
 			<div className="bs-container">
 				<nav className="navbar navbar-default navbar-fixed-top">
 						<ul className="nav navbar-nav">
-							 <li id="logo" className="nav-logo">
-		          				<BackToDashboardButton />
+							<li id="logo" className="nav-logo">
+							  <BackToDashboardButton />
 							</li>
-						</ul>
-						<ul className="nav navbar-nav navbar-right" id="username">
-							<li role="presentation" className="active" id="nav-logout-li">
-								{$this.state.loggedIn ?	
-									<div className="current-user">
-										<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
-										<span> {$this.state.user}</span>
-									</div>
-								: '' }
+							<li role="presentation" className="active" id="username">
+							{$this.state.loggedIn ?	
+								<div className="current-user">
+									<img className="img-circle" style={imgStyle} src="icons/04.jpg" />
+									<span> {$this.state.user}</span>
+								</div>
+							: '' }
 							</li>
 						</ul>
 				            {/*
@@ -87,6 +85,7 @@ var App = React.createClass({
 				            */}
 		     
 				</nav>
+				<br /><br />
 				<div id="bs-container content" className="jumbotron">
 					{$this.state.loggedIn ? <RouteHandler user={$this.state.user} group={$this.state.group} /> : <LoginScreen logIn={$this.logIn} />}
 				</div>

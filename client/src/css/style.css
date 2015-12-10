@@ -1,6 +1,17 @@
 html, body {
   background-color: #EEEEEE;
 }
+.navbar-nav {
+	margin:0;
+}
+.navbar-nav>li {
+	float:none;
+    display:inline-block;
+}
+.navbar-nav>li>a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 .nav-logo {
   left: 20px;
 }
@@ -10,6 +21,7 @@ div {
 #username {
   margin-right: 50px;
   color: black;
+  float:right;
 }
 .container {
 	max-width: 730px;
