@@ -31,7 +31,7 @@ var DashboardSubcontractors = React.createClass({
 		return (
 			<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<div className="text-center">
-					Best rated subcontractors
+					<h4><img className="icon-star" src="icons/star.svg" /> Best rated subcontractors </h4>
 				</div>
 				<div className="table-responsive-vertical">
                     <table className="table table-striped table-hover table-orders">
