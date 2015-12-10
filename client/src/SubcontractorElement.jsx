@@ -13,7 +13,7 @@ var SubcontractorElement = React.createClass({
 			<div className="inline avg-stars no-reviews">no reviews</div>;	
 
 		return (
-			<div className="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+			<div className="col-lg-4 col-md-6 col-sm-12 col-xs-12 div-subcontractor">
 				<a href={`#/subcontractor/${this.props.data.id}`}>
 					<img style={imgStyle} className="img-circle" src="icons/04.jpg" />
 				</a>

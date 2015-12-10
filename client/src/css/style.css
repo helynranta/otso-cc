@@ -12,11 +12,6 @@ div {
 	margin: 0 auto;
 }
 
-.col-lg-6 {
-	display: inline-block;
-	float: initial;
-}
-
 .jumbotron p {
 	font-size: 18px;
 }
@@ -141,6 +136,13 @@ div {
 #login-container {
 	max-width: 300px;
 	margin: 0 auto;
+}
+
+.container-subcontractor .div-subcontractor {
+	text-align: center;
+	display: inline-block;
+	float: initial;
+	vertical-align: top;
 }
 
 

@@ -7,7 +7,7 @@ var SubcontractorElement = require('./SubcontractorElement.jsx'),
 var SubcontractorsScreen = React.createClass({
 	render: function() {
 		return (
-			<div id="container"></div>
+			<div id="container" className="container-subcontractor"></div>
 		);
 	},
 	componentDidMount: function() {

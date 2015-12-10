@@ -71,6 +71,23 @@ app.get('/orders', function(req, res) {
     res.send(orderData);
 });
 
+// get all feedback with subcontractor ids
+app.get('/feedback', function(req, res) {
+    var orderData = JSON.parse(fs.readFileSync("./data/order.json", 'utf-8'));
+    var feedBackData = JSON.parse(fs.readFileSync("./data/feedback.json", 'utf-8'));
+
+    var feedback = [];
+    _.each(feedBackData, function(entry, id) {
+        if (typeof orderData[id] !== 'undefined') {
+            entry.id = id;
+            entry.sc_id = orderData[id].sc_id;
+            feedback.push(entry);
+        }
+    });
+
+    res.send(feedback);
+});
+
 // get from rest
 app.get('/:filename/:field', function(req, res) {
     var source = {};
