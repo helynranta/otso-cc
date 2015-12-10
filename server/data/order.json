@@ -99,5 +99,14 @@
         "name": "Lassi",
         "address": "Kikkeli",
         "add_info": "perkele"
+    },
+    "bFelySW0GZ9pEKpbbMG4XpH3zKLqgbS4": {
+        "mf_id": "admin",
+        "sc_id": "Kimmo",
+        "date": "2015-12-10T19:40:18.486Z",
+        "name": "Lassi",
+        "email": "lassilaati@gmail.com ",
+        "address": "Orion",
+        "add_info": ""
     }
 }
