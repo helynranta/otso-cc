@@ -63,10 +63,13 @@
 	    SubcontractorsScreen = __webpack_require__(267),
 	    LogoutButton = __webpack_require__(270),
 	    SubcontractorScreen = __webpack_require__(271),
-	    ManufacturerDashboard = __webpack_require__(274),
-	    OrderListScreen = __webpack_require__(275),
-	    SubcontractorOrderScreen = __webpack_require__(277),
-	    HomeLink = __webpack_require__(278);
+	    ManufacturerDashboard = __webpack_require__(275),
+	    OrderListScreen = __webpack_require__(278),
+	    SubcontractorOrderScreen = __webpack_require__(279),
+	    HomeLink = __webpack_require__(280),
+	    BackToDashboardButton = __webpack_require__(266),
+	    TopNav = __webpack_require__(281),
+	    PageNames = __webpack_require__(274).pages;
 
 	var App = React.createClass({
 		displayName: 'App',
@@ -78,6 +81,21 @@
 				user: 'admin',
 				group: 0
 			};
+		},
+		navigateOrder: function navigateOrder() {
+			this.transitionTo('createorder');
+		},
+		navigateSubcontractors: function navigateSubcontractors() {
+			this.transitionTo('subcontractors');
+		},
+		navigateOrderList: function navigateOrderList() {
+			this.transitionTo('orders');
+		},
+		handleMenu: function handleMenu() {
+			window._router.transitionTo('/');
+		},
+		updatePrev: function updatePrev(prevState) {
+			console.log(this.state.prevState);
 		},
 		logIn: function logIn(_state, _user, _group) {
 
@@ -103,53 +121,69 @@
 			    imgStyle = {
 				width: '40px',
 				height: '40px'
-			};
+			},
+			    pageName = PageNames[this.getRoutes()[1].name] || this.getParams().id;
+			var buttons = [React.createElement(
+				'button',
+				{ className: 'btn', onClick: this.navigateSubcontractors },
+				React.createElement(
+					'i',
+					{ className: 'material-icons' },
+					'group'
+				)
+			), React.createElement(
+				'button',
+				{ className: 'btn', onClick: this.navigateOrderList },
+				React.createElement(
+					'i',
+					{ className: 'material-icons' },
+					''
+				)
+			), React.createElement(
+				'button',
+				{ className: 'btn', onClick: this.navigateOrder },
+				React.createElement(
+					'i',
+					{ className: 'material-icons' },
+					'create'
+				)
+			)];
 
 			return React.createElement(
 				'div',
-				{ className: 'bs-container' },
+				{ className: 'page-container bs-container' },
+				React.createElement(TopNav, { loggedIn: $this.state.loggedIn, user: $this.state.user, pageName: pageName }),
 				React.createElement(
 					'div',
-					{ className: 'header clearfix' },
+					{ id: 'content', className: 'bs-container jumbotron' },
+					$this.state.loggedIn ? React.createElement(RouteHandler, { user: $this.state.user, group: $this.state.group }) : React.createElement(LoginScreen, { logIn: $this.logIn })
+				),
+				$this.state.loggedIn ? React.createElement(
+					'footer',
+					null,
 					React.createElement(
-						'ul',
-						{ className: 'nav nav-pills pull-right nav-logout' },
+						'nav',
+						{ className: 'navbar' },
 						React.createElement(
-							'li',
-							{ role: 'presentation', className: 'active', id: 'nav-logout-li' },
-							$this.state.loggedIn ? React.createElement(
-								'div',
-								{ className: 'current-user' },
-								React.createElement('img', { className: 'img-circle', style: imgStyle, src: 'icons/04.jpg' }),
+							'div',
+							null,
+							React.createElement(
+								'button',
+								{ className: 'btn', onClick: this.handleMenu },
 								React.createElement(
-									'span',
-									null,
-									' ',
-									$this.state.user
+									'i',
+									{ className: 'material-icons' },
+									'apps'
 								)
-							) : ''
-						),
-						React.createElement(
-							'li',
-							{ role: 'presentation', className: 'active', id: 'nav-logout-li' },
+							),
+							$this.state.group == 0 ? buttons : ' ',
 							React.createElement(LogoutButton, { loggedIn: this.state.loggedIn, logIn: this.logIn })
 						)
-					),
-					React.createElement(
-						'h3',
-						{ id: 'logo', className: 'text-muted' },
-						React.createElement(HomeLink, { user: $this.state.user, group: $this.state.group })
 					)
-				),
-				React.createElement(
-					'div',
-					{ id: 'bs-container content', className: 'jumbotron' },
-					$this.state.loggedIn ? React.createElement(RouteHandler, { user: $this.state.user, group: $this.state.group }) : React.createElement(LoginScreen, { logIn: $this.logIn })
-				)
+				) : ''
 			);
 		}
 	});
-
 	var routes = React.createElement(
 		Route,
 		{ name: 'app', path: '/app', handler: App },
@@ -161,9 +195,10 @@
 		React.createElement(Route, { name: 'subcontractors', path: '/subcontractors', handler: SubcontractorsScreen }),
 		React.createElement(Route, { name: 'subcontractor', path: '/subcontractor/:id', handler: SubcontractorScreen })
 	);
-
-	window._router = Router.run(routes, function (Handler) {
+	window._prevPath = [];
+	window._router = Router.run(routes, function (Handler, state) {
 		React.render(React.createElement(Handler, null), document.getElementById("body"));
+		window._prevPath.push(state.path);
 	});
 
 /***/ },
@@ -29939,7 +29974,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(260)();
-	exports.push([module.id, "div {\n\tpadding-left: 0;\n}\n\n.container {\n\tmax-width: 730px;\n\tmargin: 0 auto;\n}\n\n.bs-component {\n\tmax-width: 730px;\n\tmargin: 0 auto;\n}\n\n.col-lg-6 {\n\tdisplay: inline-block;\n\tfloat: initial;\n}\n\n.jumbotron p {\n\tfont-size: 18px;\n}\n\n.avg-stars {\n\tmargin-left: 20px;\n}\n\n.img-subcontractor {\n\tdisplay: inline-block;\n}\n\n.inline {\n\tdisplay: inline-block;\n}\n\n.stars {\n\tdisplay: inline-block;\n\tmargin-right: 20px;\n\ttext-align: right;\n\tfont-size: 18px;\n}\n\n.stars .name {\n\tpadding-right: 10px;\n}\n\n.stars .average {\n\tpadding-right: 5px;\n}\n.header-comments {\n\tfont-weight: bold;\n\tfont-size: 18px;\n}\n\n.icon-star {\n\tmargin-left: 5px;\n}\n\n.header-subcontractor {\n    margin-bottom: 40px;\n    text-align: center;\n}\n\n.stars .no-reviews,\n.stars .average {\n\tpadding-left: 10px;\n}\n\n.no-reviews {\n\tfont-style: italic;\n\tcolor: #777;\n}\n\n.col-comment {\n\tfont-size: 16px;\n}\n\n.pseudo {\n\tcursor: pointer;\n}\n\n.header-comments h3,\n.table-orders,\n.header-orders,\n.span-no-reviews {\n\tmargin-left: 15px;\n}\n\n.current-user {\n\tpadding: 9px 0;\n}\n\n.row-complete {\n\tfont-style: italic;\n}\n\n.button-show-orders {\n\tmargin: 0;\n}\n\n#subcontractor div {\n\tvertical-align: top;\n}\n\n#subcontractor div.stars {\n\tvertical-align: middle;\n}\n\n.orderForm input {\n\tmargin: 10px 20px;\n}\n\n.menu-item {\n\ttext-align: center;\n\tmargin-bottom: 20px;\n}\n\n.menu-item button {\n\twidth: 180px;\n}\n\n.header-grid {\n\tfont-weight: bold;\n}\n#logo {\n\tpadding-left: 20px;\n}\n#back-button {\n\tmargin: 20px 15px 0 15px;\n\tbackground-color: rgb(28, 90, 125);\n}\n\n/* feedback form styles #*/\n.sub-info {\n\tdisplay: inline-block;\n}\n#recall label.active {\n\tbackground-color: rgb(28, 90, 125);\n}\n/* login form styles*/\n#login-container {\n\tmax-width: 300px;\n\tmargin: 0 auto;\n}\n", ""]);
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic);", ""]);
+	exports.push([module.id, "\n.navbar-nav {\n\tmargin:0;\n}\n.main-content {\n  margin-top: 50px;\n  margin-bottom: 50px;\n}\nfooter {\n  position: fixed;\n  height: 50px;\n  width: 100%;\n  bottom: 0;left: 0;\n}\nfooter nav div {\n  margin: 0 auto;\n  max-width: 500px;\n}\nfooter nav div button {\n  top: 0;\n  padding: 0px 0px;\n  margin: 0px 0px !important;\n  height: 50px;\n  width: 20%;\n}\nfooter nav div button i {\n  margin: 0 auto;\n  left: -12px;\n}\nfooter nav div #btn-logout {\n  float: right;\n}\n#content {\n\tbackground-color: initial !important;\n}\n.navbar-nav>li {\n\tfloat:none;\n    display:inline-block;\n}\n.navbar-nav>li>a {\n  padding-top: 15px;\n  padding-bottom: 15px;\n}\n.nav-logo {\n  width:20px;\n}\n\n#username {\n  margin-right: 5px;\n  color: black;\n  float:right;\n}\n.container {\n\tmax-width: 730px;\n\tmargin: 0 auto;\n}\n\n.bs-component {\n\tmax-width: 730px;\n\tmargin: 0 auto;\n}\n\n.jumbotron p {\n\tfont-size: 18px;\n}\n\n.avg-stars {\n\tmargin-left: 20px;\n}\n\n.img-subcontractor {\n\tdisplay: inline-block;\n\theight: 140px;\n\twidth: 140px;\n\tmargin-bottom: 25px;\n}\n\n.inline {\n\tdisplay: inline-block;\n}\n\n.p-customer-info {\n\ttext-align: left;\n\tmargin: 10px 0;\n}\n\n.stars {\n\tdisplay: inline-block;\n\tmargin-right: 20px;\n\ttext-align: right;\n\tfont-size: 18px;\n}\n\n.stars .name {\n\tpadding-right: 10px;\n}\n\n.stars .average {\n\tpadding-right: 5px;\n}\n.header-comments {\n\tfont-weight: bold;\n\tfont-size: 18px;\n}\n\n.icon-star {\n\tmargin-left: 5px;\n}\n\n.header-subcontractor {\n    text-align: center;\n}\n\n.stars .no-reviews,\n.stars .average {\n\tpadding-left: 10px;\n}\n\n.no-reviews {\n\tfont-style: italic;\n\tcolor: #777;\n}\n\n.col-comment {\n\tfont-size: 16px;\n}\n\n.pseudo {\n\tcursor: pointer;\n\tcolor: #009688;\n}\n\n.pseudo:hover {\n\tcolor: #009688;\n}\n\n.current-user {\n\ttext-align: right;\n}\n\n.row-complete {\n\tfont-style: italic;\n}\n\n.button-show-orders {\n\tmargin: 0;\n}\n\n.header-page h4 {\n\tline-height: 31px;\n\ttext-align: center;\n}\n\n#subcontractor div {\n\tvertical-align: top;\n}\n\n#subcontractor div.stars {\n\tvertical-align: middle;\n}\n\n.orderForm input {\n\tmargin: 10px 20px;\n}\n\n.menu-item {\n\ttext-align: center;\n\tmargin-bottom: 20px;\n}\n\n.menu-item button {\n\twidth: 180px;\n}\n\n.header-grid {\n\tfont-weight: bold;\n}\n\n#backButton {\n\tmargin: 6px 15px;\n}\n\n.header{\n  position: fixed;\n  height: 35px;\n  width: 100%;\n}\n\n.nav-top > div {\n\tdisplay: inline-block;\n\tcolor: #000;\n\twidth: 33%;\n\tfloat: left;\n}\n\n.nav-top {\n\theight: 39px;\n\tbackground-color: #FFF;\n}\n\n.current-user div {\n\tpadding-top: 5px;\n}\n\n#container-subcontractors > div {\n\tmargin-bottom: 50px;\n}\n\nfooter .navbar {\n\tbackground-color: #fff;\n}\n\nfooter .navbar .btn {\n\tpadding: 6px 12px;\n}\n\n@media screen and (min-width: 750px) {\n\t#backButton {\n\t\tmargin: 6px 15px;\n\t}\n\t.current-user div {\n\t\tpadding-right: 40px;\n\t}\n\t.header-page h4 {\n\t\tfont-size: 30px;\n\t}\n\tfooter {\n\t\tbottom: initial;\n\t\ttop: 50px;\n\t}\n\t#content {\n\t\tpadding-top: 100px;\n\t}\n\t.container-order {\n\t\tpadding-top: 60px;\n\t}\n}\n\n@media screen and (max-width: 750px) {\n\t#backButton {\n\t\tpadding: 8px;\n\t\tmargin: 6px 0;\n\t\tmargin-left: 3px;\n\t}\n\t.current-user div {\n\t\tpadding-right: 3px;\n\t}\n\tfooter {\n\t\tbottom: 0;\n\t}\n\t#content {\n\t\tpadding-top: 50px;\n\t}\n\t.container-order {\n\t\tpadding-top: 20px;\n\t}\n}\n\n/* feedback form styles #*/\n.sub-info {\n\tdisplay: inline-block;\n}\n#recall label.active {\n\tbackground-color: rgb(28, 90, 125);\n}\n/* login form styles*/\n#login-container {\n\tmax-width: 300px;\n\tmargin: 0 auto;\n}\n\n.container-subcontractor,\n#subcontractor,\n.container-orders {\n\tpadding-top: 20px;\n}\n\n.container-subcontractor .div-subcontractor {\n\ttext-align: center;\n\tdisplay: inline-block;\n\tfloat: initial;\n\tvertical-align: top;\n}\n\n#container-subcontractor .text-center h4,\n#container-comments .text-center h4 {\n\tline-height: 24px;\n}\n\n.header-comments {\n\tpadding-left: 15px;\n}\n\n/* -- import Roboto Font ---------------------------- */\n\n/* -- You can use this tables in Bootstrap (v3) projects. -- */\n/* -- Box model ------------------------------- */\n*,\n*:after,\n*:before {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n/* -- Demo style ------------------------------- */\n#demo {\n  margin: 20px auto;\n  max-width: 960px;\n}\n#demo h1 {\n  font-size: 2.4rem;\n  line-height: 3.2rem;\n  letter-spacing: 0;\n  font-weight: 300;\n  color: #212121;\n  text-transform: inherit;\n  margin-bottom: 1rem;\n  text-align: center;\n}\n#demo h2 {\n  font-size: 1.5rem;\n  line-height: 2.8rem;\n  letter-spacing: 0.01rem;\n  font-weight: 400;\n  color: #212121;\n  text-align: center;\n}\n.shadow-z-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);\n  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);\n}\n/* -- Material Design Table style -------------- */\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 2rem;\n  background-color: #ffffff;\n}\n.table > thead > tr,\n.table > tbody > tr,\n.table > tfoot > tr {\n  -webkit-transition: all 0.3s ease;\n  -o-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n}\n.table > thead > tr > th,\n.table > tbody > tr > th,\n.table > tfoot > tr > th,\n.table > thead > tr > td,\n.table > tbody > tr > td,\n.table > tfoot > tr > td {\n  text-align: left;\n  padding: 1.6rem;\n  vertical-align: top;\n  border-top: 0;\n  -webkit-transition: all 0.3s ease;\n  -o-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n}\n.table > thead > tr > th {\n  font-weight: 400;\n  color: #757575;\n  vertical-align: bottom;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.12);\n}\n.table > caption + thead > tr:first-child > th,\n.table > colgroup + thead > tr:first-child > th,\n.table > thead:first-child > tr:first-child > th,\n.table > caption + thead > tr:first-child > td,\n.table > colgroup + thead > tr:first-child > td,\n.table > thead:first-child > tr:first-child > td {\n  border-top: 0;\n}\n.table > tbody + tbody {\n  border-top: 1px solid rgba(0, 0, 0, 0.12);\n}\n.table .table {\n  background-color: #ffffff;\n}\n.table .no-border {\n  border: 0;\n}\n.table-condensed > thead > tr > th,\n.table-condensed > tbody > tr > th,\n.table-condensed > tfoot > tr > th,\n.table-condensed > thead > tr > td,\n.table-condensed > tbody > tr > td,\n.table-condensed > tfoot > tr > td {\n  padding: 0.8rem;\n}\n.table-bordered {\n  border: 0;\n}\n.table-bordered > thead > tr > th,\n.table-bordered > tbody > tr > th,\n.table-bordered > tfoot > tr > th,\n.table-bordered > thead > tr > td,\n.table-bordered > tbody > tr > td,\n.table-bordered > tfoot > tr > td {\n  border: 0;\n  border-bottom: 1px solid #e0e0e0;\n}\n.table-bordered > thead > tr > th,\n.table-bordered > thead > tr > td {\n  border-bottom-width: 2px;\n}\n.table-striped > tbody > tr:nth-child(odd) > td,\n.table-striped > tbody > tr:nth-child(odd) > th {\n  background-color: #f5f5f5;\n}\n.table-hover > tbody > tr:hover > td,\n.table-hover > tbody > tr:hover > th {\n  background-color: rgba(0, 0, 0, 0.12);\n}\n@media screen and (max-width: 768px) {\n  .table-responsive-vertical > .table {\n    margin-bottom: 0;\n    background-color: transparent;\n  }\n  .table-responsive-vertical > .table > thead,\n  .table-responsive-vertical > .table > tfoot {\n    display: none;\n  }\n  .table-responsive-vertical > .table > tbody {\n    display: block;\n  }\n  .table-responsive-vertical > .table > tbody > tr {\n    display: block;\n    border: 1px solid #e0e0e0;\n    border-radius: 2px;\n    margin-bottom: 1.6rem;\n  }\n  .table-responsive-vertical > .table > tbody > tr > td {\n    background-color: #ffffff;\n    display: block;\n    vertical-align: middle;\n    text-align: right;\n  }\n  .table-responsive-vertical > .table > tbody > tr > td[data-title]:before {\n    content: attr(data-title);\n    float: left;\n    font-size: inherit;\n    font-weight: 400;\n    color: #757575;\n  }\n\n  .table-responsive-vertical.shadow-z-1 {\n    -webkit-box-shadow: none;\n    -moz-box-shadow: none;\n    box-shadow: none;\n  }\n  .table-responsive-vertical.shadow-z-1 > .table > tbody > tr {\n    border: none;\n    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);\n    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);\n  }\n  .table-responsive-vertical > .table-bordered {\n    border: 0;\n  }\n  .table-responsive-vertical > .table-bordered > tbody > tr > td {\n    border: 0;\n    border-bottom: 1px solid #e0e0e0;\n  }\n  .table-responsive-vertical > .table-bordered > tbody > tr > td:last-child {\n    border-bottom: 0;\n  }\n  .table-responsive-vertical > .table-striped > tbody > tr > td,\n  .table-responsive-vertical > .table-striped > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical > .table-striped > tbody > tr > td:nth-child(odd) {\n    background-color: #f5f5f5;\n  }\n  .table-responsive-vertical > .table-hover > tbody > tr:hover > td,\n  .table-responsive-vertical > .table-hover > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical > .table-hover > tbody > tr > td:hover {\n    background-color: rgba(0, 0, 0, 0.12);\n  }\n}\n.table-striped.table-mc-red > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-red > tbody > tr:nth-child(odd) > th {\n  background-color: #fde0dc;\n}\n.table-hover.table-mc-red > tbody > tr:hover > td,\n.table-hover.table-mc-red > tbody > tr:hover > th {\n  background-color: #f9bdbb;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-red > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-red > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-red > tbody > tr > td:nth-child(odd) {\n    background-color: #fde0dc;\n  }\n  .table-responsive-vertical .table-hover.table-mc-red > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-red > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-red > tbody > tr > td:hover {\n    background-color: #f9bdbb;\n  }\n}\n.table-striped.table-mc-pink > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-pink > tbody > tr:nth-child(odd) > th {\n  background-color: #fce4ec;\n}\n.table-hover.table-mc-pink > tbody > tr:hover > td,\n.table-hover.table-mc-pink > tbody > tr:hover > th {\n  background-color: #f8bbd0;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-pink > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-pink > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-pink > tbody > tr > td:nth-child(odd) {\n    background-color: #fce4ec;\n  }\n  .table-responsive-vertical .table-hover.table-mc-pink > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-pink > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-pink > tbody > tr > td:hover {\n    background-color: #f8bbd0;\n  }\n}\n.table-striped.table-mc-purple > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-purple > tbody > tr:nth-child(odd) > th {\n  background-color: #f3e5f5;\n}\n.table-hover.table-mc-purple > tbody > tr:hover > td,\n.table-hover.table-mc-purple > tbody > tr:hover > th {\n  background-color: #e1bee7;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-purple > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-purple > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-purple > tbody > tr > td:nth-child(odd) {\n    background-color: #f3e5f5;\n  }\n  .table-responsive-vertical .table-hover.table-mc-purple > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-purple > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-purple > tbody > tr > td:hover {\n    background-color: #e1bee7;\n  }\n}\n.table-striped.table-mc-deep-purple > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-deep-purple > tbody > tr:nth-child(odd) > th {\n  background-color: #ede7f6;\n}\n.table-hover.table-mc-deep-purple > tbody > tr:hover > td,\n.table-hover.table-mc-deep-purple > tbody > tr:hover > th {\n  background-color: #d1c4e9;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-deep-purple > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-deep-purple > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-deep-purple > tbody > tr > td:nth-child(odd) {\n    background-color: #ede7f6;\n  }\n  .table-responsive-vertical .table-hover.table-mc-deep-purple > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-deep-purple > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-deep-purple > tbody > tr > td:hover {\n    background-color: #d1c4e9;\n  }\n}\n.table-striped.table-mc-indigo > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-indigo > tbody > tr:nth-child(odd) > th {\n  background-color: #e8eaf6;\n}\n.table-hover.table-mc-indigo > tbody > tr:hover > td,\n.table-hover.table-mc-indigo > tbody > tr:hover > th {\n  background-color: #c5cae9;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-indigo > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-indigo > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-indigo > tbody > tr > td:nth-child(odd) {\n    background-color: #e8eaf6;\n  }\n  .table-responsive-vertical .table-hover.table-mc-indigo > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-indigo > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-indigo > tbody > tr > td:hover {\n    background-color: #c5cae9;\n  }\n}\n.table-striped.table-mc-blue > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-blue > tbody > tr:nth-child(odd) > th {\n  background-color: #e7e9fd;\n}\n.table-hover.table-mc-blue > tbody > tr:hover > td,\n.table-hover.table-mc-blue > tbody > tr:hover > th {\n  background-color: #d0d9ff;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-blue > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-blue > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-blue > tbody > tr > td:nth-child(odd) {\n    background-color: #e7e9fd;\n  }\n  .table-responsive-vertical .table-hover.table-mc-blue > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-blue > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-blue > tbody > tr > td:hover {\n    background-color: #d0d9ff;\n  }\n}\n.table-striped.table-mc-light-blue > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-light-blue > tbody > tr:nth-child(odd) > th {\n  background-color: #e1f5fe;\n}\n.table-hover.table-mc-light-blue > tbody > tr:hover > td,\n.table-hover.table-mc-light-blue > tbody > tr:hover > th {\n  background-color: #b3e5fc;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-light-blue > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-light-blue > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-light-blue > tbody > tr > td:nth-child(odd) {\n    background-color: #e1f5fe;\n  }\n  .table-responsive-vertical .table-hover.table-mc-light-blue > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-light-blue > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-light-blue > tbody > tr > td:hover {\n    background-color: #b3e5fc;\n  }\n}\n.table-striped.table-mc-cyan > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-cyan > tbody > tr:nth-child(odd) > th {\n  background-color: #e0f7fa;\n}\n.table-hover.table-mc-cyan > tbody > tr:hover > td,\n.table-hover.table-mc-cyan > tbody > tr:hover > th {\n  background-color: #b2ebf2;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-cyan > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-cyan > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-cyan > tbody > tr > td:nth-child(odd) {\n    background-color: #e0f7fa;\n  }\n  .table-responsive-vertical .table-hover.table-mc-cyan > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-cyan > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-cyan > tbody > tr > td:hover {\n    background-color: #b2ebf2;\n  }\n}\n.table-striped.table-mc-teal > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-teal > tbody > tr:nth-child(odd) > th {\n  background-color: #e0f2f1;\n}\n.table-hover.table-mc-teal > tbody > tr:hover > td,\n.table-hover.table-mc-teal > tbody > tr:hover > th {\n  background-color: #b2dfdb;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-teal > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-teal > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-teal > tbody > tr > td:nth-child(odd) {\n    background-color: #e0f2f1;\n  }\n  .table-responsive-vertical .table-hover.table-mc-teal > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-teal > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-teal > tbody > tr > td:hover {\n    background-color: #b2dfdb;\n  }\n}\n.table-striped.table-mc-green > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-green > tbody > tr:nth-child(odd) > th {\n  background-color: #d0f8ce;\n}\n.table-hover.table-mc-green > tbody > tr:hover > td,\n.table-hover.table-mc-green > tbody > tr:hover > th {\n  background-color: #a3e9a4;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-green > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-green > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-green > tbody > tr > td:nth-child(odd) {\n    background-color: #d0f8ce;\n  }\n  .table-responsive-vertical .table-hover.table-mc-green > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-green > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-green > tbody > tr > td:hover {\n    background-color: #a3e9a4;\n  }\n}\n.table-striped.table-mc-light-green > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-light-green > tbody > tr:nth-child(odd) > th {\n  background-color: #f1f8e9;\n}\n.table-hover.table-mc-light-green > tbody > tr:hover > td,\n.table-hover.table-mc-light-green > tbody > tr:hover > th {\n  background-color: #dcedc8;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-light-green > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-light-green > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-light-green > tbody > tr > td:nth-child(odd) {\n    background-color: #f1f8e9;\n  }\n  .table-responsive-vertical .table-hover.table-mc-light-green > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-light-green > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-light-green > tbody > tr > td:hover {\n    background-color: #dcedc8;\n  }\n}\n.table-striped.table-mc-lime > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-lime > tbody > tr:nth-child(odd) > th {\n  background-color: #f9fbe7;\n}\n.table-hover.table-mc-lime > tbody > tr:hover > td,\n.table-hover.table-mc-lime > tbody > tr:hover > th {\n  background-color: #f0f4c3;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-lime > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-lime > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-lime > tbody > tr > td:nth-child(odd) {\n    background-color: #f9fbe7;\n  }\n  .table-responsive-vertical .table-hover.table-mc-lime > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-lime > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-lime > tbody > tr > td:hover {\n    background-color: #f0f4c3;\n  }\n}\n.table-striped.table-mc-yellow > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-yellow > tbody > tr:nth-child(odd) > th {\n  background-color: #fffde7;\n}\n.table-hover.table-mc-yellow > tbody > tr:hover > td,\n.table-hover.table-mc-yellow > tbody > tr:hover > th {\n  background-color: #fff9c4;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-yellow > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-yellow > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-yellow > tbody > tr > td:nth-child(odd) {\n    background-color: #fffde7;\n  }\n  .table-responsive-vertical .table-hover.table-mc-yellow > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-yellow > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-yellow > tbody > tr > td:hover {\n    background-color: #fff9c4;\n  }\n}\n.table-striped.table-mc-amber > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-amber > tbody > tr:nth-child(odd) > th {\n  background-color: #fff8e1;\n}\n.table-hover.table-mc-amber > tbody > tr:hover > td,\n.table-hover.table-mc-amber > tbody > tr:hover > th {\n  background-color: #ffecb3;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-amber > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-amber > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-amber > tbody > tr > td:nth-child(odd) {\n    background-color: #fff8e1;\n  }\n  .table-responsive-vertical .table-hover.table-mc-amber > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-amber > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-amber > tbody > tr > td:hover {\n    background-color: #ffecb3;\n  }\n}\n.table-striped.table-mc-orange > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-orange > tbody > tr:nth-child(odd) > th {\n  background-color: #fff3e0;\n}\n.table-hover.table-mc-orange > tbody > tr:hover > td,\n.table-hover.table-mc-orange > tbody > tr:hover > th {\n  background-color: #ffe0b2;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-orange > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-orange > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-orange > tbody > tr > td:nth-child(odd) {\n    background-color: #fff3e0;\n  }\n  .table-responsive-vertical .table-hover.table-mc-orange > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-orange > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-orange > tbody > tr > td:hover {\n    background-color: #ffe0b2;\n  }\n}\n.table-striped.table-mc-deep-orange > tbody > tr:nth-child(odd) > td,\n.table-striped.table-mc-deep-orange > tbody > tr:nth-child(odd) > th {\n  background-color: #fbe9e7;\n}\n.table-hover.table-mc-deep-orange > tbody > tr:hover > td,\n.table-hover.table-mc-deep-orange > tbody > tr:hover > th {\n  background-color: #ffccbc;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive-vertical .table-striped.table-mc-deep-orange > tbody > tr > td,\n  .table-responsive-vertical .table-striped.table-mc-deep-orange > tbody > tr:nth-child(odd) {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-striped.table-mc-deep-orange > tbody > tr > td:nth-child(odd) {\n    background-color: #fbe9e7;\n  }\n  .table-responsive-vertical .table-hover.table-mc-deep-orange > tbody > tr:hover > td,\n  .table-responsive-vertical .table-hover.table-mc-deep-orange > tbody > tr:hover {\n    background-color: #ffffff;\n  }\n  .table-responsive-vertical .table-hover.table-mc-deep-orange > tbody > tr > td:hover {\n    background-color: #ffccbc;\n  }\n}\n\n\n\n\n\n\n\n", ""]);
 
 /***/ },
 /* 260 */
@@ -30224,11 +30260,6 @@
 					'form',
 					{ className: 'form-horizontal', onSubmit: this.handleSubmit },
 					React.createElement(
-						'legend',
-						null,
-						'Login'
-					),
-					React.createElement(
 						'div',
 						{ className: 'form-group' },
 						React.createElement(
@@ -30287,7 +30318,7 @@
 					}
 				},
 				error: function error(xhr, status, err) {
-					console.log(this.props.url, status, err.toString());
+					console.log(status, err.toString());
 				}
 			});
 		}
@@ -30385,87 +30416,76 @@
 
 	            content = React.createElement(
 	                'div',
-	                { className: 'bs-component' },
+	                { className: 'bs-component container-order' },
 	                React.createElement(
-	                    'h1',
-	                    null,
-	                    'CreateOrder'
+	                    'div',
+	                    { className: 'form-group label-floating' },
+	                    React.createElement(
+	                        'label',
+	                        { 'for': 'sub', className: 'control-label' },
+	                        'Select subcontractor from the list'
+	                    ),
+	                    React.createElement(
+	                        'select',
+	                        { className: 'form-control', id: 'sub' },
+	                        list.map(createList)
+	                    ),
+	                    React.createElement('span', { className: 'material-input' })
+	                ),
+	                React.createElement(
+	                    'p',
+	                    { className: 'p-customer-info' },
+	                    'Customer information'
 	                ),
 	                React.createElement(
 	                    'div',
-	                    { className: 'bs-component' },
-	                    React.createElement('br', null),
+	                    { className: 'form-group label-floating' },
 	                    React.createElement(
-	                        'div',
-	                        { className: 'form-group' },
-	                        React.createElement(
-	                            'label',
-	                            { 'for': 'sub', className: 'control-label' },
-	                            'Select subcontractor from list'
-	                        ),
-	                        React.createElement(
-	                            'select',
-	                            { className: 'form-control', id: 'sub' },
-	                            list.map(createList)
-	                        ),
-	                        React.createElement('span', { className: 'material-input' })
+	                        'label',
+	                        { className: 'control-label', 'for': 'order-name' },
+	                        'Customer name'
 	                    ),
-	                    React.createElement(
-	                        'p',
-	                        null,
-	                        'Customer information'
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'form-group label-floating' },
-	                        React.createElement(
-	                            'label',
-	                            { className: 'control-label', 'for': 'order-name' },
-	                            'Customer name'
-	                        ),
-	                        React.createElement('input', { id: 'order-name', className: 'form-control', size: '30' }),
-	                        React.createElement('span', { className: 'material-input' })
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'form-group label-floating' },
-	                        React.createElement(
-	                            'label',
-	                            { className: 'control-label', 'for': 'order-address' },
-	                            'Customer address'
-	                        ),
-	                        React.createElement('input', { id: 'order-address', className: 'form-control', size: '30' }),
-	                        React.createElement('span', { className: 'material-input' })
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'form-group label-floating' },
-	                        React.createElement(
-	                            'label',
-	                            { className: 'control-label', 'for': 'order-email' },
-	                            'Customer email'
-	                        ),
-	                        React.createElement('input', { id: 'order-email', className: 'form-control', size: '30' }),
-	                        React.createElement('span', { className: 'material-input' })
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'form-group label-floating' },
-	                        React.createElement(
-	                            'label',
-	                            { className: 'control-label', 'for': 'order-add' },
-	                            'Additional information'
-	                        ),
-	                        React.createElement('textarea', { className: 'form-control', id: 'order-add', rows: '3', cols: '50' }),
-	                        React.createElement('span', { className: 'material-input' })
-	                    ),
-	                    React.createElement(
-	                        Button,
-	                        { onClick: $this.handleSubmit },
-	                        'Add'
-	                    )
+	                    React.createElement('input', { id: 'order-name', className: 'form-control', size: '30' }),
+	                    React.createElement('span', { className: 'material-input' })
 	                ),
-	                React.createElement(BackToDashboardButton, null)
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group label-floating' },
+	                    React.createElement(
+	                        'label',
+	                        { className: 'control-label', 'for': 'order-address' },
+	                        'Customer address'
+	                    ),
+	                    React.createElement('input', { id: 'order-address', className: 'form-control', size: '30' }),
+	                    React.createElement('span', { className: 'material-input' })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group label-floating' },
+	                    React.createElement(
+	                        'label',
+	                        { className: 'control-label', 'for': 'order-email' },
+	                        'Customer email'
+	                    ),
+	                    React.createElement('input', { id: 'order-email', className: 'form-control', size: '30' }),
+	                    React.createElement('span', { className: 'material-input' })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group label-floating' },
+	                    React.createElement(
+	                        'label',
+	                        { className: 'control-label', 'for': 'order-add' },
+	                        'Additional information'
+	                    ),
+	                    React.createElement('textarea', { className: 'form-control', id: 'order-add', rows: '3', cols: '50' }),
+	                    React.createElement('span', { className: 'material-input' })
+	                ),
+	                React.createElement(
+	                    Button,
+	                    { onClick: $this.handleSubmit },
+	                    'Add'
+	                )
 	            );
 
 	            React.render(content, document.getElementById('container'));
@@ -30492,7 +30512,11 @@
 		displayName: 'BackToDashboardButton',
 
 		handleClick: function handleClick() {
-			window._router.transitionTo('manufacturer_dashboard');
+			if (window._prevPath.length > 1) {
+				window._prevPath.pop();
+				window._router.transitionTo(window._prevPath[window._prevPath.length - 1]);
+				window._prevPath.pop();
+			}
 		},
 		render: function render() {
 			return React.createElement(
@@ -30500,8 +30524,12 @@
 				{ className: 'bs-component' },
 				React.createElement(
 					'button',
-					{ className: 'btn btn-raised btn-warning back-button', id: 'back-button', onClick: this.handleClick },
-					'Back'
+					{ className: 'btn', id: 'backButton', onClick: this.handleClick },
+					React.createElement(
+						'i',
+						{ className: 'material-icons' },
+						'arrow_back'
+					)
 				)
 			);
 		}
@@ -30525,7 +30553,7 @@
 		displayName: 'SubcontractorsScreen',
 
 		render: function render() {
-			return React.createElement('div', { id: 'container' });
+			return React.createElement('div', { id: 'container', className: 'container-subcontractor' });
 		},
 		componentDidMount: function componentDidMount() {
 			var $this = this,
@@ -30578,8 +30606,7 @@
 				subcontractors = React.createElement(
 					'div',
 					{ className: 'bs-component' },
-					subcontractors,
-					React.createElement(BackToDashboardButton, null)
+					subcontractors
 				);
 				React.render(subcontractors, document.getElementById('container'));
 			});
@@ -32172,7 +32199,7 @@
 
 			return React.createElement(
 				'div',
-				{ className: 'col-lg-6 col-sm-6 col-md-6 col-xs-6' },
+				{ className: 'col-lg-4 col-md-6 col-sm-12 col-xs-12 div-subcontractor' },
 				React.createElement(
 					'a',
 					{ href: '#/subcontractor/' + this.props.data.id },
@@ -32228,9 +32255,13 @@
 		render: function render() {
 			if (this.props.loggedIn) {
 				return React.createElement(
-					Button,
-					{ bsStyle: 'primary', onClick: this.handleClick },
-					'Logout'
+					'button',
+					{ className: 'btn', id: 'btn-logout', onClick: this.handleClick },
+					React.createElement(
+						'i',
+						{ className: 'material-icons' },
+						''
+					)
 				);
 			} else {
 				return React.createElement('div', null);
@@ -32267,12 +32298,7 @@
 			return React.createElement(
 				'div',
 				{ className: 'bs-component' },
-				React.createElement(SubcontractorPage, { user: this.props.user, id: this.param }),
-				this.props.group === 0 ? React.createElement(
-					Button,
-					{ className: 'btn btn-raised btn-warning', id: 'back-button', onClick: this.handleClickBack },
-					'Back'
-				) : ''
+				React.createElement(SubcontractorPage, { user: this.props.user, id: this.param })
 			);
 		}
 	});
@@ -32291,7 +32317,7 @@
 	    dateFormat = __webpack_require__(273),
 	    Navigation = Router.Navigation,
 	    Button = __webpack_require__(198).Button,
-	    config = __webpack_require__(276);
+	    config = __webpack_require__(274);
 
 	__webpack_require__(258);
 
@@ -32420,10 +32446,10 @@
 						{ id: 'stars', className: 'stars' },
 						stars_html
 					),
-					React.createElement('img', { className: 'img-circle img-subcontractor', src: 'icons/renovation.png' })
+					React.createElement('img', { className: 'img-circle img-subcontractor', src: 'icons/04.jpg' })
 				), React.createElement(
 					'div',
-					{ className: 'col-lg-6 col-sm-6 col-md-6 col-xs-6' },
+					{ className: 'col-lg-6 col-sm-12 col-md-6 col-xs-12' },
 					React.createElement(
 						'p',
 						null,
@@ -32431,20 +32457,7 @@
 					)
 				), React.createElement(
 					'div',
-					{ className: 'col-lg-6 col-sm-6 col-md-6 col-xs-6' },
-					React.createElement(
-						'p',
-						null,
-						'Phone: ',
-						React.createElement(
-							'a',
-							{ href: 'tel:' + sc_data.phone },
-							sc_data.phone
-						)
-					)
-				), React.createElement(
-					'div',
-					{ className: 'col-lg-6 col-sm-6 col-md-6 col-xs-6' },
+					{ className: 'col-lg-6 col-sm-12 col-md-6 col-xs-12' },
 					React.createElement(
 						'p',
 						null,
@@ -32457,7 +32470,20 @@
 					)
 				), React.createElement(
 					'div',
-					{ className: 'col-lg-6 col-sm-6 col-md-6 col-xs-6' },
+					{ className: 'col-lg-6 col-sm-12 col-md-6 col-xs-12' },
+					React.createElement(
+						'p',
+						null,
+						'Phone: ',
+						React.createElement(
+							'a',
+							{ href: 'tel:' + sc_data.phone },
+							sc_data.phone
+						)
+					)
+				), React.createElement(
+					'div',
+					{ className: 'col-lg-6 col-sm-12 col-md-6 col-xs-12' },
 					React.createElement(
 						'p',
 						null,
@@ -32757,6 +32783,28 @@
 
 /***/ },
 /* 274 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"stars" : [
+			"General impression",
+			"Quality of work",
+			"Delivery time",
+			"Customer service"
+		],
+		"pages" : {
+			"loginscreen": "Login",
+			"createorder": "New order",
+			"orders": "Orders",
+			"sc_orders": null,
+			"manufacturer_dashboard": "Paavon Sähkö",
+			"subcontractor": null,
+			"subcontractors": "Subcontractors"
+		}
+	};
+
+/***/ },
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32771,79 +32819,263 @@
 	__webpack_require__(258);
 
 	var CreateOrder = __webpack_require__(265),
-	    SubcontractorsScreen = __webpack_require__(267);
+	    SubcontractorsScreen = __webpack_require__(267),
+	    DashboardComments = __webpack_require__(276),
+	    DashboardSubcontractors = __webpack_require__(277);
 
 	var ManufacturerDashboard = React.createClass({
 		displayName: 'ManufacturerDashboard',
 
 		mixins: [Navigation],
-		navigateOrder: function navigateOrder() {
-			this.transitionTo('createorder');
-		},
-		navigateSubcontractors: function navigateSubcontractors() {
-			this.transitionTo('subcontractors');
-		},
-		navigateOrderList: function navigateOrderList() {
-			this.transitionTo('orders');
-		},
 		render: function render() {
 			return React.createElement(
 				'div',
 				null,
 				React.createElement(
 					'div',
-					{ className: 'menu-item' },
+					{ className: 'text-center' },
 					React.createElement(
 						'h2',
 						null,
 						'Dashboard'
 					)
 				),
-				React.createElement(
-					'div',
-					{ className: 'menu-item' },
-					React.createElement(
-						Button,
-						{ bsStyle: 'primary', onClick: this.navigateSubcontractors },
-						'Subcontractors'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'menu-item' },
-					React.createElement(
-						Button,
-						{ bsStyle: 'primary', onClick: this.navigateOrderList },
-						'Orders'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'menu-item' },
-					React.createElement(
-						Button,
-						{ bsStyle: 'primary', onClick: this.navigateOrder },
-						'Create order'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'menu-item' },
-					'newest comments, best subcontractors or weather here'
-				),
-				React.createElement(
-					'div',
-					{ className: 'text-center' },
-					React.createElement('img', { className: 'menu-item text-center', src: 'http://i.imgur.com/XKjuVJn.png', width: '500' })
-				)
+				React.createElement('div', { id: 'container-comments', className: 'text-center' }),
+				React.createElement('div', { id: 'container-subcontractors', className: 'text-center' })
 			);
+		},
+		componentDidMount: function componentDidMount() {
+			var sc_data = undefined,
+			    fb_data = undefined,
+			    ajaxes = [];
+
+			ajaxes[0] = Promise.resolve($.ajax({
+				url: 'https://otso-cc-lasshi.c9users.io/subcontractors/rating/*',
+				contentType: 'application/json',
+				dataType: 'json',
+				type: 'GET'
+			})).then(function (data) {
+				sc_data = data;
+			});
+
+			ajaxes[1] = Promise.resolve($.ajax({
+				url: 'https://otso-cc-lasshi.c9users.io/feedback/',
+				contentType: 'application/json',
+				dataType: 'json',
+				type: 'GET'
+			})).then(function (data) {
+				fb_data = data;
+			});
+
+			Promise.all(ajaxes).then(function () {
+				React.render(React.createElement(DashboardComments, { data: fb_data }), document.getElementById('container-comments'));
+				React.render(React.createElement(DashboardSubcontractors, { data: sc_data }), document.getElementById('container-subcontractors'));
+			});
 		}
 	});
 
 	module.exports = ManufacturerDashboard;
 
 /***/ },
-/* 275 */
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    _ = __webpack_require__(268),
+	    dateFormat = __webpack_require__(273);
+
+	var DashboardComments = React.createClass({
+		displayName: 'DashboardComments',
+
+		render: function render() {
+			var content = [],
+			    data = this.props.data,
+			    len = data.length >= 5 ? 5 : data.length,
+			    thead = React.createElement(
+				'tr',
+				{ className: 'show-grid header-grid' },
+				React.createElement(
+					'th',
+					{ xs: 3, md: 3 },
+					'Date'
+				),
+				React.createElement(
+					'th',
+					{ xs: 3, md: 3 },
+					'Subcontractor'
+				),
+				React.createElement(
+					'th',
+					{ xs: 3, md: 3 },
+					'Comment'
+				)
+			);
+
+			data.sort(function (a, b) {
+				return new Date(b.date).getTime() - new Date(a.date).getTime();
+			});
+
+			for (var i = 0; i < len; i++) {
+				content.push(React.createElement(
+					'tr',
+					{ className: 'table table-striped table-hover' },
+					React.createElement(
+						'td',
+						{ xs: 3, md: 3, 'data-title': 'Date' },
+						dateFormat(new Date(data[i].date), 'dd.mm hh:mm')
+					),
+					React.createElement(
+						'td',
+						{ xs: 3, md: 3, 'data-title': 'Subcontractor' },
+						React.createElement(
+							'a',
+							{ href: '#/subcontractor/' + data[i].sc_id },
+							data[i].sc_id
+						)
+					),
+					React.createElement(
+						'td',
+						{ xs: 3, md: 3, 'data-title': 'Comment' },
+						data[i].comment
+					)
+				));
+			}
+
+			return React.createElement(
+				'div',
+				{ className: 'col-lg-6 col-md-6 col-sm-12 col-xs-12' },
+				React.createElement(
+					'div',
+					{ className: 'text-center' },
+					React.createElement(
+						'h4',
+						null,
+						'Newest comments'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'table-responsive-vertical' },
+					React.createElement(
+						'table',
+						{ className: 'table table-striped table-hover table-orders' },
+						React.createElement(
+							'thead',
+							null,
+							thead
+						),
+						React.createElement(
+							'tbody',
+							null,
+							content
+						)
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = DashboardComments;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    _ = __webpack_require__(268);
+
+	var DashboardSubcontractors = React.createClass({
+		displayName: 'DashboardSubcontractors',
+
+		render: function render() {
+
+			var content = [],
+			    data = this.props.data,
+			    len = data.length >= 5 ? 5 : data.length,
+			    thead = React.createElement(
+				'tr',
+				{ className: 'show-grid header-grid' },
+				React.createElement(
+					'th',
+					{ xs: 3, md: 3 },
+					'Subcontractor'
+				),
+				React.createElement(
+					'th',
+					{ xs: 3, md: 3 },
+					'Rating'
+				)
+			);
+
+			data.sort(function (a, b) {
+				var diff = parseFloat(b) - parseFloat(a);
+				return diff < 0 ? -1 : 1;
+			});
+
+			for (var i = 0; i < len; i++) {
+				content.push(React.createElement(
+					'tr',
+					{ className: 'table table-striped table-hover' },
+					React.createElement(
+						'td',
+						{ xs: 3, md: 3, 'data-title': 'Subcontractor' },
+						React.createElement(
+							'a',
+							{ href: '#/subcontractor/' + data[i].sc_id },
+							data[i].sc_id
+						)
+					),
+					React.createElement(
+						'td',
+						{ xs: 3, md: 3, 'data-title': 'Rating' },
+						data[i].avgstars
+					)
+				));
+			}
+
+			return React.createElement(
+				'div',
+				{ className: 'col-lg-6 col-md-6 col-sm-12 col-xs-12' },
+				React.createElement(
+					'div',
+					{ className: 'text-center' },
+					React.createElement(
+						'h4',
+						null,
+						React.createElement('img', { className: 'icon-star', src: 'icons/star.svg' }),
+						' Best rated subcontractors '
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'table-responsive-vertical' },
+					React.createElement(
+						'table',
+						{ className: 'table table-striped table-hover table-orders' },
+						React.createElement(
+							'thead',
+							null,
+							thead
+						),
+						React.createElement(
+							'tbody',
+							null,
+							content
+						)
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = DashboardSubcontractors;
+
+/***/ },
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32923,12 +33155,12 @@
 							{ className: 'table table-striped table-hover' },
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
+								{ xs: 3, md: 3, 'data-title': 'Date' },
 								dateFormat(new Date(order.date), "dd.mm.yy hh:mm")
 							),
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
+								{ xs: 3, md: 3, 'data-title': 'Subcontractor' },
 								React.createElement(
 									'a',
 									{ href: '#subcontractor/' + order.sc_id },
@@ -32937,18 +33169,18 @@
 							),
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
+								{ xs: 3, md: 3, 'data-title': 'Customer name' },
 								order.name
 							),
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
+								{ xs: 3, md: 3, 'data-title': 'Address' },
 								order.address
 							),
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
-								order.add_info
+								{ xs: 3, md: 3, 'data-title': 'Comment' },
+								order.add_info || "—"
 							)
 						);
 					});
@@ -32961,12 +33193,12 @@
 							{ className: 'table table-striped table-hover row-complete' },
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
+								{ xs: 3, md: 3, 'data-title': 'Date' },
 								dateFormat(new Date(order.date), "dd.mm.yy hh:mm")
 							),
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
+								{ xs: 3, md: 3, 'data-title': 'Subcontractor' },
 								React.createElement(
 									'a',
 									{ href: '#subcontractor/' + order.sc_id },
@@ -32975,49 +33207,43 @@
 							),
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
+								{ xs: 3, md: 3, 'data-title': 'Customer name' },
 								order.name
 							),
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
+								{ xs: 3, md: 3, 'data-title': 'Address' },
 								order.address
 							),
 							React.createElement(
 								'td',
-								{ xs: 3, md: 3 },
-								order.add_info
+								{ xs: 3, md: 3, 'data-title': 'Comment' },
+								order.add_info || "—"
 							)
 						);
 					}));
 
 					React.render(React.createElement(
 						'div',
-						{ className: 'bs-component' },
+						{ className: 'bs-component container-orders' },
 						React.createElement(
 							'div',
-							{ className: 'page-header' },
+							{ className: 'table-responsive-vertical' },
 							React.createElement(
-								'h2',
-								{ className: 'header-orders' },
-								'Orders'
+								'table',
+								{ className: 'table table-striped table-hover table-orders' },
+								React.createElement(
+									'thead',
+									null,
+									headerRow
+								),
+								React.createElement(
+									'tbody',
+									null,
+									content
+								)
 							)
-						),
-						React.createElement(
-							'table',
-							{ className: 'table table-striped table-hover table-orders' },
-							React.createElement(
-								'thead',
-								null,
-								headerRow
-							),
-							React.createElement(
-								'tbody',
-								null,
-								content
-							)
-						),
-						React.createElement(BackToDashboardButton, null)
+						)
 					), document.getElementById('container'));
 				}
 			});
@@ -33027,20 +33253,7 @@
 	module.exports = OrderListScreen;
 
 /***/ },
-/* 276 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		stars : [
-			'General impression',
-			'Quality of work',
-			'Delivery time',
-			'Customer service'
-		]
-	};
-
-/***/ },
-/* 277 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33050,8 +33263,6 @@
 	    _ = __webpack_require__(268),
 	    dateFormat = __webpack_require__(273),
 	    Button = __webpack_require__(198).Button;
-
-	var BackToDashboardButton = __webpack_require__(266);
 
 	var SubcontractorOrderScreen = React.createClass({
 		displayName: 'SubcontractorOrderScreen',
@@ -33070,8 +33281,6 @@
 			this.showData();
 		},
 		showData: function showData() {
-			var _this = this;
-
 			var $this = this,
 			    orders = undefined,
 			    sc_data = undefined,
@@ -33145,27 +33354,27 @@
 						{ className: 'table table-striped table-hover' },
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Status' },
 							'Active'
 						),
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Date' },
 							dateFormat(new Date(order.date), "dd.mm.yy hh:mm")
 						),
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Customer name' },
 							order.name
 						),
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Address' },
 							order.address
 						),
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Comment' },
 							order.add_info
 						)
 					);
@@ -33179,27 +33388,27 @@
 						{ className: 'table table-striped table-hover row-complete' },
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Status' },
 							'Complete'
 						),
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Date' },
 							dateFormat(new Date(order.date), "dd.mm.yy hh:mm")
 						),
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Customer name' },
 							order.name
 						),
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Address' },
 							order.address
 						),
 						React.createElement(
 							'td',
-							{ xs: 3, md: 3 },
+							{ xs: 3, md: 3, 'data-title': 'Comment' },
 							order.add_info
 						)
 					);
@@ -33207,34 +33416,24 @@
 
 				React.render(React.createElement(
 					'div',
-					{ className: 'bs-component' },
+					{ className: 'bs-component container-orders' },
 					React.createElement(
 						'div',
-						{ className: 'page-header' },
+						{ className: 'table-responsive-vertical' },
 						React.createElement(
-							'h2',
-							{ className: 'header-orders' },
-							'Orders'
+							'table',
+							{ className: 'table table-striped table-hover table-orders' },
+							React.createElement(
+								'thead',
+								null,
+								headerRow
+							),
+							React.createElement(
+								'tbody',
+								null,
+								content
+							)
 						)
-					),
-					React.createElement(
-						'table',
-						{ className: 'table table-striped table-hover table-orders' },
-						React.createElement(
-							'thead',
-							null,
-							headerRow
-						),
-						React.createElement(
-							'tbody',
-							null,
-							content
-						)
-					),
-					React.createElement(
-						Button,
-						{ className: 'btn btn-raised btn-warning', id: 'back-button', onClick: _this.handleClickBack },
-						'Back'
 					)
 				), document.getElementById('container'));
 			});
@@ -33244,7 +33443,7 @@
 	module.exports = SubcontractorOrderScreen;
 
 /***/ },
-/* 278 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33286,6 +33485,63 @@
 	});
 
 	module.exports = HomeLink;
+
+/***/ },
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var BackToDashboardButton = __webpack_require__(266);
+
+	var TopNav = React.createClass({
+		displayName: 'TopNav',
+
+		render: function render() {
+			var imgStyle = {
+				width: '40px',
+				height: '40px'
+			};
+
+			return React.createElement(
+				'nav',
+				{ className: 'navbar navbar-fixed-top nav-top' },
+				React.createElement(
+					'div',
+					null,
+					React.createElement(BackToDashboardButton, null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'header-page' },
+					React.createElement(
+						'h4',
+						null,
+						this.props.pageName
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'current-user' },
+					this.props.loggedIn ? React.createElement(
+						'div',
+						null,
+						React.createElement('img', { className: 'img-circle', style: imgStyle, src: 'icons/04.jpg' }),
+						React.createElement(
+							'span',
+							null,
+							' ',
+							this.props.user
+						)
+					) : ''
+				)
+			);
+		}
+	});
+
+	module.exports = TopNav;
 
 /***/ }
 /******/ ]);
