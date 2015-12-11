@@ -10,7 +10,7 @@ var TopNav = React.createClass({
 		};
 
 		return (
-			<nav className="navbar navbar-default navbar-fixed-top nav-top">
+			<nav className="navbar navbar-fixed-top nav-top">
 				<div>
 					 <BackToDashboardButton />
 				</div>

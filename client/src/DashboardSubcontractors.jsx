@@ -22,7 +22,7 @@ var DashboardSubcontractors = React.createClass({
 		for (var i = 0; i < len; i++) {
 			content.push(
 				<tr className="table table-striped table-hover">
-					<td xs={3} md={3} data-title="Subcontractor">{data[i].sc_id}</td>
+					<td xs={3} md={3} data-title="Subcontractor"><a href={`#/subcontractor/${data[i].sc_id}`}>{data[i].sc_id}</a></td>
 					<td xs={3} md={3} data-title="Rating">{data[i].avgstars}</td>
 				</tr>
 			);

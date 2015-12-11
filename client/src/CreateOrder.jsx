@@ -74,41 +74,37 @@ var CreateOrder = React.createClass({
                 list.push(s);
             }
 
-            content = (
-                <div className="bs-component">
-                    <h1>CreateOrder</h1>
-                    <div className="bs-component">
-                        <br />
-                        <div className="form-group">
-                            <label for="sub" className="control-label">Select subcontractor from list</label>
-                            <select className="form-control" id="sub">
-                                {list.map(createList)}
-                            </select>
-                            <span className="material-input"></span>
-                        </div>
-                        <p>Customer information</p>
-                        <div className="form-group label-floating">
-                            <label className="control-label" for="order-name">Customer name</label>
-                            <input id="order-name" className="form-control" size="30"></input>
-                            <span className="material-input"></span>
-                        </div>
-                        <div className="form-group label-floating">
-                            <label className="control-label" for="order-address">Customer address</label>
-                            <input id="order-address" className="form-control" size="30"></input>
-                            <span className="material-input"></span>
-                        </div>
-                        <div className="form-group label-floating">
-                            <label className="control-label" for="order-email">Customer email</label>
-                            <input id="order-email" className="form-control" size="30"></input>
-                            <span className="material-input"></span>
-                        </div>
-                        <div className="form-group label-floating">
-                            <label className="control-label" for="order-add">Additional information</label>
-                            <textarea className="form-control" id="order-add" rows="3" cols="50"></textarea>
-                            <span className="material-input"></span>
-                        </div>
-                        <Button onClick={$this.handleSubmit}>Add</Button>
+            content = (      
+                <div className="bs-component container-order">
+                    <div className="form-group label-floating">
+                        <label for="sub" className="control-label">Select subcontractor from the list</label>
+                        <select className="form-control" id="sub">
+                            {list.map(createList)}
+                        </select>
+                        <span className="material-input"></span>
                     </div>
+                    <p className="p-customer-info">Customer information</p>
+                    <div className="form-group label-floating">
+                        <label className="control-label" for="order-name">Customer name</label>
+                        <input id="order-name" className="form-control" size="30"></input>
+                        <span className="material-input"></span>
+                    </div>
+                    <div className="form-group label-floating">
+                        <label className="control-label" for="order-address">Customer address</label>
+                        <input id="order-address" className="form-control" size="30"></input>
+                        <span className="material-input"></span>
+                    </div>
+                    <div className="form-group label-floating">
+                        <label className="control-label" for="order-email">Customer email</label>
+                        <input id="order-email" className="form-control" size="30"></input>
+                        <span className="material-input"></span>
+                    </div>
+                    <div className="form-group label-floating">
+                        <label className="control-label" for="order-add">Additional information</label>
+                        <textarea className="form-control" id="order-add" rows="3" cols="50"></textarea>
+                        <span className="material-input"></span>
+                    </div>
+                    <Button onClick={$this.handleSubmit}>Add</Button>
                 </div>
             );
 

@@ -18,7 +18,6 @@ var LoginScreen = React.createClass({
 			<div className="well bs-component" id="login-container">
 				<h2>Paavo Sähkö</h2>
 				<form className="form-horizontal" onSubmit={this.handleSubmit}>
-					<legend>Login</legend>
 					<div className="form-group">
 						<label for="username" className="control-label">username</label>
 						<input type="input" name="username" className="form-control" value={this.state.username} onChange={this.handleUsernameChange}></input><br/>
