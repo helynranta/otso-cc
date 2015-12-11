@@ -1,5 +1,4 @@
 {
-
     "Buo53yKfWNMrBTZElrITTsQWN3t20LdB": {
         "email": "afff@sd",
         "date": "2015-12-08T18:47:23.196Z",
@@ -9,7 +8,7 @@
             5,
             5
         ],
-        "comment": "asd123",
+        "comment": "Erittäin hyvä palvelu!",
         "recall": "yes"
     },
     "Cuo53yKfWNMrBTZElrITTsQWN3t20LdB": {
@@ -21,7 +20,7 @@
             3,
             4
         ],
-        "comment": "asd",
+        "comment": "Hyvä palvelu",
         "recall": "yes"
     },
     "Auo53yKfWNMrBTZElrITTsQWN3t20LdB": {
@@ -33,7 +32,7 @@
             3,
             2
         ],
-        "comment": "asd",
+        "comment": "ihan ok",
         "recall": "yes"
     },
     "Euo53yKfWNMrBTZElrITTsQWN3t20LdB": {
@@ -45,7 +44,7 @@
             3,
             2
         ],
-        "comment": "asd",
+        "comment": "no comments",
         "recall": "yes"
     },
     "Fuo53yKfWNMrBTZElrITTsQWN3t20LdB": {
@@ -57,10 +56,10 @@
             3,
             2
         ],
-        "comment": "asd",
+        "comment": "ok",
         "recall": "yes"
     },
-     "Guo53yKfWNMrBTZElrITTsQWN3t20LdB": {
+    "Guo53yKfWNMrBTZElrITTsQWN3t20LdB": {
         "email": "asd",
         "date": "2015-12-08T18:47:23.196Z",
         "stars": [
@@ -69,10 +68,10 @@
             3,
             2
         ],
-        "comment": "asd",
+        "comment": "ok",
         "recall": "yes"
     },
-     "Huo53yKfWNMrBTZElrITTsQWN3t20LdB": {
+    "Huo53yKfWNMrBTZElrITTsQWN3t20LdB": {
         "email": "asd",
         "date": "2015-12-08T18:47:23.196Z",
         "stars": [
@@ -81,10 +80,10 @@
             3,
             2
         ],
-        "comment": "asd",
+        "comment": "ok",
         "recall": "yes"
     },
-     "Iuo53yKfWNMrBTZElrITTsQWN3t20LdB": {
+    "Iuo53yKfWNMrBTZElrITTsQWN3t20LdB": {
         "email": "asd",
         "date": "2015-12-08T18:47:23.196Z",
         "stars": [
@@ -93,7 +92,7 @@
             3,
             2
         ],
-        "comment": "asd",
+        "comment": "ok",
         "recall": "yes"
     },
     "CpnNxZ5idmcw7vbvYcTY4dCUU6i86wNg": {
@@ -107,6 +106,101 @@
         ],
         "comment": "Kimmo oli ok",
         "recall": "no"
-
+    },
+    "5FpNLwe6jHd3nW4LT1dHfkIKtqUH3eUc": {
+        "email": "",
+        "date": "2015-12-11T08:58:14.769Z",
+        "stars": [
+            "3",
+            "5",
+            "3",
+            "5"
+        ],
+        "comment": "Hyvä palvelu",
+        "recall": "no"
+    },
+    "2H7y4lPJYQiqRPJWI5IByhCWuNeUnfsk": {
+        "email": "",
+        "date": "2015-12-11T09:03:33.088Z",
+        "stars": [
+            "4",
+            "4",
+            "4",
+            "2"
+        ],
+        "comment": "ok!",
+        "recall": "yes"
+    },
+    "z8weYvCwSIl0JrI4IbLAs7M076GwMugL": {
+        "email": "",
+        "date": "2015-12-11T09:05:06.839Z",
+        "stars": [
+            "3",
+            "5",
+            "3",
+            "2"
+        ],
+        "comment": "Kimmo hanki uusi läppäri! ",
+        "recall": "no"
+    },
+    "bJKk4bIqpYBqpyhtZWZy4EHu1AE5q1oq": {
+        "email": "lassilaati@gmail.com",
+        "date": "2015-12-11T09:08:34.574Z",
+        "stars": [
+            "3",
+            "5",
+            "2",
+            "5"
+        ],
+        "comment": "it was ok",
+        "recall": "no"
+    },
+    "bFelySW0GZ9pEKpbbMG4XpH3zKLqgbS4": {
+        "email": "lasshi@windowslive.com",
+        "date": "2015-12-11T09:09:23.278Z",
+        "stars": [
+            "4",
+            "4",
+            "3",
+            "5"
+        ],
+        "comment": "kimmo hoiti homman kotiin",
+        "recall": "no"
+    },
+    "i9bzSfvkNczUYXR1DwLFeKXbt67TtkUI": {
+        "email": "otto.m.laitinen@lut.fi",
+        "date": "2015-12-11T09:09:50.517Z",
+        "stars": [
+            "1",
+            "1",
+            "1",
+            "1"
+        ],
+        "comment": "Ali lel",
+        "recall": "yes"
+    },
+    "aRFwtskoLIviJy0Jp4QnraTOIYRs2Ofj": {
+        "email": "otto.m.laitinen@lut.fi",
+        "date": "2015-12-11T09:11:07.101Z",
+        "stars": [
+            "3",
+            "4",
+            "5",
+            "5"
+        ],
+        "comment": "",
+        "recall": "no"
+    },
+    "56AKIdB95MVVZjHBGsOHBRVEDgYja1t1": {
+        "email": "lorpotin@hotmail.com",
+        "date": "2015-12-11T09:12:12.279Z",
+        "stars": [
+            "5",
+            "5",
+            "5",
+            "5"
+        ],
+        "comment": "Yes good very",
+        "recall": "yes"
     }
 }
