@@ -1,5 +1,5 @@
 # Otso Codecamp Winter 2015 group 4
-App is running here: https://ide.c9.io/lasshi/otso-cc
+App is running here: https://otso-cc-lasshi.c9users.io
 
 # Team members
 Otto Laitinen  
