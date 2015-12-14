@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
     head
         title=feedback
+        meta(name="viewport" content="width=device-width, initial-scale=1")
         // roboto
         link(href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet")
         // stylesheets
@@ -30,11 +31,11 @@ html(lang="en")
                         p phone : !{scs.phone} 
                 .col-md-6.text-center
                     .form-group.label-floating
-                        label.control-label(for="email") By entering email address, you might gain coupons
+                        label.control-label(for="email") Receive offers and coupons by entering your email address 
                         input.form-control(id="email")
                         span.material-input
                     .form-group.label-floating
-                        label.control-label(for="comment") free speech
+                        label.control-label(for="comment") Optional comments
                         textarea.form-control(id="comment")
                         span.material-input
         // star rating

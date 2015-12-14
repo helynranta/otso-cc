@@ -28,7 +28,7 @@ var App = React.createClass({
 	mixins: [Router.State, Navigation],
 	getInitialState: function () {
 		return {
-			loggedIn: true,
+			loggedIn: false,
 			user: 'admin',
 			group: 0
 		}
@@ -113,7 +113,6 @@ var App = React.createClass({
 		);
 	}
 });
-var slider = new PageSlider($("#content"));
 var routes = (
 	<Route name="app" path="/app" handler={App} >
 		<Route name="loginscreen" path="/login" handler={LoginScreen} />

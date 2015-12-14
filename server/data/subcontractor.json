@@ -2,42 +2,42 @@
     "Tekija": {
         "name": "Tekijä Oy",
         "address": "Katu 1 23456 Postipaikka",
-        "y": "yyyyyyy",
+        "y": "jsIfsw2",
         "cat": "Delivery",
         "phone": "+358 40 234 1253"
     },
     "Ali": {
         "name": "AliBaba Oy",
         "address": "mattoKatu 12 23456 Postipaikka",
-        "y": "yyyyyyy2",
+        "y": "slLiwSv2",
         "cat": "Delivery",
         "phone": "+352 50 232 1253"
     },
     "Kimmo": {
         "name": "Kimmon yritys Oy",
         "address": "Macbookkuja 42 232256 Esboo",
-        "y": "yyyyyyy2",
+        "y": "sÖskf2D",
         "cat": "Customer support",
         "phone": "+352 50 232 1253"
     },
     "Migitto": {
         "name": "Migitto Oy",
         "address": "Kumpu 12 23456 teletappimäki",
-        "y": "yy2yyy2",
+        "y": "Falv2f4",
         "cat": "Customer support",
         "phone": "+352 50 232 1253"
     },
     "Timo": {
         "name": "Jankon Betoni Oy",
-        "address": "Olutta 12 23456 kiitos",
-        "y": "yy2yyy2",
+        "address": "Punkkerikatu 5A 53850 Lappeenranta",
+        "y": "sASpgW2",
         "cat": "Renovation",
         "phone": "+352 50 232 1253"
     },
     "Aino": {
         "name": "Ainon Software Oy",
         "address": "Olutta 12 23456 kiitos",
-        "y": "yy2yyy2",
+        "y": "öLgh3s1",
         "cat": "Installation",
         "phone": "+352 50 232 1253"
     }

@@ -82,7 +82,7 @@ var SubcontractorPage = React.createClass({
 
 			_.each(comments, (comment) => {
 				_.each(comment.stars, (star, i) => {
-					stars[i].total += star;
+					stars[i].total += parseInt(star);
 					stars[i].cnt++;
 				});
 			});

@@ -312,7 +312,7 @@ app.post('/sendMail', function(reg, res) {
     to: ''+reg.body.name+', '+reg.body.email, // list of receivers
     subject: 'Thanks for ordering from us! ✔', // Subject line
     text: 'Hello world ✔', // plaintext body
-    html: '<b>Greetings! ✔</b><br> Please answer to this feedback form: ' + 'localhost:3000/feedback/'+reg.body.id+'<br>Thanks, Paavon Sähkö' // html body
+    html: '<b>Greetings,  ' + reg.body.name + '! ✔</b><br> Please fill in this feedback form: <br/><a href=https://otso-cc-lasshi.c9users.io/feedback/'+reg.body.id+'>https://otso-cc-lasshi.c9users.io/feedback/'+reg.body.id+'</a><br /><br />Thanks, Paavon Sähkö' // html body
     };
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
