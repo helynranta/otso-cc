@@ -2,9 +2,12 @@
 App is running here: https://otso-cc-lasshi.c9users.io
 
 # Team members
-Otto Laitinen  
-Lassi Lääti  
-Anna Osipova  
+
+| Team member    | Main responsibility  |
+| :------------- | :-------------       |
+| Otto Laitinen  | Backen               |
+| Lassi Lääti    | In between           |
+| Anna Osipova   | Fronend              |
 
 # Idea
 Local IT company LTC Otso provided us with a case that we had to solve. They had a few criteria what they wanted to see, and we planned to implement them all, since we felt quite confident in our programming skills. We also wanted to make our final application completely functional, with real client - server communication.
@@ -24,5 +27,6 @@ In the end we were able to implement all of our planned features, with some extr
 # Technology
 Server uses node.js REST architecture, and all data passed between client and server are pure JSON. Also numerous node modules are used, like Express and Jade.  
 Client is based on HTML5 principles (JavaScript, jQuery, Ajax-calls) and ReactJS is used for making the client look like a native mobile application
+
 # Build info
 webpack -w to rebuild bundle.js on js changes
