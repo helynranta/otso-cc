@@ -14,6 +14,13 @@ In the end we were able to implement all of our planned features, with some extr
 
 # Screenshots
 
+![screenshot1.png](./doc/screenshot1.png)
+![screenshot2.png](./doc/screenshot2.png)
+![screenshot3.png](./doc/screenshot3.png)
+![screenshot4.png](./doc/screenshot4.png)
+![screenshot5.png](./doc/screenshot5.png)
+![screenshot6.png](./doc/screenshot6.png)
+
 # Technology
 Server uses node.js REST architecture, and all data passed between client and server are pure JSON. Also numerous node modules are used, like Express and Jade.  
 Client is based on HTML5 principles (JavaScript, jQuery, Ajax-calls) and ReactJS is used for making the client look like a native mobile application
