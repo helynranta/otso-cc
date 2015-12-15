@@ -1,6 +1,9 @@
 # Otso Codecamp Winter 2015 group 4
 App is running here: https://otso-cc-lasshi.c9users.io
 
+#### Poster
+![poster](./doc/poster.svg)
+
 # Team members
 
 | Team member    | Main responsibility  |
