@@ -1,7 +1,9 @@
-# Otso Codecamp Winter 2015 group 4
+# Otso Codecamp Winter 2015 group 3
 App is running here: https://otso-cc-lasshi.c9users.io
 
 #### [Poster](./doc/poster.svg)
+
+###[Course Report](https://docs.google.com/document/d/1NsvPyfmmsD1wCs2x39Vm1WNjHJE0ldgjEl0gVZvLLyA/edit?usp=sharing)
 
 # Team members
 
