@@ -32,5 +32,7 @@ In the end we were able to implement all of our planned features, with some extr
 Server uses node.js REST architecture, and all data passed between client and server are pure JSON. Also numerous node modules are used, like Express and Jade.  
 Client is based on HTML5 principles (JavaScript, jQuery, Ajax-calls) and ReactJS is used for making the client look like a native mobile application
 
+We have data specification at [server/data/README.md](https://github.com/lasshi/otso-cc/tree/master/server/data)
+
 # Build info
 webpack -w to rebuild bundle.js on js changes
